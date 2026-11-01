@@ -76,6 +76,15 @@ violation. These are local results, not platform or provider certification.
 7. **Credential hygiene** — if any token may have been exposed historically, rotate
    it server-side; deleting a local copy is not revocation.
 
+## 4a. Input templates
+
+Use these to supply the blocked owner inputs without guessing:
+
+- `docs/security/activation/ACT-002_TEMPLATE.md`
+- `docs/security/activation/TUNNEL_ARTIFACT_TEMPLATE.md`
+- `docs/security/activation/MINIMATCH_EXCEPTION_TEMPLATE.md`
+- `scripts/hash-tunnel-artifact.mjs` (hashes a candidate CLI without executing it)
+
 ## 5. Explicit non-claims
 
 - No remediation is claimed for Windows, macOS, a real FRM server or a real

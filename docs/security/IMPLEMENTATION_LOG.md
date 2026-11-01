@@ -286,3 +286,21 @@ count after fixes: **22 files / 222 tests**.
 Reviewer position after round 2: **G-01 blocked** (ACT-002 sharing policy and
 real CLI artifact outstanding; containment fail-closed), **G-03 pass-with-findings
 for source review only** (runtime browser/Electron evidence belongs to G-04).
+
+---
+
+## Post-resume preparation (owner input templates)
+
+Added non-executing owner input templates and a safe hashing helper; no
+application behavior changed.
+
+- `docs/security/activation/ACT-002_TEMPLATE.md`
+- `docs/security/activation/TUNNEL_ARTIFACT_TEMPLATE.md`
+- `docs/security/activation/MINIMATCH_EXCEPTION_TEMPLATE.md`
+- `scripts/hash-tunnel-artifact.mjs` — prints size, SHA-256, executable magic and
+  a manifest entry without executing, trusting or installing the binary.
+
+The helper was exercised against a synthetic ELF file (correct digest/magic) and
+a text file (reported `unknown/text` with a do-not-record warning). Gates are
+unchanged; sharing remains disabled until ACT-002 and a trusted artifact are
+recorded.

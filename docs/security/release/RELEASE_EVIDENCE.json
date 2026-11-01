@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-01T02:53:49.719Z",
-  "registerRevision": "1.3",
+  "generatedAt": "2026-11-01T03:34:53.782Z",
+  "registerRevision": "1.4",
   "source": {
-    "head": "708aa50cc9d3424457f2f08879915b02140fead1",
+    "head": "3240075617577cad7c96d4dd6ecb0f5524bdcef2",
     "branch": "security/remediation-2026-10-31",
-    "dirty": ""
+    "dirty": "M docs/security/data/security_plan.json\n?? docs/security/OWNER_DECISION_2026-10-31.md"
   },
   "build": {
     "node": "v22.22.2",

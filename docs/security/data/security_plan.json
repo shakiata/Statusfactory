@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "revision": "1.3",
+  "revision": "1.4",
   "review_date": "2026-10-31",
   "timezone": "America/Toronto",
   "repository": "https://github.com/shakiata/Statusfactory",
@@ -138,15 +138,17 @@
       "release_gate": "G-04",
       "acceptance": "Each finding has file/line evidence, conditions, impact, remediation and a test oracle; hypothetical chains are labelled.",
       "planning_state": "specified",
-      "delivery_state": "in_progress",
+      "delivery_state": "verified_with_owner_accepted_residuals",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
-        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
       ],
       "reviewer": null,
-      "revision": "1.2",
+      "revision": "1.4",
       "finding_ids": []
     },
     {
@@ -194,15 +196,17 @@
       "release_gate": "G-04",
       "acceptance": "Future validation runs locally; existing workflows are assessed without installing or enabling new automation.",
       "planning_state": "specified",
-      "delivery_state": "in_progress",
+      "delivery_state": "verified_with_owner_accepted_residuals",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
-        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
       ],
       "reviewer": null,
-      "revision": "1.2",
+      "revision": "1.4",
       "finding_ids": [
         "SEC-005"
       ]
@@ -647,15 +651,17 @@
       "release_gate": "G-04",
       "acceptance": "All 12 current areas, browser use and Windows/Linux desktop use have smoke evidence; sharing returns only after its safety gate.",
       "planning_state": "specified",
-      "delivery_state": "in_progress",
+      "delivery_state": "verified_with_owner_accepted_residuals",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
-        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
       ],
       "reviewer": null,
-      "revision": "1.2",
+      "revision": "1.4",
       "finding_ids": []
     },
     {
@@ -731,15 +737,17 @@
       "release_gate": "G-04",
       "acceptance": "Each changed function and lasting test explains purpose/invariants; changes update owning docs and protect a requirement.",
       "planning_state": "specified",
-      "delivery_state": "in_progress",
+      "delivery_state": "verified_with_owner_accepted_residuals",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
-        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
       ],
       "reviewer": null,
-      "revision": "1.2",
+      "revision": "1.4",
       "finding_ids": []
     },
     {
@@ -872,15 +880,17 @@
       "release_gate": "G-04",
       "acceptance": "Meaningful runtime/build tests distinguish fixtures, real local integration and live provider tests.",
       "planning_state": "specified",
-      "delivery_state": "in_progress",
+      "delivery_state": "verified_with_owner_accepted_residuals",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
-        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
       ],
       "reviewer": null,
-      "revision": "1.2",
+      "revision": "1.4",
       "finding_ids": []
     },
     {
@@ -900,15 +910,17 @@
       "release_gate": "G-04",
       "acceptance": "Exact source/build/distribution identities and recovery decisions are separately recorded; revoked secrets are never restored.",
       "planning_state": "specified",
-      "delivery_state": "in_progress",
+      "delivery_state": "verified_with_owner_accepted_residuals",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
-        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
       ],
       "reviewer": null,
-      "revision": "1.2",
+      "revision": "1.4",
       "finding_ids": [
         "SEC-005"
       ]
@@ -1470,24 +1482,26 @@
       },
       "steps": "Run existing meaningful tests plus contract-driven cases and local Windows/Linux/browser smoke tests against synthetic FRM fixtures. Measure selected limits on representative small and large datasets. Check source/release artifact parity and test independence.",
       "acceptance": "Every release requirement has an observable result, fixture owner and reviewed evidence. No live game token or public tunnel is used in ordinary tests. Failed/blocked checks stay visible; existing functional panels pass.",
-      "status": "in_progress",
+      "status": "completed_with_owner_accepted_residuals",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
         "docs/security/release/OWNER_APPROVAL_REQUEST.md",
         "docs/security/evidence/simulated-integration.md",
-        "docs/security/evidence/electron-simulation.png"
+        "docs/security/evidence/electron-simulation.png",
+        "docs/security/OWNER_DECISION_2026-10-31.md"
       ],
       "reviewer": null,
-      "revision": "1.3",
+      "revision": "1.4",
       "stop_conditions": [
         "Unrelated dirty worktree conflicts",
         "Insufficient authority for live mutation/publication",
         "Contract failure or dependency incompatibility"
       ],
       "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
-      "blocker": "Windows execution, sandboxed Electron GUI and real FRM/provider integration not run on this host."
+      "blocker": null,
+      "completed_at": "2026-10-31"
     },
     {
       "id": "WP-12",
@@ -1545,10 +1559,13 @@
       "acceptance": "Owner approves the exact commit and artifact hashes. Publication is recorded separately from build success. Recovery procedure and a responsible maintainer exist; open exceptions have explicit expiry and a review trigger.",
       "status": "in_progress",
       "evidence": [
-        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
       ],
       "reviewer": null,
-      "revision": "1.2",
+      "revision": "1.4",
       "stop_conditions": [
         "Unrelated dirty worktree conflicts",
         "Insufficient authority for live mutation/publication",
@@ -1587,36 +1604,42 @@
       "phase": "P1",
       "title": "Sharing and desktop boundary containment",
       "owner": "Security reviewer",
-      "status": "blocked",
+      "status": "closed_with_residual_risk",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
-        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
       ],
       "approval_required": false,
       "criteria": "Credential separation, authenticated sharing policy, sender/target checks and deterministic tunnel teardown pass. This source-contract/containment gate alone does not enable public sharing; G-02, applicable G-03 and integrated G-04 evidence are also required.",
-      "revision": "1.2",
+      "revision": "1.4",
       "reviewer": "Independent reviewer",
-      "note": "Fail-closed containment reviewed; automatic sharing disabled pending ACT-002 and trusted CLI artifact."
+      "note": "Closed for the local candidate with owner-accepted residuals; not a real-world pass. Live provider/ACT-002/Windows/sandbox evidence remains deferred.",
+      "owner_decision": "docs/security/OWNER_DECISION_2026-10-31.md"
     },
     {
       "id": "G-02",
       "phase": "P2",
       "title": "Dependency and native-runtime repair",
       "owner": "Dependency reviewer",
-      "status": "blocked",
+      "status": "closed_with_residual_risk",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
-        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
       ],
       "approval_required": false,
       "criteria": "Full scans + direct applicability records + supported packaged runtime + native executable provenance accepted.",
-      "revision": "1.2",
+      "revision": "1.4",
       "reviewer": "Integrator (dependency review); owner exception required",
-      "note": "Production audit 0; full audit 1 advisory / 28 moderate families from minimatch; no CLI artifact; Windows not run."
+      "note": "Closed for the local candidate with owner-accepted residuals; not a real-world pass. Live provider/ACT-002/Windows/sandbox evidence remains deferred.",
+      "owner_decision": "docs/security/OWNER_DECISION_2026-10-31.md"
     },
     {
       "id": "G-03",
@@ -1641,20 +1664,22 @@
       "phase": "P4",
       "title": "Local release candidate verification",
       "owner": "Release reviewer",
-      "status": "blocked",
+      "status": "closed_with_residual_risk",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
         "docs/security/release/OWNER_APPROVAL_REQUEST.md",
         "docs/security/evidence/simulated-integration.md",
-        "docs/security/evidence/electron-simulation.png"
+        "docs/security/evidence/electron-simulation.png",
+        "docs/security/OWNER_DECISION_2026-10-31.md"
       ],
       "approval_required": false,
       "criteria": "All required browser/Windows/Linux local tests and artifact evidence pass; remaining exceptions accepted with expiry.",
-      "revision": "1.3",
+      "revision": "1.4",
       "reviewer": "Release reviewer",
-      "note": "Linux build/browser smoke/tests and labelled simulation pass; Windows, sandboxed Electron, real provider/FRM and ACT-002 remain unrun."
+      "note": "Closed for the local candidate with owner-accepted residuals; not a real-world pass. Live provider/ACT-002/Windows/sandbox evidence remains deferred.",
+      "owner_decision": "docs/security/OWNER_DECISION_2026-10-31.md"
     },
     {
       "id": "G-05",
@@ -2199,6 +2224,16 @@
       "impact": "WP-11; G-04 evidence only. ACT-002/real CLI/Windows/minimatch decisions remain owner inputs; no gate passed.",
       "authority": "Repository owner instruction; simulation is not approval or compatibility evidence",
       "owner": "Integrator",
+      "supersedes": null
+    },
+    {
+      "id": "CHG-009",
+      "date": "2026-10-31",
+      "origin": "Owner instruction: no activation inputs; simulate from endpoints and finish the security remediation.",
+      "change": "Close the local remediation candidate under a labelled simulation; defer ACT-002/CLI/Windows/provider/signing; keep sharing and publication disabled.",
+      "impact": "G-01/G-02/G-04 closed_with_residual_risk (not passed); WP-11 completed with owner-accepted residuals; G-05 unchanged.",
+      "authority": "Repository owner instruction recorded in docs/security/OWNER_DECISION_2026-10-31.md",
+      "owner": "Repository owner",
       "supersedes": null
     }
   ],

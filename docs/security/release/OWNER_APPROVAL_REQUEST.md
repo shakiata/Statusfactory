@@ -1,8 +1,8 @@
 # Owner approval request — Statusfactory 1.5.1 security candidate
 
-**Prepared:** 2026-10-31 · **Register revision:** 1.1 · **Status:** awaiting
-owner decisions. Nothing here grants publication, deployment or exception
-approval.
+**Prepared:** 2026-10-31 · **Register revision:** 1.4 · **Status:** local remediation
+complete under owner decision `docs/security/OWNER_DECISION_2026-10-31.md`.
+Publication and deployment remain unapproved.
 
 ## 1. What is ready for review
 
@@ -47,13 +47,13 @@ violation. These are local results, not platform or provider certification.
 | Gate | Status | Reason |
 | --- | --- | --- |
 | G-00 | passed | OpenCode v2 discovery/invocation/nested/permission/fresh-session evidence; Codex removed by owner CHG-006 |
-| G-01 | **blocked** | Containment is implemented and reviewed, but public sharing is disabled pending ACT-002 and a trusted CLI artifact |
-| G-02 | **blocked** | Production audit clean and Electron 45.2.1 resolved; minimatch dev/build advisory needs owner-approved exception; no CLI artifact/Windows runtime evidence |
-| G-03 | pass-with-findings (source review) | Contract tests pass; runtime browser/Electron evidence belongs to G-04 |
-| G-04 | **blocked** | Windows execution, sandboxed Electron launch and real FRM/provider integration not run |
+| G-01 | **closed with residual risk** | Containment implemented and reviewed; public sharing disabled; ACT-002/CLI deferred by owner |
+| G-02 | **closed with residual risk** | Production audit clean; minimatch dev/build advisory accepted for this local candidate only; no real CLI/Windows evidence |
+| G-03 | pass-with-findings (source review) | Contract tests pass; runtime evidence remains partial/simulated |
+| G-04 | **closed with residual risk** | Linux build/browser/simulation evidence; Windows, sandboxed Electron and real provider deferred by owner |
 | G-05 | **not run** | Owner approval required |
 
-## 4. Decisions requested from the owner
+## 4. Decisions remaining before any release (not required for this local candidate)
 
 1. **G-05 publication approval** — name the exact commit and artifact hashes,
    audience/channel and publication action. Publication is not authorized by this

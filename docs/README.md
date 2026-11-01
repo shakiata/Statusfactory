@@ -51,6 +51,8 @@ Hub and index for all project documentation. Organized by conceptual layer so bo
 | [security/data/security_plan.json](./security/data/security_plan.json) | Canonical requirements, work packages and gates |
 | [security/06_SECURITY_AND_OPERATIONS.md](./security/06_SECURITY_AND_OPERATIONS.md) | Security runbooks and release policy |
 | [security/release/](./security/release/) | Release candidate evidence, SBOM and rollback runbook |
+| [security/PR_REPORT.md](./security/PR_REPORT.md) | Full remediation report attached to the PR |
+| [security/HANDOFF.md](./security/HANDOFF.md) | Agent continuation and goal-resume instructions |
 
 Canonical agent workflows live in `.agents/skills/` (`scope-and-continuity`,
 `dependency-triage`, `boundary-hardening`, `local-release-verification`).

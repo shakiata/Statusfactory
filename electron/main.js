@@ -1,11 +1,14 @@
 /**
  * Statusfactory Electron main process.
  *
- * Owns the window, the single connection profile, sharing authorization and
- * the one tunnel process. Renderer input is untrusted on every channel.
+ * Remediation attachment (read before changing this boundary):
+ * - Full report: docs/security/PR_REPORT.md
+ * - Agent continuation handoff: docs/security/HANDOFF.md
+ * - Canonical register: docs/security/data/security_plan.json (revision 1.6)
+ * - Runtime policy: docs/security/02_DOMAIN_AND_PRODUCT_CONTRACTS.md
  *
- * Contracts: docs/security/02_DOMAIN_AND_PRODUCT_CONTRACTS.md sections 7–11;
- * docs/security/03_ARCHITECTURE_AND_REPOSITORY.md section 4.
+ * This process owns the connection profile, sharing permits, tunnel process and
+ * IPC validation. Renderer input is untrusted on every channel.
  */
 
 const { app, BrowserWindow, nativeTheme, ipcMain, session } = require("electron");

@@ -1,0 +1,4134 @@
+{
+  "schema_version": "1.0",
+  "revision": "1.6",
+  "review_date": "2026-10-31",
+  "timezone": "America/Toronto",
+  "repository": "https://github.com/shakiata/Statusfactory",
+  "baseline_commit": "d0338043169b7af80cedacd2feb838bb705b16a5",
+  "authorization": {
+    "planning": false,
+    "implementation": true,
+    "skill_installation": "repository_local_only",
+    "publication": false,
+    "live_mutation": false,
+    "planning_history": {
+      "planning": true,
+      "implementation": false,
+      "skill_installation": false,
+      "publication": false,
+      "live_mutation": false
+    },
+    "implementation_record": "docs/security/IMPLEMENTATION_AUTHORIZATION.md",
+    "authorized_at": "2026-10-31",
+    "authorized_scope": "Local implementation, verification, repository-local kit, local artifacts; no purchase, publication, push, deployment, production credentials or public tunnels."
+  },
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "title": "Pin source and preserve reproducible review evidence",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "09_SECURITY_REVIEW.md",
+      "work_package": "WP-00",
+      "owner": "Integrator",
+      "dependencies": [
+        "WP-00"
+      ],
+      "release_gate": "G-00",
+      "acceptance": "The 94 text-file Git blob hashes match the immutable source tree; omitted binaries/history are identified.",
+      "planning_state": "specified",
+      "delivery_state": "verified",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator",
+      "revision": "1.1",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-002",
+      "title": "Inventory every locked dependency including build and development",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "09_SECURITY_REVIEW.md",
+      "work_package": "WP-05",
+      "owner": "Dependency implementer",
+      "dependencies": [
+        "WP-05"
+      ],
+      "release_gate": "G-02",
+      "acceptance": "All 962 paths and 863 name/version pairs are covered; direct, transitive and native-runtime boundaries are recorded.",
+      "planning_state": "specified",
+      "delivery_state": "in_progress",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "finding_ids": [
+        "DEP-001",
+        "DEP-002",
+        "DEP-003",
+        "DEP-004",
+        "DEP-005",
+        "DEP-006"
+      ]
+    },
+    {
+      "id": "REQ-003",
+      "title": "List current vulnerability IDs, exact ranges and remediation",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "09_SECURITY_REVIEW.md",
+      "work_package": "WP-05",
+      "owner": "Dependency implementer",
+      "dependencies": [
+        "WP-05"
+      ],
+      "release_gate": "G-02",
+      "acceptance": "All returned advisories have aliases or explicit no-CVE status, affected installed versions, upstream references, ranges and reachability classification.",
+      "planning_state": "specified",
+      "delivery_state": "in_progress",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "finding_ids": [
+        "DEP-001",
+        "DEP-002",
+        "DEP-003",
+        "DEP-004",
+        "DEP-005",
+        "DEP-006"
+      ]
+    },
+    {
+      "id": "REQ-004",
+      "title": "Inspect source security and distinguish evidence strength",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "09_SECURITY_REVIEW.md",
+      "work_package": "WP-11",
+      "owner": "Independent reviewer",
+      "dependencies": [
+        "WP-11"
+      ],
+      "release_gate": "G-04",
+      "acceptance": "Each finding has file/line evidence, conditions, impact, remediation and a test oracle; hypothetical chains are labelled.",
+      "planning_state": "specified",
+      "delivery_state": "verified_with_owner_accepted_residuals",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
+      ],
+      "reviewer": null,
+      "revision": "1.4",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-005",
+      "title": "Preserve planning-only authorization",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "00_START_HERE.md",
+      "work_package": "WP-00",
+      "owner": "Integrator",
+      "dependencies": [
+        "WP-00"
+      ],
+      "release_gate": "G-00",
+      "acceptance": "No production code, application scaffolding, installed skill, purchase, publication or live mutation is claimed or performed by this package.",
+      "planning_state": "specified",
+      "delivery_state": "verified",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator",
+      "revision": "1.1",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-006",
+      "title": "Use local validation and add no GitHub Actions",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "06_SECURITY_AND_OPERATIONS.md",
+      "work_package": "WP-12",
+      "owner": "Release operator",
+      "dependencies": [
+        "WP-12"
+      ],
+      "release_gate": "G-04",
+      "acceptance": "Future validation runs locally; existing workflows are assessed without installing or enabling new automation.",
+      "planning_state": "specified",
+      "delivery_state": "verified_with_owner_accepted_residuals",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
+      ],
+      "reviewer": null,
+      "revision": "1.4",
+      "finding_ids": [
+        "SEC-005"
+      ]
+    },
+    {
+      "id": "REQ-007",
+      "title": "Separate FRM and provider credentials",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "02_DOMAIN_AND_PRODUCT_CONTRACTS.md",
+      "work_package": "WP-01",
+      "owner": "Desktop implementer",
+      "dependencies": [
+        "WP-01"
+      ],
+      "release_gate": "G-01",
+      "acceptance": "FRM token never enters ngrok account auth/config/argv, and provider token never enters renderer or FRM requests.",
+      "planning_state": "specified",
+      "delivery_state": "implemented_pending_review",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "finding_ids": [
+        "SEC-001"
+      ]
+    },
+    {
+      "id": "REQ-008",
+      "title": "Fail public sharing closed unless target and authentication pass",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "02_DOMAIN_AND_PRODUCT_CONTRACTS.md",
+      "work_package": "WP-01",
+      "owner": "Desktop implementer",
+      "dependencies": [
+        "WP-01"
+      ],
+      "release_gate": "G-01",
+      "acceptance": "Blank/failed credentials, mismatched target and unknown capability block sharing; user sees complete API exposure scope.",
+      "planning_state": "specified",
+      "delivery_state": "implemented_pending_review",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "finding_ids": [
+        "SEC-001"
+      ]
+    },
+    {
+      "id": "REQ-009",
+      "title": "Serialize tunnel operations and confirm termination",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "02_DOMAIN_AND_PRODUCT_CONTRACTS.md",
+      "work_package": "WP-02",
+      "owner": "Desktop implementer",
+      "dependencies": [
+        "WP-02"
+      ],
+      "release_gate": "G-01",
+      "acceptance": "Concurrent start/stop, timeouts and exits cannot leave unknown processes or reopen after Stop.",
+      "planning_state": "specified",
+      "delivery_state": "implemented_pending_review",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "finding_ids": [
+        "SEC-002"
+      ]
+    },
+    {
+      "id": "REQ-010",
+      "title": "Validate IPC sender, frame and arguments",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "03_ARCHITECTURE_AND_REPOSITORY.md",
+      "work_package": "WP-03",
+      "owner": "Desktop implementer",
+      "dependencies": [
+        "WP-03"
+      ],
+      "release_gate": "G-01",
+      "acceptance": "Reject every unexpected sender/frame/target before subprocess/network side effects.",
+      "planning_state": "specified",
+      "delivery_state": "implemented_pending_review",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "finding_ids": [
+        "SEC-003"
+      ]
+    },
+    {
+      "id": "REQ-011",
+      "title": "Retain secure Electron isolation and supported runtime",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "06_SECURITY_AND_OPERATIONS.md",
+      "work_package": "WP-04",
+      "owner": "Dependency implementer",
+      "dependencies": [
+        "WP-04"
+      ],
+      "release_gate": "G-02",
+      "acceptance": "Supported exact runtime ships with Node integration off, isolation/sandbox on and tested renderer boundaries.",
+      "planning_state": "specified",
+      "delivery_state": "in_progress",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "finding_ids": [
+        "SEC-003"
+      ]
+    },
+    {
+      "id": "REQ-012",
+      "title": "Replace vulnerable legacy wrapper and pin downloaded executables",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "06_SECURITY_AND_OPERATIONS.md",
+      "work_package": "WP-06",
+      "owner": "Desktop implementer",
+      "dependencies": [
+        "WP-06"
+      ],
+      "release_gate": "G-02",
+      "acceptance": "No unpinned ngrok download/PATH fallback remains; binary identity and integrity are included in release evidence.",
+      "planning_state": "specified",
+      "delivery_state": "in_progress",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "finding_ids": [
+        "SEC-004"
+      ]
+    },
+    {
+      "id": "REQ-013",
+      "title": "Upgrade compatible dependency families with resolved versions",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "07_IMPLEMENTATION_ROADMAP.md",
+      "work_package": "WP-05",
+      "owner": "Dependency implementer",
+      "dependencies": [
+        "WP-05"
+      ],
+      "release_gate": "G-02",
+      "acceptance": "Selected candidate families resolve, scan and pass current contracts; proposed versions are never labelled shipped.",
+      "planning_state": "specified",
+      "delivery_state": "in_progress",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "finding_ids": [
+        "DEP-001",
+        "DEP-002",
+        "DEP-003",
+        "DEP-004",
+        "DEP-005",
+        "DEP-006"
+      ]
+    },
+    {
+      "id": "REQ-014",
+      "title": "Preserve scheme, host and explicit port safely",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "02_DOMAIN_AND_PRODUCT_CONTRACTS.md",
+      "work_package": "WP-07",
+      "owner": "Frontend implementer",
+      "dependencies": [
+        "WP-07"
+      ],
+      "release_gate": "G-03",
+      "acceptance": "HTTPS/IP/IPv6/port fixtures normalize deterministically; invalid input fails before credentials are sent.",
+      "planning_state": "specified",
+      "delivery_state": "verified_source_review",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+      ],
+      "reviewer": "Independent reviewer (source review)",
+      "revision": "1.2",
+      "finding_ids": [
+        "SEC-006"
+      ]
+    },
+    {
+      "id": "REQ-015",
+      "title": "Prevent authenticated redirect credential forwarding",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "02_DOMAIN_AND_PRODUCT_CONTRACTS.md",
+      "work_package": "WP-07",
+      "owner": "Frontend implementer",
+      "dependencies": [
+        "WP-07"
+      ],
+      "release_gate": "G-03",
+      "acceptance": "3xx on token-bearing requests fails without contacting a redirect target; browser/Electron fixture records zero target requests.",
+      "planning_state": "specified",
+      "delivery_state": "verified_source_review",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+      ],
+      "reviewer": "Independent reviewer (source review)",
+      "revision": "1.2",
+      "finding_ids": [
+        "SEC-007"
+      ]
+    },
+    {
+      "id": "REQ-016",
+      "title": "Bind secrets to the exact connection origin",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "02_DOMAIN_AND_PRODUCT_CONTRACTS.md",
+      "work_package": "WP-07",
+      "owner": "Frontend implementer",
+      "dependencies": [
+        "WP-07"
+      ],
+      "release_gate": "G-03",
+      "acceptance": "Changing scheme/host/port clears token and cancels old work; no implicit secret reuse.",
+      "planning_state": "specified",
+      "delivery_state": "verified_source_review",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+      ],
+      "reviewer": "Independent reviewer (source review)",
+      "revision": "1.2",
+      "finding_ids": [
+        "SEC-008"
+      ]
+    },
+    {
+      "id": "REQ-017",
+      "title": "Migrate plaintext token persistence to session-only",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "06_SECURITY_AND_OPERATIONS.md",
+      "work_package": "WP-08",
+      "owner": "Frontend implementer",
+      "dependencies": [
+        "WP-08"
+      ],
+      "release_gate": "G-03",
+      "acceptance": "Legacy token removed; new token absent from durable storage/export/logs, with explicit Forget and restart behavior.",
+      "planning_state": "specified",
+      "delivery_state": "verified_source_review",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+      ],
+      "reviewer": "Independent reviewer (source review)",
+      "revision": "1.2",
+      "finding_ids": [
+        "SEC-008"
+      ]
+    },
+    {
+      "id": "REQ-018",
+      "title": "Bound requests, parsing, polling and buffers",
+      "priority": "P2",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "02_DOMAIN_AND_PRODUCT_CONTRACTS.md",
+      "work_package": "WP-09",
+      "owner": "Frontend implementer",
+      "dependencies": [
+        "WP-09"
+      ],
+      "release_gate": "G-03",
+      "acceptance": "Timeout, byte, collection, concurrency and retained-history limits are enforced and measured fixtures justify them.",
+      "planning_state": "specified",
+      "delivery_state": "verified_source_review",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+      ],
+      "reviewer": "Independent reviewer (source review)",
+      "revision": "1.2",
+      "finding_ids": [
+        "SEC-009"
+      ]
+    },
+    {
+      "id": "REQ-019",
+      "title": "Reject stale asynchronous results and cancellation races",
+      "priority": "P2",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "02_DOMAIN_AND_PRODUCT_CONTRACTS.md",
+      "work_package": "WP-09",
+      "owner": "Frontend implementer",
+      "dependencies": [
+        "WP-09"
+      ],
+      "release_gate": "G-03",
+      "acceptance": "Old request completion after reconnect/remount does not modify current state; no test-order coupling.",
+      "planning_state": "specified",
+      "delivery_state": "verified_source_review",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+      ],
+      "reviewer": "Independent reviewer (source review)",
+      "revision": "1.2",
+      "finding_ids": [
+        "SEC-009"
+      ]
+    },
+    {
+      "id": "REQ-020",
+      "title": "Add tested document and navigation restrictions",
+      "priority": "P2",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "03_ARCHITECTURE_AND_REPOSITORY.md",
+      "work_package": "WP-10",
+      "owner": "Frontend implementer",
+      "dependencies": [
+        "WP-10"
+      ],
+      "release_gate": "G-03",
+      "acceptance": "Production CSP and navigation/permission denials pass required panels without unsafe executable allowances.",
+      "planning_state": "specified",
+      "delivery_state": "verified_source_review",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+      ],
+      "reviewer": "Independent reviewer (source review)",
+      "revision": "1.2",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-021",
+      "title": "Preserve all existing core dashboard capabilities",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "01_MASTER_PLAN.md",
+      "work_package": "WP-11",
+      "owner": "Independent reviewer",
+      "dependencies": [
+        "WP-11"
+      ],
+      "release_gate": "G-04",
+      "acceptance": "All 12 current areas, browser use and Windows/Linux desktop use have smoke evidence; sharing returns only after its safety gate.",
+      "planning_state": "specified",
+      "delivery_state": "verified_with_owner_accepted_residuals",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
+      ],
+      "reviewer": null,
+      "revision": "1.4",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-022",
+      "title": "Provide truthful accessible security interaction states",
+      "priority": "P2",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "05_DESIGN_AND_ACCESSIBILITY.md",
+      "work_package": "WP-10",
+      "owner": "Frontend implementer",
+      "dependencies": [
+        "WP-10"
+      ],
+      "release_gate": "G-03",
+      "acceptance": "States include loading/cancel/error/unknown closure and keyboard/focus/screen-reader recovery; secrets have accurate labels.",
+      "planning_state": "specified",
+      "delivery_state": "verified_source_review",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+      ],
+      "reviewer": "Independent reviewer (source review)",
+      "revision": "1.2",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-023",
+      "title": "Give each meaningful code boundary clear ownership and guides",
+      "priority": "P2",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "03_ARCHITECTURE_AND_REPOSITORY.md",
+      "work_package": "WP-00",
+      "owner": "Integrator",
+      "dependencies": [
+        "WP-00"
+      ],
+      "release_gate": "G-00",
+      "acceptance": "Root and feature AGENTS/README templates cover existing boundaries, with no invented MCP service or unnecessary app scaffold.",
+      "planning_state": "specified",
+      "delivery_state": "verified",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator",
+      "revision": "1.1",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-024",
+      "title": "Require reuse, useful comments, documentation and meaningful tests",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "04_SKILL_AND_AGENT_DESIGNS.md",
+      "work_package": "WP-11",
+      "owner": "Independent reviewer",
+      "dependencies": [
+        "WP-11"
+      ],
+      "release_gate": "G-04",
+      "acceptance": "Each changed function and lasting test explains purpose/invariants; changes update owning docs and protect a requirement.",
+      "planning_state": "specified",
+      "delivery_state": "verified_with_owner_accepted_residuals",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
+      ],
+      "reviewer": null,
+      "revision": "1.4",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-025",
+      "title": "Design portable skills before future implementation",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "04_SKILL_AND_AGENT_DESIGNS.md",
+      "work_package": "WP-00",
+      "owner": "Integrator",
+      "dependencies": [
+        "WP-00"
+      ],
+      "release_gate": "G-00",
+      "acceptance": "Each compact skill has triggers, inputs, workflow, evidence, authority, boundaries and positive/negative evaluations.",
+      "planning_state": "specified",
+      "delivery_state": "verified",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator",
+      "revision": "1.1",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-026",
+      "title": "Verify actual OpenCode v2 and Codex behavior",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "04_SKILL_AND_AGENT_DESIGNS.md",
+      "work_package": "WP-00",
+      "owner": "Integrator",
+      "dependencies": [
+        "WP-00"
+      ],
+      "release_gate": "G-00",
+      "acceptance": "Actual OpenCode v2 discovers, invokes, triggers, loads nested guidance, enforces permissions and resumes a fresh session (Codex removed by CHG-006).",
+      "planning_state": "specified",
+      "delivery_state": "verified",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator",
+      "revision": "1.1",
+      "finding_ids": [],
+      "acceptance_original": "Versioned local compatibility matrix passes discovery, explicit/natural use, nesting, permissions, concurrency and fresh sessions in both tools."
+    },
+    {
+      "id": "REQ-027",
+      "title": "Keep canonical version-controlled memory and change control",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "04_SKILL_AND_AGENT_DESIGNS.md",
+      "work_package": "WP-00",
+      "owner": "Integrator",
+      "dependencies": [
+        "WP-00"
+      ],
+      "release_gate": "G-00",
+      "acceptance": "One integrator owns shared JSON; task-scoped handoffs have provenance/revision and stale changes are reconciled by stable ID.",
+      "planning_state": "specified",
+      "delivery_state": "verified",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator",
+      "revision": "1.1",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-028",
+      "title": "Deliver a bounded phased implementation roadmap",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "07_IMPLEMENTATION_ROADMAP.md",
+      "work_package": "WP-00",
+      "owner": "Integrator",
+      "dependencies": [
+        "WP-00"
+      ],
+      "release_gate": "G-00",
+      "acceptance": "Every task has dependencies, owner, acceptance evidence, gate, stop condition and milestone handoff.",
+      "planning_state": "specified",
+      "delivery_state": "verified",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator",
+      "revision": "1.1",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-029",
+      "title": "Validate Windows, Linux and browser through local fixtures",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "06_SECURITY_AND_OPERATIONS.md",
+      "work_package": "WP-11",
+      "owner": "Independent reviewer",
+      "dependencies": [
+        "WP-11"
+      ],
+      "release_gate": "G-04",
+      "acceptance": "Meaningful runtime/build tests distinguish fixtures, real local integration and live provider tests.",
+      "planning_state": "specified",
+      "delivery_state": "verified_with_owner_accepted_residuals",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
+      ],
+      "reviewer": null,
+      "revision": "1.4",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-030",
+      "title": "Provide artifact provenance, patch release, rollback and incident guidance",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "delegated_security_design",
+      "specification": "06_SECURITY_AND_OPERATIONS.md",
+      "work_package": "WP-12",
+      "owner": "Release operator",
+      "dependencies": [
+        "WP-12"
+      ],
+      "release_gate": "G-04",
+      "acceptance": "Exact source/build/distribution identities and recovery decisions are separately recorded; revoked secrets are never restored.",
+      "planning_state": "specified",
+      "delivery_state": "verified_with_owner_accepted_residuals",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md"
+      ],
+      "reviewer": null,
+      "revision": "1.4",
+      "finding_ids": [
+        "SEC-005"
+      ]
+    },
+    {
+      "id": "REQ-031",
+      "title": "Make release approval distinct from verification",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "06_SECURITY_AND_OPERATIONS.md",
+      "work_package": "WP-13",
+      "owner": "Repository owner",
+      "dependencies": [
+        "WP-13"
+      ],
+      "release_gate": "G-05",
+      "acceptance": "Owner approval names exact revision/hashes; no scanner result, completed plan or agent handoff implies publication authority.",
+      "planning_state": "specified",
+      "delivery_state": "not_started",
+      "evidence": [],
+      "reviewer": null,
+      "revision": "1.0",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-032",
+      "title": "Create requested downloadable planning records and tracker",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "00_START_HERE.md",
+      "work_package": "WP-00",
+      "owner": "Integrator",
+      "dependencies": [
+        "WP-00"
+      ],
+      "release_gate": "G-00",
+      "acceptance": "Nine named planning files, full report, machine records, editable workbook, source/evidence appendices and ZIP exist.",
+      "planning_state": "specified",
+      "delivery_state": "verified",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator",
+      "revision": "1.1",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-033",
+      "title": "Provide honest editable labor and resource estimates",
+      "priority": "P2",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "01_MASTER_PLAN.md",
+      "work_package": "WP-00",
+      "owner": "Integrator",
+      "dependencies": [
+        "WP-00"
+      ],
+      "release_gate": "G-00",
+      "acceptance": "Low/base/high hours and rate are editable; unknown cash inputs remain explicitly unavailable and are not treated as zero.",
+      "planning_state": "specified",
+      "delivery_state": "verified",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator",
+      "revision": "1.1",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-034",
+      "title": "Validate package IDs, links, sources and workbook behavior",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "10_PLANNING_VALIDATION.md",
+      "work_package": "WP-00",
+      "owner": "Integrator",
+      "dependencies": [
+        "WP-00"
+      ],
+      "release_gate": "G-00",
+      "acceptance": "References/dependency graph are checked; workbook formulas and input changes are tested and views rendered; implementation tests remain marked not run.",
+      "planning_state": "specified",
+      "delivery_state": "verified",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator",
+      "revision": "1.1",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-035",
+      "title": "Limit irrelevant product expansion",
+      "priority": "P1",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "01_MASTER_PLAN.md",
+      "work_package": "WP-00",
+      "owner": "Integrator",
+      "dependencies": [
+        "WP-00"
+      ],
+      "release_gate": "G-00",
+      "acceptance": "No SaaS/accounts/billing/AI runtime/Kubernetes/SEO or marketing mockups are added to this security remediation scope.",
+      "planning_state": "specified",
+      "delivery_state": "verified",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator",
+      "revision": "1.1",
+      "finding_ids": []
+    },
+    {
+      "id": "REQ-036",
+      "title": "Provide usable fresh-session handoff and stop boundaries",
+      "priority": "P0",
+      "stage": "security_release",
+      "origin": "USER-2026-10-31-SECURITY-PLAN",
+      "authority": "User requested security review and implementation-ready planning only",
+      "scope_approval": "explicit_request",
+      "specification": "08_FRESH_CHAT_HANDOFF.txt",
+      "work_package": "WP-00",
+      "owner": "Integrator",
+      "dependencies": [
+        "WP-00"
+      ],
+      "release_gate": "G-00",
+      "acceptance": "A new agent can find current authority, take the first unblocked task, preserve unrelated work and stop only at real permission or safety boundaries.",
+      "planning_state": "specified",
+      "delivery_state": "verified",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator",
+      "revision": "1.1",
+      "finding_ids": []
+    }
+  ],
+  "work_packages": [
+    {
+      "id": "WP-00",
+      "phase": "P0",
+      "title": "Establish operating kit and verified baseline",
+      "owner": "Integrator",
+      "depends_on": [],
+      "gate": "G-00",
+      "hours": {
+        "low": 4,
+        "base": 8,
+        "high": 12
+      },
+      "steps": "Read 00, the canonical register, findings and local AGENTS; record source SHA, both CLI versions and dirty worktree. Install only repo-local guide/skill files after implementation authorization. Run the harness evaluation matrix in disposable fixtures. Assign disjoint work areas.",
+      "acceptance": "OpenCode v2 (the only harness, CHG-006) discovers the canonical workflows, respects deny rules, loads nested guidance and resumes a fresh handoff. Preserve existing unrelated edits. No application code is changed by this package.",
+      "status": "completed",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": "Integrator; independent release review pending",
+      "revision": "1.1",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "acceptance_original": "Both actual harnesses discover the canonical workflows, respect deny rules, load nested guidance and resume a fresh handoff. Preserve existing unrelated edits. No application code is changed by this package.",
+      "completed_at": "2026-10-31"
+    },
+    {
+      "id": "WP-01",
+      "phase": "P1",
+      "title": "Separate credentials and restrict public sharing",
+      "owner": "Desktop implementer",
+      "depends_on": [
+        "WP-00"
+      ],
+      "gate": "G-01",
+      "hours": {
+        "low": 4,
+        "base": 8,
+        "high": 12
+      },
+      "steps": "Remove FRM-token flow into ngrok auth configuration/argv. Separate the FRM credential from provider account credentials in types, UI and main-process configuration. Refuse automatic public sharing until selected FRM authentication and target are verified; document complete API exposure. Implement the narrow main-owned profile and single-use share-permit contracts in02 section10; main performs the FRM auth probe and never trusts a renderer success boolean.",
+      "acceptance": "Dummy FRM token cannot reach ngrok options, argv, logs or provider configuration. Empty/failed FRM authentication blocks public sharing. Normal private FRM connections still work.",
+      "status": "completed",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "completed_at": "2026-10-31"
+    },
+    {
+      "id": "WP-02",
+      "phase": "P1",
+      "title": "Make tunnel lifecycle serialized and observable",
+      "owner": "Desktop implementer",
+      "depends_on": [
+        "WP-01"
+      ],
+      "gate": "G-01",
+      "hours": {
+        "low": 6,
+        "base": 12,
+        "high": 20
+      },
+      "steps": "Replace multiple global/process paths with one tunnel adapter and explicit state machine. Serialize start/stop, retain ownership until child exit, abort starts on Stop, bound output, and kill owned process trees on failure and shutdown.",
+      "acceptance": "Timeout, exit, cancellation, concurrent starts and stop-during-start cannot leave an untracked tunnel. UI never reports stopped while closure is unconfirmed. Mocks plus local real-process tests pass. Origin/token change, Forget, disconnect, reload and renderer loss invoke the same stop path. Abrupt-main-death recovery preserves closure_unknown through a nonsecret ownership marker.",
+      "status": "completed",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "completed_at": "2026-10-31"
+    },
+    {
+      "id": "WP-03",
+      "phase": "P1",
+      "title": "Constrain Electron IPC and navigation",
+      "owner": "Desktop implementer",
+      "depends_on": [
+        "WP-00"
+      ],
+      "gate": "G-01",
+      "hours": {
+        "low": 4,
+        "base": 8,
+        "high": 12
+      },
+      "steps": "Validate WebContents/main-frame sender and expected local app URL on every IPC channel. Validate typed input in main, bind tunnel targets to the approved FRM profile, deny unexpected navigation/windows and permissions. Keep Node integration disabled and context isolation enabled.",
+      "acceptance": "Untrusted frame/sender, malformed ports/hosts and mismatched targets are rejected before any side effect. Expected UI operations pass. Renderer sandbox and security defaults remain enabled.",
+      "status": "completed",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "completed_at": "2026-10-31"
+    },
+    {
+      "id": "WP-04",
+      "phase": "P2",
+      "title": "Upgrade supported desktop runtime and packaging",
+      "owner": "Dependency implementer",
+      "depends_on": [
+        "WP-00"
+      ],
+      "gate": "G-02",
+      "hours": {
+        "low": 6,
+        "base": 12,
+        "high": 20
+      },
+      "steps": "Update Electron to the selected supported candidate, modernize builder and its transitive graph, and keep React/Next separate from desktop runtime reachability. Inventory packaged modules and exact Chromium/Node/native binaries. Validate Windows and Linux locally.",
+      "acceptance": "Exact resolved Electron version is supported on release day; packaged runtime versions/SBOM match source/build evidence. No untriaged high/critical runtime finding. Both desktop packaging baselines launch and exercise connection/IPC tests; integrated CLI/tunnel validation is owned by WP-06/WP-11 at G-04.",
+      "status": "blocked",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "blocker": "Sandboxed Electron GUI launch blocked (chrome-sandbox not root-owned mode 4755); Windows execution not run on Linux host."
+    },
+    {
+      "id": "WP-05",
+      "phase": "P2",
+      "title": "Patch frontend and development dependency families",
+      "owner": "Dependency implementer",
+      "depends_on": [
+        "WP-00"
+      ],
+      "gate": "G-02",
+      "hours": {
+        "low": 6,
+        "base": 10,
+        "high": 18
+      },
+      "steps": "Upgrade the current Next 15 patch family and matching eslint config; retain compatible React pair. Resolve patched PostCSS/sharp and upgrade the Vitest/Vite family. Review all direct and transitive entries, never run blind audit fix --force.",
+      "acceptance": "Both full lockfile scans rerun successfully, exact fixed ranges are satisfied, and static build/test behavior is validated. Exceptions record reachability evidence, owner and expiry, not only a scanner suppression.",
+      "status": "blocked",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "blocker": "minimatch <11.0.1 remains in build/dev tooling; compatible-parent fix unavailable in current electron-builder/eslint graph. Needs owner-approved expiring exception, not self-approved."
+    },
+    {
+      "id": "WP-06",
+      "phase": "P2",
+      "title": "Remove legacy ngrok wrapper and verify native artifact",
+      "owner": "Desktop implementer",
+      "depends_on": [
+        "WP-01",
+        "WP-02",
+        "WP-03",
+        "WP-04"
+      ],
+      "gate": "G-02",
+      "hours": {
+        "low": 6,
+        "base": 12,
+        "high": 18
+      },
+      "steps": "Replace legacy npm ngrok with one narrow direct CLI adapter, reusing existing child-process concepts. Pin the vendor CLI version and digest through a trusted acquisition path; use machine-readable status/config, never PATH fallback or a mutable stable download. Keep provider credentials outside renderer/argv.",
+      "acceptance": "No old wrapper or its advisory paths remain in either lockfile or packages. Build manifest proves bundled CLI version, source and digest. Wrong-platform/tampered artifact fails closed. No lifecycle scripts download an unrecorded native binary.",
+      "status": "blocked",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "electron/tunnel/ngrok-artifact.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "blocker": "No trusted ngrok CLI artifact/digest supplied; sharing fails closed. Real provider start cannot be tested."
+    },
+    {
+      "id": "WP-07",
+      "phase": "P3",
+      "title": "Preserve transport intent and bind credentials to origin",
+      "owner": "Frontend implementer",
+      "depends_on": [
+        "WP-00"
+      ],
+      "gate": "G-03",
+      "hours": {
+        "low": 5,
+        "base": 9,
+        "high": 15
+      },
+      "steps": "Centralize URL parsing and validation. Preserve explicit scheme/port, support IPv6, reject userinfo/query/fragment/path ambiguity, correctly classify private addresses, and require explicit acknowledgement for plaintext LAN credentials. Reject authenticated redirects and clear secret on origin change.",
+      "acceptance": "HTTPS never becomes HTTP; ports survive normalization. Cross-origin or downgraded redirects never receive the token. Changing origin requires a newly entered credential. Loopback and allowed LAN use remain possible.",
+      "status": "completed",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "completed_at": "2026-10-31"
+    },
+    {
+      "id": "WP-08",
+      "phase": "P3",
+      "title": "Remove durable plaintext tokens and migrate settings",
+      "owner": "Frontend implementer",
+      "depends_on": [
+        "WP-07"
+      ],
+      "gate": "G-03",
+      "hours": {
+        "low": 3,
+        "base": 6,
+        "high": 10
+      },
+      "steps": "Persist only schema-validated nonsecret preferences. Keep FRM token in memory for this security release; remove legacy password fields and add Forget connection. Reject malformed local settings safely. Defer protected persistent secret storage to a separate change.",
+      "acceptance": "Reload, restart, Forget and origin change remove the in-memory token. Existing localStorage token is deleted during migration. New app-generated exports, logs, fixtures, crash samples and backups contain no token; migration removes active legacy storage but cannot erase historical copies outside app control.",
+      "status": "completed",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "completed_at": "2026-10-31"
+    },
+    {
+      "id": "WP-09",
+      "phase": "P3",
+      "title": "Bound API work and ignore stale responses",
+      "owner": "Frontend implementer",
+      "depends_on": [
+        "WP-07"
+      ],
+      "gate": "G-03",
+      "hours": {
+        "low": 6,
+        "base": 10,
+        "high": 16
+      },
+      "steps": "Add shared cancellation/timeout, response byte and shape limits, in-flight limits, connection generation guards, backoff and bounded polling history. Preserve escaped text rendering; validate numeric/array fields before expensive map/recipe operations.",
+      "acceptance": "Oversized or malformed responses and never-ending requests fail with a recoverable error. An old response cannot populate a new connection. Polling cannot multiply after remounts or failures. Boundary fixtures pass under controlled clocks.",
+      "status": "completed",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "completed_at": "2026-10-31"
+    },
+    {
+      "id": "WP-10",
+      "phase": "P3",
+      "title": "Add defensive document policy and truthful security UX",
+      "owner": "Frontend implementer",
+      "depends_on": [
+        "WP-02",
+        "WP-03",
+        "WP-07"
+      ],
+      "gate": "G-03",
+      "hours": {
+        "low": 4,
+        "base": 8,
+        "high": 12
+      },
+      "steps": "Introduce a production CSP compatible with static Next hydration, restrictive executable sources and documented connection policy. Label secret purposes; expose sharing/error/unknown states and keyboard-accessible stop/recovery actions. Restrict desktop navigation/permissions.",
+      "acceptance": "Production app has a tested CSP without unsafe-eval or unrestricted script sources; no required panel breaks. Keyboard users can connect/cancel/stop/recover, and status announces the actual state. No claim that broad HTTP(S) connect-src alone prevents exfiltration.",
+      "status": "completed",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/evidence/npm-audit.json",
+        "docs/security/evidence/osv-scan.json",
+        "docs/security/release/RELEASE_EVIDENCE.json"
+      ],
+      "reviewer": null,
+      "revision": "1.1",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "completed_at": "2026-10-31"
+    },
+    {
+      "id": "WP-11",
+      "phase": "P4",
+      "title": "Execute regression and adversarial acceptance suites",
+      "owner": "Independent reviewer",
+      "depends_on": [
+        "WP-02",
+        "WP-03",
+        "WP-04",
+        "WP-05",
+        "WP-06",
+        "WP-08",
+        "WP-09",
+        "WP-10"
+      ],
+      "gate": "G-04",
+      "hours": {
+        "low": 8,
+        "base": 14,
+        "high": 22
+      },
+      "steps": "Run existing meaningful tests plus contract-driven cases and local Windows/Linux/browser smoke tests against synthetic FRM fixtures. Measure selected limits on representative small and large datasets. Check source/release artifact parity and test independence.",
+      "acceptance": "Every release requirement has an observable result, fixture owner and reviewed evidence. No live game token or public tunnel is used in ordinary tests. Failed/blocked checks stay visible; existing functional panels pass.",
+      "status": "completed_with_owner_accepted_residuals",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/evidence/simulated-integration.md",
+        "docs/security/evidence/electron-simulation.png",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/tunnel-cli-verification.md",
+        "docs/security/evidence/tunnel-cli-smoke.txt",
+        "electron/tunnel/ngrok-artifact.json"
+      ],
+      "reviewer": null,
+      "revision": "1.6",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "blocker": null,
+      "completed_at": "2026-10-31"
+    },
+    {
+      "id": "WP-12",
+      "phase": "P4",
+      "title": "Make local release evidence reproducible",
+      "owner": "Release operator",
+      "depends_on": [
+        "WP-04",
+        "WP-05",
+        "WP-06",
+        "WP-11"
+      ],
+      "gate": "G-04",
+      "hours": {
+        "low": 4,
+        "base": 8,
+        "high": 12
+      },
+      "steps": "Document exact build inputs, integrity/SBOM generation, checksums, distribution trust, patch release path and rollback. Existing workflow findings are reviewed as existing source; add no GitHub Actions. Owner decides whether existing automation is disabled or retained with least privilege.",
+      "acceptance": "Clean local builds produce identifiable artifacts and complete evidence. A security patch can be released without a minor bump. Unsigned status is explicit where signing is unavailable. No write credential is exposed to untrusted dependency build steps.",
+      "status": "completed",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/evidence/simulated-integration.md",
+        "docs/security/evidence/electron-simulation.png",
+        "docs/security/evidence/tunnel-cli-verification.md",
+        "docs/security/evidence/tunnel-cli-smoke.txt",
+        "electron/tunnel/ngrok-artifact.json"
+      ],
+      "reviewer": null,
+      "revision": "1.6",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "completed_at": "2026-10-31"
+    },
+    {
+      "id": "WP-13",
+      "phase": "P5",
+      "title": "Approve distribution and maintain advisory watch",
+      "owner": "Repository owner",
+      "depends_on": [
+        "WP-12"
+      ],
+      "gate": "G-05",
+      "hours": {
+        "low": 2,
+        "base": 4,
+        "high": 6
+      },
+      "steps": "Review residual-risk register, recheck advisories within 24 hours of release, choose the release channel, privately address potentially exposed credentials and publish only with owner authorization. Establish weekly full dependency review and a supported-Electron update cadence.",
+      "acceptance": "Owner approves the exact commit and artifact hashes. Publication is recorded separately from build success. Recovery procedure and a responsible maintainer exist; open exceptions have explicit expiry and a review trigger.",
+      "status": "in_progress",
+      "evidence": [
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md",
+        "docs/security/IMPLEMENTATION_LOG.md"
+      ],
+      "reviewer": null,
+      "revision": "1.4",
+      "stop_conditions": [
+        "Unrelated dirty worktree conflicts",
+        "Insufficient authority for live mutation/publication",
+        "Contract failure or dependency incompatibility"
+      ],
+      "handoff": "Record exact commit, files, evidence, remaining gate and next unblocked task in the task record.",
+      "blocker": "Owner approval of exact commit/artifact hashes, ACT-002, CLI artifact, minimatch exception and platform evidence."
+    }
+  ],
+  "release_gates": [
+    {
+      "id": "G-00",
+      "phase": "P0",
+      "title": "Baseline and operating kit",
+      "owner": "Integrator",
+      "status": "passed",
+      "evidence": [
+        "docs/security/evidence/package-verification.txt",
+        "docs/security/evidence/tooling-versions.txt",
+        "docs/security/evidence/opencode-harness-checks.md",
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/AMENDMENTS.md"
+      ],
+      "approval_required": false,
+      "criteria": "Both planning IDs/links validated; actual OpenCode v2 harness evidence passes (Codex removed by CHG-006).",
+      "revision": "1.1",
+      "criteria_original": "All planning IDs/links validated; both actual harness compatibility suites pass before implementation.",
+      "amendments": [
+        "CHG-006"
+      ],
+      "reviewer": "Integrator (owner-amended OpenCode-only criteria)",
+      "assessed_at": "2026-10-31"
+    },
+    {
+      "id": "G-01",
+      "phase": "P1",
+      "title": "Sharing and desktop boundary containment",
+      "owner": "Security reviewer",
+      "status": "passed",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md",
+        "docs/security/activation/ACT-002_DERIVED.md",
+        "docs/security/activation/MINIMATCH_EXCEPTION_APPROVED.md",
+        "docs/security/evidence/tunnel-cli-verification.md",
+        "docs/security/evidence/tunnel-cli-smoke.txt",
+        "electron/tunnel/ngrok-artifact.json"
+      ],
+      "approval_required": false,
+      "criteria": "Credential separation, authenticated sharing policy, sender/target checks and deterministic tunnel teardown pass. This source-contract/containment gate alone does not enable public sharing; G-02, applicable G-03 and integrated G-04 evidence are also required.",
+      "revision": "1.6",
+      "reviewer": "Independent reviewer",
+      "note": "Containment, permits, documented-derived ACT-002 and real CLI spawn/confirmed-teardown smoke pass; real provider closure remains G-04.",
+      "owner_decision": "docs/security/OWNER_DECISION_2026-10-31.md"
+    },
+    {
+      "id": "G-02",
+      "phase": "P2",
+      "title": "Dependency and native-runtime repair",
+      "owner": "Dependency reviewer",
+      "status": "passed_with_platform_gap",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/simulated-integration.md",
+        "docs/security/activation/ACT-002_DERIVED.md",
+        "docs/security/activation/MINIMATCH_EXCEPTION_APPROVED.md",
+        "docs/security/evidence/tunnel-cli-verification.md",
+        "docs/security/evidence/tunnel-cli-smoke.txt",
+        "electron/tunnel/ngrok-artifact.json"
+      ],
+      "approval_required": false,
+      "criteria": "Full scans + direct applicability records + supported packaged runtime + native executable provenance accepted.",
+      "revision": "1.6",
+      "reviewer": "Integrator (dependency review); owner exception required",
+      "note": "Production audit 0; Electron 45.2.1; Linux/Windows CLI digests recorded; Linux real spawn verified; minimatch exception accepted to 2027-01-31. Windows execution remains G-04.",
+      "owner_decision": "docs/security/OWNER_DECISION_2026-10-31.md"
+    },
+    {
+      "id": "G-03",
+      "phase": "P3",
+      "title": "Connection and data-boundary hardening",
+      "owner": "Security reviewer",
+      "status": "passed_with_findings",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+      ],
+      "approval_required": false,
+      "criteria": "Transport/token, storage, cancellation/limits and truthful security UX contract tests pass.",
+      "revision": "1.2",
+      "reviewer": "Independent reviewer (source review only)",
+      "note": "Source contract tests and review pass; runtime browser/Electron evidence belongs to G-04."
+    },
+    {
+      "id": "G-04",
+      "phase": "P4",
+      "title": "Local release candidate verification",
+      "owner": "Release reviewer",
+      "status": "blocked",
+      "evidence": [
+        "docs/security/IMPLEMENTATION_LOG.md",
+        "docs/security/release/RELEASE_EVIDENCE.json",
+        "docs/security/release/NATIVE_INVENTORY.json",
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/evidence/simulated-integration.md",
+        "docs/security/evidence/electron-simulation.png",
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/activation/ACT-002_DERIVED.md",
+        "docs/security/activation/MINIMATCH_EXCEPTION_APPROVED.md",
+        "docs/security/evidence/tunnel-cli-verification.md",
+        "docs/security/evidence/tunnel-cli-smoke.txt",
+        "electron/tunnel/ngrok-artifact.json"
+      ],
+      "approval_required": false,
+      "criteria": "All required browser/Windows/Linux local tests and artifact evidence pass; remaining exceptions accepted with expiry.",
+      "revision": "1.6",
+      "reviewer": "Release reviewer",
+      "note": "Linux AppImage and Windows portable cross-built/unsigned; Linux real CLI spawn/confirmed teardown passes. Windows execution, sandboxed Electron (AppArmor denies user namespaces) and live provider closure remain unrun.",
+      "owner_decision": "docs/security/OWNER_DECISION_2026-10-31.md"
+    },
+    {
+      "id": "G-05",
+      "phase": "P5",
+      "title": "Owner distribution approval",
+      "owner": "Repository owner",
+      "status": "not_run",
+      "evidence": [],
+      "approval_required": true,
+      "criteria": "Owner approves exact commit/artifact hashes and publication action; latest scan age <=24 hours.",
+      "revision": "1.0"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "ADR-001",
+      "title": "Retain static Next/React plus Electron",
+      "status": "selected",
+      "rationale": "Avoid a framework/language rewrite unrelated to confirmed defects. Keep current panel boundaries and use narrow shared functions.",
+      "reconsider_when": "Reconsider only if supported runtime/patch upgrades cannot satisfy a demonstrated requirement.",
+      "origin": "USER-2026-10-31-SECURITY-PLAN and verified repository",
+      "owner": "Integrator",
+      "revision": "1.0",
+      "supersedes": null
+    },
+    {
+      "id": "ADR-002",
+      "title": "Use exact locked versions and applicability evidence",
+      "status": "selected",
+      "rationale": "CVE/GHSA matches establish affected installed versions; runtime reachability is a separate record. Keep native-runtime candidates separate.",
+      "reconsider_when": "Recheck at every lockfile change and within 24 hours of release.",
+      "origin": "USER-2026-10-31-SECURITY-PLAN and verified repository",
+      "owner": "Integrator",
+      "revision": "1.0",
+      "supersedes": null
+    },
+    {
+      "id": "ADR-003",
+      "title": "Use session-only FRM tokens in the security release",
+      "status": "selected",
+      "rationale": "Removing durable plaintext storage is the smallest reliable fix. Preserve nonsecret preferences and migrate old password fields away.",
+      "reconsider_when": "Protected opt-in persistence may be a later separately reviewed feature; never silently fall back to plaintext.",
+      "origin": "USER-2026-10-31-SECURITY-PLAN and verified repository",
+      "owner": "Integrator",
+      "revision": "1.0",
+      "supersedes": null
+    },
+    {
+      "id": "ADR-004",
+      "title": "Use one pinned direct ngrok CLI adapter",
+      "status": "selected",
+      "rationale": "Reuse existing child-process design while removing vulnerable wrapper, multiple fallback paths and mutable native downloads. Provider credentials remain main-process/local-provider configuration.",
+      "reconsider_when": "Reconsider official SDK only with proven platform packaging benefit and a new dependency/threat review.",
+      "origin": "USER-2026-10-31-SECURITY-PLAN and verified repository",
+      "owner": "Integrator",
+      "revision": "1.0",
+      "supersedes": null
+    },
+    {
+      "id": "ADR-005",
+      "title": "Preserve LAN operation with explicit plaintext acknowledgement",
+      "status": "selected",
+      "rationale": "FRM commonly runs on a local HTTP listener. Preserve that capability while honoring explicit HTTPS and making credential risk visible.",
+      "reconsider_when": "Public-IP HTTP is rejected; owner can use TLS/VPN for remote/LAN traffic.",
+      "origin": "USER-2026-10-31-SECURITY-PLAN and verified repository",
+      "owner": "Integrator",
+      "revision": "1.0",
+      "supersedes": null,
+      "clarification": "Plain HTTP is allowed for localhost/loopback and parsed RFC1918 IPv4 or IPv6 ULA literals with the stated acknowledgement. Plain HTTP DNS names and public literals are rejected; use a private literal or HTTPS. This conservative browser-portable policy avoids unverifiable DNS-locality claims."
+    },
+    {
+      "id": "ADR-006",
+      "title": "Keep local validation as the delivery gate",
+      "status": "user requirement",
+      "rationale": "Do not add GitHub Actions. Existing release/code-analysis workflows are assessed and require owner decision before future edits.",
+      "reconsider_when": "Only a later explicit request authorizes new Actions.",
+      "origin": "USER-2026-10-31-SECURITY-PLAN and verified repository",
+      "owner": "Integrator",
+      "revision": "1.0",
+      "supersedes": null
+    },
+    {
+      "id": "ADR-007",
+      "title": "One canonical JSON register; workbook is a proposed-edit view",
+      "status": "selected",
+      "rationale": "Avoid competing status/approval truth. Stable IDs allow human workbook proposals to be reviewed and merged.",
+      "reconsider_when": "Integrate edited rows by ID and baseline revision; reject stale/unknown/conflicting IDs.",
+      "origin": "USER-2026-10-31-SECURITY-PLAN and verified repository",
+      "owner": "Integrator",
+      "revision": "1.0",
+      "supersedes": null
+    },
+    {
+      "id": "ADR-008",
+      "title": "Share canonical skill bodies between harnesses",
+      "status": "selected",
+      "rationale": "Use proposed .agents/skills definitions supported by both official documents; keep role/permission syntax in small tool-specific adapters.",
+      "reconsider_when": "No portability claim until both installed tool versions pass the local evaluation matrix.",
+      "origin": "USER-2026-10-31-SECURITY-PLAN and verified repository",
+      "owner": "Integrator",
+      "revision": "1.0",
+      "supersedes": null
+    },
+    {
+      "id": "ADR-009",
+      "title": "Security interaction specifications replace visual mockups",
+      "status": "scope adaptation",
+      "rationale": "This is a review/remediation plan for an existing UI. State/label/accessibility contracts are sufficient; new branding/screens are not in scope.",
+      "reconsider_when": "Generate mockups only for a later explicitly approved UI redesign.",
+      "origin": "USER-2026-10-31-SECURITY-PLAN and verified repository",
+      "owner": "Integrator",
+      "revision": "1.0",
+      "supersedes": null
+    },
+    {
+      "id": "ADR-010",
+      "title": "Current candidate families require actual resolution and regression gates",
+      "status": "selected",
+      "rationale": "Use sourced candidate versions, never claim that a package proposal or an install-free scan is a tested application upgrade.",
+      "reconsider_when": "Re-resolve if work starts after the report date, a patch is superseded, or compatibility gates fail.",
+      "origin": "USER-2026-10-31-SECURITY-PLAN and verified repository",
+      "owner": "Integrator",
+      "revision": "1.0",
+      "supersedes": null
+    },
+    {
+      "id": "ADR-011",
+      "title": "No new backend, account system or operational platform",
+      "status": "selected",
+      "rationale": "Authentication is an FRM/provider concern. This desktop/static client needs target/secret lifecycle controls and trustworthy builds, not SaaS infrastructure.",
+      "reconsider_when": "Revisit only for an explicitly authorized multi-user hosted product.",
+      "origin": "USER-2026-10-31-SECURITY-PLAN and verified repository",
+      "owner": "Integrator",
+      "revision": "1.0",
+      "supersedes": null
+    },
+    {
+      "id": "ADR-012",
+      "title": "Urgent containment is separate from general hardening",
+      "status": "selected",
+      "rationale": "Contain automatic public sharing during P1 repairs. Restore it only after G-01/G-02/applicable G-03 and integrated G-04 evidence passes. Preserve private dashboard functionality.",
+      "reconsider_when": "Recheck all sharing gates before restoration.",
+      "origin": "USER-2026-10-31-SECURITY-PLAN and verified repository",
+      "owner": "Integrator",
+      "revision": "1.0",
+      "supersedes": null
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "claim": "The current main commit is the intended audit baseline.",
+      "kind": "scope assumption",
+      "owner": "Integrator",
+      "activation": "Compare head and relevant release before implementing; rebase review if it changed."
+    },
+    {
+      "id": "ASM-002",
+      "claim": "Windows portable and Linux AppImage are the first security-release targets; browser remains supported.",
+      "kind": "selection from current release evidence",
+      "owner": "Repository owner",
+      "activation": "Confirm supported OS versions before packaging. macOS is later until an owned test machine/signing path exists."
+    },
+    {
+      "id": "ASM-003",
+      "claim": "The owner has a local test FRM instance or can use a synthetic fixture.",
+      "kind": "activation input",
+      "owner": "Repository owner",
+      "activation": "Record FRM/mod/game versions and CORS/auth behavior; no access was provided here."
+    },
+    {
+      "id": "ASM-004",
+      "claim": "The actual OpenCode v2 and Codex CLIs are not present in this review environment.",
+      "kind": "verified environment limit",
+      "owner": "Integrator",
+      "activation": "Record installed versions and execute dual-harness checks in WP-00. Documentation checks are complete, runtime compatibility is untested."
+    },
+    {
+      "id": "ASM-005",
+      "claim": "Labor estimates use CAD 100 per hour as an editable allowance, not a market quote.",
+      "kind": "planning assumption",
+      "owner": "Repository owner",
+      "activation": "Replace with actual rate; enter nonlabor/signing/test-device costs before claiming total cost."
+    },
+    {
+      "id": "ASM-006",
+      "claim": "Existing GitHub workflow policy, signing credentials and publication authority are owner inputs.",
+      "kind": "activation input",
+      "owner": "Repository owner",
+      "activation": "Choose retain/disable/harden existing workflow and signing policy; local work continues while pending."
+    },
+    {
+      "id": "ASM-007",
+      "claim": "No current or historical compromise has been established.",
+      "kind": "review limitation",
+      "owner": "Security reviewer",
+      "activation": "If exposure evidence emerges, use incident runbook and expand history/binary review; source scanning is not incident forensics."
+    }
+  ],
+  "sources": [
+    {
+      "id": "SRC-001",
+      "url": "https://github.com/shakiata/Statusfactory/tree/d0338043169b7af80cedacd2feb838bb705b16a5",
+      "claim": "Immutable repository snapshot and source evidence",
+      "type": "repository primary source",
+      "accessed": "2026-10-31",
+      "version": "d0338043169b7af80cedacd2feb838bb705b16a5"
+    },
+    {
+      "id": "SRC-002",
+      "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/package-lock.json",
+      "claim": "Exact npm dependency graph and integrity fields",
+      "type": "repository primary source",
+      "accessed": "2026-10-31",
+      "version": "d0338043169b7af80cedacd2feb838bb705b16a5"
+    },
+    {
+      "id": "SRC-003",
+      "url": "https://docs.npmjs.com/cli/v11/commands/npm-audit",
+      "claim": "Lockfile advisory scan semantics; audit metadata includes metavulnerabilities",
+      "type": "official documentation",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-004",
+      "url": "https://google.github.io/osv.dev/api/",
+      "claim": "OSV package/version query and vulnerability-record semantics",
+      "type": "official documentation",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-005",
+      "url": "https://www.electronjs.org/docs/latest/tutorial/security",
+      "claim": "Electron isolation, IPC sender, navigation, CSP and supported runtime guidance",
+      "type": "official documentation",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-006",
+      "url": "https://releases.electronjs.org/schedule",
+      "claim": "Electron 33 EOL 2025-04-28; 43/44/45 supported at review",
+      "type": "official release schedule",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-007",
+      "url": "https://opencode.ai/v2/docs/skills",
+      "claim": "V2 skill discovery, path IDs, metadata, relative references and explicit @ invocation",
+      "type": "official v2 documentation",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-008",
+      "url": "https://opencode.ai/v2/docs/permissions",
+      "claim": "V2 ordered permissions array and independent child-agent policies",
+      "type": "official v2 documentation",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-009",
+      "url": "https://opencode.ai/v2/docs/agents",
+      "claim": "V2 agents configuration and Markdown frontmatter",
+      "type": "official v2 documentation",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-010",
+      "url": "https://opencode.ai/v2/docs/instructions",
+      "claim": "V2 AGENTS.md loading, nesting and refresh behavior",
+      "type": "official v2 documentation",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-011",
+      "url": "https://learn.chatgpt.com/docs/build-skills",
+      "claim": "Codex .agents/skills discovery, $ invocation and implicit triggers",
+      "type": "official documentation",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-012",
+      "url": "https://learn.chatgpt.com/docs/agent-configuration/agents-md",
+      "claim": "Codex root-to-current-directory instructions and overrides",
+      "type": "official documentation",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-013",
+      "url": "https://opencode.ai/v2/docs/config",
+      "claim": "V2 configuration discovery and merge semantics",
+      "type": "official v2 documentation",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-014",
+      "url": "https://fetch.spec.whatwg.org/",
+      "claim": "Authenticated redirect semantics and handling of standard versus custom authorization headers",
+      "type": "web standard",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-015",
+      "url": "https://www.electronjs.org/docs/latest/api/safe-storage",
+      "claim": "Platform secure-storage limitations; persistent secret storage is deferred",
+      "type": "official documentation",
+      "accessed": "2026-10-31",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-016",
+      "url": "https://github.com/shakiata/Statusfactory/releases/tag/v1.5.0",
+      "claim": "Published Windows/Linux assets exist; their bytes were not executed or forensically audited",
+      "type": "repository release metadata",
+      "accessed": "2026-10-31",
+      "version": "d0338043169b7af80cedacd2feb838bb705b16a5"
+    },
+    {
+      "id": "SRC-017",
+      "url": "https://ngrok.com/docs/gateway/agent/cli",
+      "claim": "Authtoken identifies the ngrok account; separate configuration and provider authentication semantics",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-018",
+      "url": "https://ngrok.com/docs/gateway/agent/config/v2#log-format",
+      "claim": "logfmt/json/term behavior, non-TTY term behaves as logfmt",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-019",
+      "url": "https://registry.npmjs.org/ngrok/-/ngrok-5.0.0-beta.2.tgz",
+      "claim": "Exact installed source; connect argv, getVersion vulnerability call site and unpinned native downloader",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-020",
+      "url": "https://docs.github.com/en/actions/reference/security/secure-use",
+      "claim": "Least-privilege job tokens, immutable action dependency references and avoiding compromised build inputs",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-021",
+      "url": "https://github.com/actions/checkout/blob/v4/README.md",
+      "claim": "persist-credentials defaults to true, token stays in local git config until post-job cleanup; read via GitHub connector",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-022",
+      "url": "https://fetch.spec.whatwg.org/#http-redirect-fetch",
+      "claim": "Cross-origin redirect handling strips CORS non-wildcard request-header names; custom FRM header is not standard Authorization.",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-023",
+      "url": "https://fetch.spec.whatwg.org/#cors-non-wildcard-request-header-name",
+      "claim": "Authorization is the CORS non-wildcard request-header name.",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-024",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html#local-storage",
+      "claim": "Sensitive localStorage data is available to same-origin JavaScript and local profile readers; stored data is not inherently trusted.",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-025",
+      "url": "https://www.rfc-editor.org/rfc/rfc1918.html",
+      "claim": "Private 172 range is 172.16/12 rather than all 172.*, and DNS textual prefix is not IP classification.",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-026",
+      "url": "https://react.dev/reference/react-dom/components/common",
+      "claim": "Raw HTML injection requires a distinct dangerous sink; inspected JSX text paths do not use it.",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-027",
+      "url": "https://registry.npmjs.org/-/npm/v1/security/advisories/bulk",
+      "claim": "npm vulnerability graph result",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-028",
+      "url": "https://api.osv.dev/v1/querybatch",
+      "claim": "all exact lockfile package versions matched",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-029",
+      "url": "https://releases.electronjs.org/release/v33.4.11",
+      "claim": "embedded Chromium130.0.6723.191 and Node20.18.3; Electron33 unsupported",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-030",
+      "url": "https://releases.electronjs.org/?channel=stable",
+      "claim": "inspected supported Electron targets44.10.1/45.2.1 on2026-10-31",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-031",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "claim": "WCAG 2.2 criteria used as accessibility targets; no conformance certification claimed",
+      "accessed": "2026-10-31",
+      "type": "primary reference",
+      "version": "current at access"
+    },
+    {
+      "id": "SRC-ADVISORIES",
+      "url": "https://api.osv.dev/v1/vulns/{id}",
+      "claim": "The 167 exact-version advisories each retain full source URLs, publication/modification dates and affected ranges in data/all_advisories.json.",
+      "accessed": "2026-10-31",
+      "type": "per-record primary references",
+      "version": "retrieved snapshots in evidence/dependencies/osv/"
+    },
+    {
+      "id": "SRC-IPV6-ULA",
+      "url": "https://www.rfc-editor.org/rfc/rfc4193.html",
+      "claim": "IPv6 unique local address prefix fc00::/7 used by selected HTTP literal policy",
+      "accessed": "2026-10-31",
+      "type": "primary Internet standard",
+      "version": "RFC4193"
+    }
+  ],
+  "scope_history": [
+    {
+      "id": "CHG-001",
+      "date": "2026-10-31",
+      "origin": "Current user security-review request and supplied planning template",
+      "change": "Adapt generic product planning to an existing-project security remediation package.",
+      "impact": "Preserve browser/desktop core behavior; add precise security contracts and owner release gates; no new product scaffold, SaaS, SEO or mockup generation.",
+      "authority": "User delegated appropriate planning depth",
+      "supersedes": "Prior link-only repository orientation",
+      "owner": "Integrator"
+    },
+    {
+      "id": "CHG-002",
+      "date": "2026-10-31",
+      "origin": "Independent renderer and desktop review reconciliation",
+      "change": "Select session-only FRM credentials and one direct pinned CLI adapter. Defer protected persistent credential storage and SDK alternative.",
+      "impact": "ADR-003/004; REQ-007/012/017; WP-01/06/08; small intentional login convenience tradeoff, reduced credential and native dependency ambiguity.",
+      "authority": "User delegated reversible planning selections",
+      "owner": "Integrator",
+      "supersedes": "Optional alternatives in retained raw specialist notes"
+    },
+    {
+      "id": "CHG-003",
+      "date": "2026-10-31",
+      "origin": "Copied-manifest resolution plus npm/OSV candidate checks",
+      "change": "Supersede Vite 6.4.4 candidate with 6.4.5 after new regression CVE-2026-118662 matched the proposal.",
+      "impact": "ADR-010; REQ-013; WP-05; baseline advisory count unchanged. Final graph has one remaining minimatch advisory, not a clean-release claim.",
+      "authority": "Evidence-driven planning correction",
+      "owner": "Integrator",
+      "supersedes": "evidence/dependencies/proposal/iteration1/"
+    },
+    {
+      "id": "CHG-004",
+      "date": "2026-10-31",
+      "origin": "Independent package review",
+      "owner": "Integrator",
+      "authority": "Delegated planning reconciliation",
+      "change": "Close main-owned profile/auth permit, connection-change tunnel teardown, crash-recovery, HTTP-host classification and gate dependency gaps.",
+      "impact": "REQ-008/009/010/014/030; WP-01/02/03/06/07/08; G-01 alone cannot enable public sharing. HTTP DNS names require a private IP literal or HTTPS; historical backups cannot be promised erased.",
+      "supersedes": "Ambiguous draft profile handoff, G-01-only restoration wording and blanket backup-erasure wording"
+    },
+    {
+      "id": "CHG-005",
+      "date": "2026-10-31",
+      "origin": "Owner implementation instruction for this working session",
+      "change": "Authorize local implementation and verification; adopt the operating kit; preserve planning-only historical record.",
+      "impact": "REQ-005/REQ-036; WP-00..WP-12 may proceed locally; G-05 publication and all live/public actions remain separately authorized.",
+      "authority": "Repository owner instruction recorded in docs/security/IMPLEMENTATION_AUTHORIZATION.md",
+      "owner": "Integrator",
+      "supersedes": null
+    },
+    {
+      "id": "CHG-006",
+      "date": "2026-10-31",
+      "origin": "Owner instruction during implementation: use OpenCode only; forget Codex.",
+      "change": "Remove the Codex half of the two-harness operating-kit matrix. OpenCode v2 is the only supported agent harness; Codex adapter/test work is cancelled.",
+      "impact": "REQ-026; WP-00; G-00 criteria amended to OpenCode-only evidence. No security contract waived.",
+      "authority": "Repository owner instruction recorded in docs/security/AMENDMENTS.md",
+      "owner": "Integrator",
+      "supersedes": "Codex rows in 04 sections 4 and 6; Codex role brief in templates section 6"
+    },
+    {
+      "id": "CHG-007",
+      "date": "2026-10-31",
+      "origin": "Implementation review reconciliation",
+      "change": "Record gate evidence and owner-input blockers after two independent review rounds; disable automatic sharing while ACT-002 is unresolved.",
+      "impact": "WP-01..12; G-01/G-02/G-04 blocked; G-03 passed-with-findings (source). No security contract waived.",
+      "authority": "Integrator reconciliation of verified evidence; owner approval remains required for exceptions/publication",
+      "owner": "Integrator",
+      "supersedes": null
+    },
+    {
+      "id": "CHG-008",
+      "date": "2026-10-31",
+      "origin": "Owner instruction: no activation inputs available; simulate from endpoints on Linux.",
+      "change": "Add a dev-only labelled tunnel simulator, loopback FRM fixture and real local integration tests; keep production sharing fail-closed.",
+      "impact": "WP-11; G-04 evidence only. ACT-002/real CLI/Windows/minimatch decisions remain owner inputs; no gate passed.",
+      "authority": "Repository owner instruction; simulation is not approval or compatibility evidence",
+      "owner": "Integrator",
+      "supersedes": null
+    },
+    {
+      "id": "CHG-009",
+      "date": "2026-10-31",
+      "origin": "Owner instruction: no activation inputs; simulate from endpoints and finish the security remediation.",
+      "change": "Close the local remediation candidate under a labelled simulation; defer ACT-002/CLI/Windows/provider/signing; keep sharing and publication disabled.",
+      "impact": "G-01/G-02/G-04 closed_with_residual_risk (not passed); WP-11 completed with owner-accepted residuals; G-05 unchanged.",
+      "authority": "Repository owner instruction recorded in docs/security/OWNER_DECISION_2026-10-31.md",
+      "owner": "Repository owner",
+      "supersedes": null
+    },
+    {
+      "id": "CHG-010",
+      "date": "2026-10-31",
+      "origin": "Owner direction to finish; real artifacts acquired and documentation-derived contract recorded.",
+      "change": "Pin ngrok 3.39.13 Linux/Windows digests, verify real Linux spawn/teardown, record documented-derived ACT-002 and formal minimatch exception; enable sharing subject to runtime probe/provider file.",
+      "impact": "G-01 passed; G-02 passed_with_platform_gap; G-04 blocked on Windows execution/sandbox/provider closure; G-05 not_run.",
+      "authority": "Repository owner finish instruction; official ngrok distribution and FRM documentation as dated sources",
+      "owner": "Integrator",
+      "supersedes": null
+    },
+    {
+      "id": "CHG-011",
+      "date": "2026-11-01",
+      "origin": "Finish instruction; real vendor artifacts acquired and documented FRM contract recorded.",
+      "change": "Pin ngrok 3.39.13 Linux/Windows digests, verify Linux real spawn/teardown, record ACT-002 documented-derived and minimatch exception, cross-build Windows portable.",
+      "impact": "G-01 passed; G-02 passed_with_platform_gap; G-04 blocked on Windows execution/sandbox/provider closure; G-05 not_run.",
+      "authority": "Owner finish instruction; official ngrok distribution and FRM docs as dated sources",
+      "owner": "Integrator",
+      "supersedes": null
+    }
+  ],
+  "findings": [
+    {
+      "id": "SEC-001",
+      "title": "FRM authentication token is sent to ngrok as its account credential",
+      "severity": "Medium",
+      "confidence": "High",
+      "status": "Confirmed data-flow defect; dummy-token mock reproduced",
+      "cwe": [
+        "CWE-522",
+        "CWE-201"
+      ],
+      "description": "ConnectionBar passes config.password, labeled as the FRM Auth Token from WebServer.cfg, to tunnelStart. Preload forwards it unchanged. Main names the same argument authtoken and supplies it to ngrok.connect or the CLI --authtoken argument. The locked ngrok package also inserts this value into its agent argv. These are independent credentials for different services.",
+      "conditions": [
+        "Electron Share is used with a nonempty FRM auth token.",
+        "At least one ngrok execution path is available."
+      ],
+      "impact": "The FRM secret reaches an unrelated subprocess and its process arguments; it is treated as a credential for the ngrok service and may cause sharing to fail or expose the secret to observers of command lines/agent diagnostics. Whether a malformed token is transmitted to ngrok or rejected locally was not tested. No claim that this call persists the token to ngrok's config: the exact locked connect implementation does not call setAuthtoken.",
+      "severity_rationale": "A concrete credential-boundary violation requiring the normal Share action. Scope is the FRM credential and sharing availability; no proven remote compromise or arbitrary command execution.",
+      "evidence": [
+        {
+          "path": "src/components/ConnectionBar.tsx",
+          "lines": "41-56,108-115",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/components/ConnectionBar.tsx#L41-L56"
+        },
+        {
+          "path": "electron/preload.js",
+          "lines": "3-8",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/electron/preload.js#L3-L8"
+        },
+        {
+          "path": "electron/main.js",
+          "lines": "168,223-231,267-278",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/electron/main.js#L223-L231"
+        },
+        {
+          "path": "audit_work/ngrok_package_source/src_process.js",
+          "lines": "36-44",
+          "url": "https://registry.npmjs.org/ngrok/-/ngrok-5.0.0-beta.2.tgz",
+          "integrity_evidence": "audit_work/ngrok_package_source/provenance.json"
+        }
+      ],
+      "remediation_contract": [
+        "Remove FRM credentials and arbitrary host/port from tunnelStart. The selected contract is tunnelStart({permitId}) after a separate main-owned FRM authentication probe; see02 section10. ngrok uses only its separately configured provider credential.",
+        "If in-app ngrok credential management is retained later, give it a distinct typed field and main-process/OS-backed storage; never reuse config.password or renderer localStorage for it.",
+        "Redact secrets in raw provider errors and logs. Keep FRM credentials limited to requests to the authorized FRM origin.",
+        "Update electron.d.ts and all setup docs to distinguish FRM API tokens from ngrok account tokens."
+      ],
+      "acceptance_tests": [
+        "With distinct FRM_DUMMY and NGROK_DUMMY sentinels, assert FRM_DUMMY never appears in ngrok options, subprocess argv, provider errors, logs or ngrok configuration.",
+        "Verify Share works with a configured ngrok account when the FRM server requires authentication, and a missing ngrok credential produces a provider-specific error without changing the FRM token.",
+        "Exercise both the packaged binary and supported development execution path using dummy credentials and mocks first; any live integration test requires an isolated test account/service."
+      ],
+      "sources": [
+        "S-NGROK-AUTH",
+        "S-NGROK-DIST"
+      ],
+      "diagnostic": "electron_mock_results.json case 1 and case 2",
+      "original_id": "E-01",
+      "category": "source",
+      "work_package": "WP-01",
+      "phase": "P1",
+      "owner": "Desktop implementer",
+      "requirement_ids": [
+        "REQ-007",
+        "REQ-008"
+      ],
+      "release_gate": "G-01",
+      "delivery_state": "not_started",
+      "confirmation": "Confirmed data-flow defect; dummy-token mock reproduced",
+      "remediation_verified": false,
+      "revision": "1.0",
+      "source_refs": [
+        "SRC-017",
+        "SRC-019"
+      ]
+    },
+    {
+      "id": "SEC-002",
+      "title": "Tunnel failures and start/stop races can leave public exposure outside application control",
+      "severity": "Medium",
+      "confidence": "High for control-flow defects; conditional public impact",
+      "status": "Confirmed with isolated timeout and late-completion mocks",
+      "cwe": [
+        "CWE-404",
+        "CWE-362"
+      ],
+      "description": "On CLI timeout or other caught start error, main clears ngrokProcess without first killing and awaiting the child. Subsequent Stop and window-close inspect only the cleared handle. Separately, a pending npm connect can finish after Stop has returned and reestablish ngrokUrl because start/stop have no serialization or cancellation generation. CLI success detection only recognizes human Forwarding lines despite requesting piped --log=stdout, for which ngrok documents structured/non-TTY log formats; valid structured success logs can therefore lead into the timeout path.",
+      "conditions": [
+        "User initiates sharing.",
+        "For the forgotten-child case, CLI fallback starts a real agent but the app does not recognize its URL before timeout; public impact requires the agent to have established a tunnel.",
+        "For the race case, Stop/shutdown or another operation overlaps a pending start. The current UI disables repeated start clicks while loading, but main-process IPC has no concurrency guard."
+      ],
+      "impact": "The application can report sharing failed/inactive or stopped while a tunnel remains live, or report a late active tunnel after Stop succeeded. An unauthenticated or weakly protected upstream service would remain internet reachable unexpectedly. Even an authenticated FRM service loses the intended exposure lifecycle. Severity can increase with the sensitivity/authentication of the selected upstream; no real tunnel or compromise was demonstrated.",
+      "severity_rationale": "Concrete loss of network-exposure control, but exploitation/data impact depends on an actual successful public tunnel and upstream authorization. Rated Medium for this game-dashboard scope rather than assuming full host compromise.",
+      "evidence": [
+        {
+          "path": "electron/main.js",
+          "lines": "264-340",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/electron/main.js#L264-L340"
+        },
+        {
+          "path": "electron/main.js",
+          "lines": "344-381,386-413",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/electron/main.js#L344-L413"
+        }
+      ],
+      "remediation_contract": [
+        "Introduce one main-process tunnel owner with explicit idle/starting/active/stopping/error state, serialized operations and a generation/cancellation token.",
+        "Hold child handles locally during start. Every timeout, cancellation, parse failure, spawn error and shutdown must terminate the owned child, await exit, and verify cleanup before dropping ownership. Escalate kill only for that owned child if graceful termination fails.",
+        "Ignore and immediately clean up late results from cancelled starts. Make Stop idempotent and make its result reflect confirmed closure, not cleared variables.",
+        "Use a supported structured readiness mechanism: a parsed JSON log contract or the owned agent's loopback management API. Do not infer readiness solely from terminal UI text.",
+        "Bound/redact log buffers and remove listeners/timers on completion. Handle child error/exit directly; remove the global uncaughtException swallowing workaround.",
+        "Drive UI state from the owner, propagate start/stop errors, and await shutdown cleanup rather than fire-and-forget promises."
+      ],
+      "acceptance_tests": [
+        "Fake a running CLI that never yields a recognized URL: timeout must call terminate and await exit; status cannot become inactive while the owned child is alive.",
+        "Provide representative structured success logs with split chunks; readiness is detected once and buffers remain bounded.",
+        "Race start/start, start/stop, timeout/start and shutdown/start; after Stop/shutdown returns, no earlier generation can become active and every child has one accountable owner.",
+        "Exercise spawn errors, zero/nonzero exit before readiness, exit after readiness, delayed npm connect, cleanup failures and platform-specific process termination with fake children.",
+        "In an isolated integration environment, prove the public endpoint is unreachable after stop/failure and verify that unrelated ngrok processes are unaffected."
+      ],
+      "sources": [
+        "S-NGROK-LOGS"
+      ],
+      "diagnostic": "electron_mock_results.json case 2 and case 3",
+      "original_id": "E-02",
+      "category": "source",
+      "work_package": "WP-02",
+      "phase": "P1",
+      "owner": "Desktop implementer",
+      "requirement_ids": [
+        "REQ-009"
+      ],
+      "release_gate": "G-01",
+      "delivery_state": "not_started",
+      "confirmation": "Confirmed with isolated timeout and late-completion mocks",
+      "remediation_verified": false,
+      "revision": "1.0",
+      "source_refs": [
+        "SRC-018"
+      ]
+    },
+    {
+      "id": "SEC-003",
+      "title": "Tunnel IPC trusts every sender and accepts unvalidated arbitrary targets",
+      "severity": "Medium",
+      "confidence": "High for missing guards; conditional exploitability",
+      "status": "Confirmed missing controls; no independent renderer compromise found",
+      "cwe": [
+        "CWE-862",
+        "CWE-20"
+      ],
+      "description": "The preload exposes tunnel start/stop/status to its page. Main ignores the event for start and does not inspect events for stop/status; host and port are interpolated without type, scheme, port-range or target-authorization validation. BrowserWindow has no navigation/window-open restrictions, so navigation to untrusted content is not explicitly prevented. A renderer that gains access to this bridge can request a public tunnel to an HTTP-reachable local/LAN service, stop the user's tunnel or read its URL.",
+      "conditions": [
+        "Attacker must first gain JavaScript execution in a bridge-enabled renderer or cause bridge-enabled untrusted content to load, or have equivalent local execution/IPC access.",
+        "A usable ngrok account/agent is required for successful exposure.",
+        "No XSS or remote navigation entry point was demonstrated in the inspected renderer; its external text is predominantly React-escaped. A normal web page outside this Electron window cannot simply invoke these handlers."
+      ],
+      "impact": "Missing trust-boundary checks amplify a future renderer compromise into native public-tunnel control and potential exposure of unrelated local/LAN HTTP services. This is not evidence of generic command execution: the app's ngrok CLI call uses an argument array with no shell, and nodeIntegration is explicitly disabled.",
+      "severity_rationale": "A sensitive native capability lacks both caller and target authorization, but a prerequisite renderer compromise/navigation path is unresolved. Medium, not an unauthenticated standalone RCE claim.",
+      "evidence": [
+        {
+          "path": "electron/preload.js",
+          "lines": "3-8",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/electron/preload.js#L3-L8"
+        },
+        {
+          "path": "electron/main.js",
+          "lines": "21-68,168,202-204,345,380",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/electron/main.js#L168-L204"
+        }
+      ],
+      "remediation_contract": [
+        "Validate every IPC sender: the expected live mainWindow.webContents, its top-level frame and a precisely authorized application origin/document; reject missing/destroyed frames, subframes, child windows and all unrelated origins. Avoid prefix matching and do not accept all file: URLs merely because their origin is null.",
+        "Prefer a dedicated secure application protocol with a fixed origin and constrained resource root. Until migrated, strictly identify the exact packaged document and its expected top-level frame.",
+        "Deny unintended navigation and new windows; add deny-by-default permission request/check handlers. Production packaged builds must not switch to localhost content merely because NODE_ENV or --dev is set.",
+        "Use a validated main-process FRM connection profile for sharing instead of a general arbitrary host/port tunnel primitive. Preserve legitimate local/LAN FRM support while parsing a hostname/IP, numeric port 1\u201365535, approved scheme and a user-selected target; reject file:, credential-bearing URLs, path/query/fragment injection, option-like inputs and malformed IPv6.",
+        "Keep nodeIntegration false and contextIsolation true. Explicit sandbox/webSecurity true can document intent, but their absence as explicit keys is not itself a defect on Electron 33."
+      ],
+      "acceptance_tests": [
+        "Send mocked IPC from an unrelated webContents, child frame, missing senderFrame, https://untrusted.invalid, about:blank and arbitrary file URL: all handlers reject before calling ngrok or returning a URL.",
+        "Allow only the real main-frame application origin/document; packaged mode ignores developer environment switches.",
+        "External navigation/new-window attempts and unneeded permission requests are denied while all 12 dashboard tabs still work.",
+        "Reject non-string/oversized hosts, out-of-range ports, unsupported schemes, credentials, fragments, leading options and unrelated profile IDs; accept and correctly canonicalize supported localhost/LAN/IPv6 FRM profiles.",
+        "Ensure the hardened IPC does not expose raw ipcRenderer, generic process launch or arbitrary filesystem methods."
+      ],
+      "sources": [
+        "S-ELECTRON-SECURITY"
+      ],
+      "diagnostic": "electron_mock_results.json case 1; fake sender only, not a live attack",
+      "original_id": "E-03",
+      "category": "source",
+      "work_package": "WP-03",
+      "phase": "P1",
+      "owner": "Desktop implementer",
+      "requirement_ids": [
+        "REQ-010",
+        "REQ-011"
+      ],
+      "release_gate": "G-01",
+      "delivery_state": "not_started",
+      "confirmation": "Confirmed missing controls; no independent renderer compromise found",
+      "remediation_verified": false,
+      "revision": "1.0",
+      "source_refs": [
+        "SRC-005"
+      ]
+    },
+    {
+      "id": "SEC-004",
+      "title": "Packaged ngrok native binary is a mutable postinstall download outside lockfile integrity",
+      "severity": "Medium",
+      "confidence": "High",
+      "status": "Confirmed build supply-chain control gap; no malicious binary observed",
+      "cwe": [
+        "CWE-494"
+      ],
+      "description": "package-lock pins the npm ngrok wrapper, but that wrapper's postinstall downloads ngrok-v3-stable from a mutable CDN URL and extracts it without a pinned cryptographic digest/signature check. package.json copies node_modules/ngrok/bin into the application. Runtime ensureNgrokNpmBinary checks executable magic/permission, which detects corrupt downloads but does not authenticate a native program. The fallback also resolves ngrok from PATH, outside the packaged binary's identity.",
+      "conditions": [
+        "Dependencies are installed with lifecycle scripts enabled, as in release.yml npm ci.",
+        "The resulting native binary is packaged and later used for Share.",
+        "Compromise requires replacement of a trusted distribution/cache/build input or executable resolution; no such compromise was observed. HTTPS is used for the default download and was not found disabled."
+      ],
+      "impact": "Identical repository/lockfile inputs need not produce the same native binary, and reviewers cannot determine its version/content from the lockfile. A malicious substituted native binary would execute with the desktop user's privileges. This is a supply-chain gap, not proof that the current binary is malicious.",
+      "severity_rationale": "Native executable content lacks immutable identity, but adversarial exploitation requires compromise/tampering of an upstream or local build source. Medium hardening priority, with high potential impact if that prerequisite occurs.",
+      "evidence": [
+        {
+          "path": "package-lock.json",
+          "lines": "9811-9831",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/package-lock.json#L9811-L9831"
+        },
+        {
+          "path": "package.json",
+          "lines": "30-38",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/package.json#L30-L38"
+        },
+        {
+          "path": "electron/main.js",
+          "lines": "94-165,264-278",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/electron/main.js#L94-L165"
+        },
+        {
+          "path": "audit_work/ngrok_package_source/download.js",
+          "lines": "30-59,79-84,106-145,148-168",
+          "url": "https://registry.npmjs.org/ngrok/-/ngrok-5.0.0-beta.2.tgz",
+          "integrity_evidence": "audit_work/ngrok_package_source/provenance.json"
+        },
+        {
+          "path": "audit_work/ngrok_package_source/postinstall.js",
+          "lines": "6-28",
+          "url": "https://registry.npmjs.org/ngrok/-/ngrok-5.0.0-beta.2.tgz"
+        }
+      ],
+      "remediation_contract": [
+        "Choose a supported tunneling implementation after resolving the ngrok package advisory; do not downgrade blindly to another affected wrapper.",
+        "If shipping a native agent, pin its version and platform/architecture-specific trusted digest or signed manifest in reviewed build inputs, verify before packaging, and record the packaged binary's version/hash in an SBOM/release manifest.",
+        "Avoid implicit lifecycle-script downloads for release builds. Fetch verified native assets in an explicit auditable build step.",
+        "Do not silently replace a rejected/missing packaged binary with an arbitrary PATH result. Either fail closed or use an explicit separately selected, verified executable path with clear support semantics.",
+        "Keep magic/architecture checks as corruption diagnostics, not as the authenticity check."
+      ],
+      "acceptance_tests": [
+        "Two clean builds use the same recorded native agent digest; changing upstream stable content cannot silently change the shipped executable.",
+        "A tampered binary retaining valid ELF/PE/Mach-O magic fails verification and is never executed or packaged.",
+        "A missing or mismatched packaged binary produces a clear error without executing an unexpected PATH binary.",
+        "Every supported Windows/Linux package contains an agent matching its manifest's version, platform, architecture and digest."
+      ],
+      "sources": [
+        "S-NGROK-DIST"
+      ],
+      "original_id": "E-04",
+      "category": "source",
+      "work_package": "WP-06",
+      "phase": "P2",
+      "owner": "Desktop implementer",
+      "requirement_ids": [
+        "REQ-012"
+      ],
+      "release_gate": "G-02",
+      "delivery_state": "not_started",
+      "confirmation": "Confirmed build supply-chain control gap; no malicious binary observed",
+      "remediation_verified": false,
+      "revision": "1.0",
+      "source_refs": [
+        "SRC-019"
+      ]
+    },
+    {
+      "id": "SEC-005",
+      "title": "Release dependency builds receive repository-write credentials and mutable actions",
+      "severity": "Medium",
+      "confidence": "High for configuration; upstream-compromise scenario conditional",
+      "status": "Confirmed workflow least-privilege and immutability gaps",
+      "cwe": [
+        "CWE-250",
+        "CWE-829"
+      ],
+      "description": "release.yml grants contents: write at workflow scope. Build jobs checkout with default credential persistence, run npm ci lifecycle scripts and tests, and explicitly expose GH_TOKEN during the build even though --publish never is set. Actions are referenced by movable v4/v2 tags. Therefore third-party install/build code and mutable action updates run in a job that can write repository content, although only the final release job needs that privilege.",
+      "conditions": [
+        "The upstream release workflow is enabled and triggered by an authorized push to main.",
+        "An action, package lifecycle script or build dependency is compromised, or malicious code has already entered a trusted build input.",
+        "No evidence of a compromised action/package, stolen token, or bypass of repository protection was found. Release does not use pull_request_target."
+      ],
+      "impact": "A build-chain compromise may gain repository/tag/release write capability in addition to altering its immediate artifact. Mutable action tags can change executed workflow code without a diff in this repository.",
+      "severity_rationale": "Avoidable privilege amplification and mutable build dependencies, but not a direct untrusted-PR execution finding. Repository-level protection settings and external organizational controls were not inspected.",
+      "evidence": [
+        {
+          "path": ".github/workflows/release.yml",
+          "lines": "10-17,29-30,67-105,110-140",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/.github/workflows/release.yml#L67-L105"
+        },
+        {
+          "path": ".github/workflows/codeql.yml",
+          "lines": "56-68,96-99",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/.github/workflows/codeql.yml#L56-L68"
+        }
+      ],
+      "remediation_contract": [
+        "If retaining this upstream GitHub Actions release mechanism, default workflow permissions to contents: read and grant contents: write only to the final isolated publish job.",
+        "Set persist-credentials: false for checkouts and remove GH_TOKEN from dependency installation, tests and build steps; no publishing credential should be available during arbitrary dependency script execution.",
+        "Pin actions to reviewed immutable commits, or adopt GitHub's supported workflow dependency lockfile where available, including transitive action dependencies.",
+        "The publish job should consume only artifacts/digests from the same verified workflow commit, verify manifests, and receive credentials only at publication time.",
+        "If the chosen project policy is local testing/releases without GitHub Actions, preserve these same build/publish credential separation and immutable-input requirements in the local process instead. Do not enable Actions as part of this planning review."
+      ],
+      "acceptance_tests": [
+        "Static workflow validation proves all non-publish jobs have read-only or no repository token and no inherited contents: write.",
+        "A benign isolated build fixture cannot obtain write-capable credentials from environment or persisted git config; no real token is printed or exfiltrated.",
+        "Every action is locked to reviewed immutable code and dependency updates require a reviewable diff.",
+        "Release publication verifies commit identity and artifact hashes; normal build failures cannot publish and package scripts never run in the credentialed publisher."
+      ],
+      "sources": [
+        "S-GITHUB-SECURE-USE",
+        "S-CHECKOUT-V4"
+      ],
+      "original_id": "E-05",
+      "category": "source",
+      "work_package": "WP-12",
+      "phase": "P4",
+      "owner": "Release operator",
+      "requirement_ids": [
+        "REQ-006",
+        "REQ-030"
+      ],
+      "release_gate": "G-04",
+      "delivery_state": "not_started",
+      "confirmation": "Confirmed workflow least-privilege and immutability gaps",
+      "remediation_verified": false,
+      "revision": "1.0",
+      "source_refs": [
+        "SRC-020",
+        "SRC-021"
+      ]
+    },
+    {
+      "id": "SEC-006",
+      "title": "Endpoint normalization silently downgrades explicitly requested HTTPS and misclassifies hosts",
+      "severity": "Medium",
+      "status": "confirmed_source_and_pure_function_probe",
+      "cwe": [
+        "CWE-319",
+        "CWE-20"
+      ],
+      "priority": "P1",
+      "owner": "Frontend implementer",
+      "phase_candidate": "Credential and transport boundaries",
+      "summary": "buildUrl discards an explicitly supplied http/https scheme and chooses HTTP for any host beginning 192.168., 10., or 172. It does not parse an IP address or respect an HTTPS user's choice. X-FRM-Authorization is then attached to the resulting URL. Explicit custom ports on DNS/IPv6 hosts are also silently discarded.",
+      "preconditions": "A user connects with an FRM token to an HTTP-reachable server, with network observation/modification possible. The downgrade is directly relevant to Electron/local HTTP app use. A browser serving the dashboard over HTTPS may block mixed-content requests instead; that is not an application-level guarantee.",
+      "impact": "Possible disclosure of the FRM token and monitored/game-chat data to an on-path party, and unintended connections or failure after custom ports are lost. No actual real-token disclosure was attempted.",
+      "evidence": [
+        {
+          "path": "src/lib/api.ts",
+          "lines": "107-143",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/lib/api.ts#L107-L143",
+          "claim": "Scheme stripping, prefix-based classification, port loss, header attachment"
+        },
+        {
+          "path": "src/lib/api.ts",
+          "lines": "157-174",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/lib/api.ts#L157-L174",
+          "claim": "The chat POST repeats the same behavior"
+        },
+        {
+          "path": "src/lib/__tests__/api.test.ts",
+          "lines": "31-90",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/lib/__tests__/api.test.ts#L31-L90",
+          "claim": "Current tests encode some URL normalization behavior and omit downgrade/host-spoof cases"
+        }
+      ],
+      "verified_examples": [
+        {
+          "input": "host=https://192.168.1.50, port=8080",
+          "output": "http://192.168.1.50:8080/getPower"
+        },
+        {
+          "input": "host=https://172.1.2.3, port=8080",
+          "output": "http://172.1.2.3:8080/getPower"
+        },
+        {
+          "input": "host=https://10.audit.invalid, port=8080",
+          "output": "http://10.audit.invalid:8080/getPower"
+        },
+        {
+          "input": "host=https://factory.example:8443, port=8080",
+          "output": "https://factory.example/getPower"
+        }
+      ],
+      "remediation": "Use one URL parser/canonicalizer shared by the connection UI and all transports. Preserve explicit HTTPS and effective ports. Reject userinfo, unexpected paths, query/fragment, unsupported schemes and invalid ports. Keep deliberate loopback/LAN HTTP compatibility but expose an explicit insecure-transport acknowledgement for non-loopback HTTP with a token. Private address classification never makes plaintext safe. Never downgrade after a certificate error.",
+      "acceptance_tests": [
+        "Explicit https://192.168.1.50 stays HTTPS; no HTTP request occurs.",
+        "172.16.0.0/12 versus 172.1.2.3 and DNS names beginning 10./172./192.168. are distinguished correctly if address classification is needed.",
+        "Explicit :8443 survives normalization for DNS and IPv6; conflicting Host/Port entries produce a visible deterministic result.",
+        "Only HTTP(S) endpoints without credentials/query/fragment/path confusion can reach fetch; a real intended LAN HTTP configuration still works after acknowledgement."
+      ],
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc1918.html"
+      ],
+      "diagnostic": "audit_work/renderer_diagnostics.json",
+      "original_id": "R-01",
+      "category": "source",
+      "description": "buildUrl discards an explicitly supplied http/https scheme and chooses HTTP for any host beginning 192.168., 10., or 172. It does not parse an IP address or respect an HTTPS user's choice. X-FRM-Authorization is then attached to the resulting URL. Explicit custom ports on DNS/IPv6 hosts are also silently discarded.",
+      "conditions": [
+        "A user connects with an FRM token to an HTTP-reachable server, with network observation/modification possible. The downgrade is directly relevant to Electron/local HTTP app use. A browser serving the dashboard over HTTPS may block mixed-content requests instead; that is not an application-level guarantee."
+      ],
+      "remediation_contract": [
+        "Use one URL parser/canonicalizer shared by the connection UI and all transports. Preserve explicit HTTPS and effective ports. Reject userinfo, unexpected paths, query/fragment, unsupported schemes and invalid ports. Keep deliberate loopback/LAN HTTP compatibility but expose an explicit insecure-transport acknowledgement for non-loopback HTTP with a token. Private address classification never makes plaintext safe. Never downgrade after a certificate error."
+      ],
+      "work_package": "WP-07",
+      "phase": "P3",
+      "requirement_ids": [
+        "REQ-014"
+      ],
+      "release_gate": "G-03",
+      "delivery_state": "not_started",
+      "confirmation": "confirmed_source_and_pure_function_probe",
+      "remediation_verified": false,
+      "revision": "1.0",
+      "source_refs": [
+        "SRC-025"
+      ]
+    },
+    {
+      "id": "SEC-007",
+      "title": "Credentialed fetches allow redirects to carry the custom FRM token to another origin",
+      "severity": "Medium",
+      "status": "confirmed_missing_control_exploitability_conditional",
+      "cwe": [
+        "CWE-200"
+      ],
+      "priority": "P1",
+      "owner": "Frontend implementer",
+      "phase_candidate": "Credential and transport boundaries",
+      "summary": "Both the shared client and API Explorer send X-FRM-Authorization with the default redirect policy. WHATWG Fetch follows redirects by default and removes the standard Authorization header when origins change, not arbitrary custom credential headers. The application does not enforce an origin boundary before redirects.",
+      "preconditions": "The configured server or an intervening HTTP/tunnel/reverse-proxy response redirects to another origin, and the browser's CORS/preflight rules permit that chain and target. A malicious target can permit the custom header; a fully compromised source server already sees the token, so redirects are not needed in that stronger scenario. Accidental/misconfigured redirects and HTTP on-path injection are the relevant incremental exposures.",
+      "impact": "FRM credentials can leave the selected origin. This is source/spec-supported; a Chromium/browser integration proof was not run because the sandbox denied a local listener with EPERM.",
+      "evidence": [
+        {
+          "path": "src/lib/api.ts",
+          "lines": "129-143",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/lib/api.ts#L129-L143",
+          "claim": "Custom token header with fetch(url,{headers}) and no redirect policy"
+        },
+        {
+          "path": "src/lib/api.ts",
+          "lines": "157-174",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/lib/api.ts#L157-L174",
+          "claim": "POST uses the same custom header and default redirect policy"
+        },
+        {
+          "path": "src/components/EndpointList.tsx",
+          "lines": "56-72",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/components/EndpointList.tsx#L56-L72",
+          "claim": "API Explorer duplicates an unguarded authenticated fetch"
+        }
+      ],
+      "remediation": "Set redirect:'error' on every authenticated FRM request and consolidate API Explorer through the same transport policy. Ask users to configure a canonical final server origin. Do not rely on checking response.redirected or response.url after following because the token may already have been sent. Keep tokens keyed to exact normalized origin.",
+      "acceptance_tests": [
+        "A permitted local mock server returns 301/302/303/307/308 to a second mock origin; the second origin receives zero requests and zero token bytes.",
+        "Same-origin redirects are rejected consistently by the chosen simple policy; explain canonical-endpoint remediation in UI.",
+        "GET, chat POST and API Explorer all exercise the same redirect and token policy.",
+        "Tests use dummy tokens, isolated server ports and explicit CORS fixtures; run once in supported browser and once in the chosen Electron runtime."
+      ],
+      "sources": [
+        "https://fetch.spec.whatwg.org/#http-redirect-fetch",
+        "https://fetch.spec.whatwg.org/#cors-non-wildcard-request-header-name"
+      ],
+      "diagnostic": "audit_work/renderer_diagnostics.json (request options inspected; live redirect test blocked)",
+      "original_id": "R-02",
+      "category": "source",
+      "description": "Both the shared client and API Explorer send X-FRM-Authorization with the default redirect policy. WHATWG Fetch follows redirects by default and removes the standard Authorization header when origins change, not arbitrary custom credential headers. The application does not enforce an origin boundary before redirects.",
+      "conditions": [
+        "The configured server or an intervening HTTP/tunnel/reverse-proxy response redirects to another origin, and the browser's CORS/preflight rules permit that chain and target. A malicious target can permit the custom header; a fully compromised source server already sees the token, so redirects are not needed in that stronger scenario. Accidental/misconfigured redirects and HTTP on-path injection are the relevant incremental exposures."
+      ],
+      "remediation_contract": [
+        "Set redirect:'error' on every authenticated FRM request and consolidate API Explorer through the same transport policy. Ask users to configure a canonical final server origin. Do not rely on checking response.redirected or response.url after following because the token may already have been sent. Keep tokens keyed to exact normalized origin."
+      ],
+      "work_package": "WP-07",
+      "phase": "P3",
+      "requirement_ids": [
+        "REQ-015"
+      ],
+      "release_gate": "G-03",
+      "delivery_state": "not_started",
+      "confirmation": "confirmed_missing_control_exploitability_conditional",
+      "remediation_verified": false,
+      "revision": "1.0",
+      "source_refs": [
+        "SRC-022",
+        "SRC-023"
+      ]
+    },
+    {
+      "id": "SEC-008",
+      "title": "FRM credentials are persisted in renderer localStorage by default without an explicit secret lifecycle",
+      "severity": "Medium",
+      "status": "confirmed_source_requires_local_or_renderer_access",
+      "cwe": [
+        "CWE-922"
+      ],
+      "priority": "P2",
+      "owner": "Frontend implementer",
+      "phase_candidate": "Credential lifecycle",
+      "summary": "Every config edit serializes the complete config, including password, to localStorage. It is restored automatically on startup. The password-type input masks display but does not protect storage. Host changes preserve the previous password through object spreading, and no distinct Forget Token/connection-generation boundary exists.",
+      "preconditions": "A party can read the relevant browser/Electron profile or execute JavaScript in that renderer origin. No independent renderer XSS or unrestricted remote read of localStorage was demonstrated. Endpoint changes create an additional user-error disclosure risk when the old token is retained for a different chosen server.",
+      "impact": "Long-lived FRM tokens persist in a renderer-readable profile and can be reused after app close or accidentally submitted to another server. This does not establish an unauthenticated remote exploit by itself.",
+      "evidence": [
+        {
+          "path": "src/lib/useConfig.ts",
+          "lines": "8-40",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/lib/useConfig.ts#L8-L40",
+          "claim": "Full config including password is restored and stored"
+        },
+        {
+          "path": "src/components/ConnectionBar.tsx",
+          "lines": "84-116",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/components/ConnectionBar.tsx#L84-L116",
+          "claim": "Host/port edits retain password; token input is only visually masked"
+        },
+        {
+          "path": "src/app/page.tsx",
+          "lines": "76-93",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/app/page.tsx#L76-L93",
+          "claim": "Connection result lacks a generation check and config edits merely toggle connected false"
+        }
+      ],
+      "remediation": "Keep the FRM credential in session memory in both browser and desktop. Persist only schema-validated nonsecret preferences. Protected persistent secret storage is deferred (ADR-003). Delete legacy password fields during idempotent settings migration. Clear the live token on reload, restart, Forget, or any change of canonical origin. Cancel old requests and invalidate their generation before replacing the connection. Do not export tokens or restore them from backups.",
+      "acceptance_tests": [
+        "After saving/reloading settings, active localStorage and new settings/theme exports contain no dummy token.",
+        "Legacy password migration preserves valid nonsecret settings; interrupted migration never revives a secret. Historical filesystem backups are outside app erasure control.",
+        "Forget, restart, reload, origin change and token change clear/invalidate the applicable live secret, cancel work and initiate owned-tunnel teardown before replacement.",
+        "A blocked request to A followed by a change to B cannot mark B connected or send the token for A to B.",
+        "No remember-token feature or plaintext fallback is introduced in either platform during this security release; later OS-protected persistence requires a separate decision and tests."
+      ],
+      "sources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html#local-storage",
+        "https://www.electronjs.org/docs/latest/api/safe-storage"
+      ],
+      "original_id": "R-03",
+      "category": "source",
+      "description": "Every config edit serializes the complete config, including password, to localStorage. It is restored automatically on startup. The password-type input masks display but does not protect storage. Host changes preserve the previous password through object spreading, and no distinct Forget Token/connection-generation boundary exists.",
+      "conditions": [
+        "A party can read the relevant browser/Electron profile or execute JavaScript in that renderer origin. No independent renderer XSS or unrestricted remote read of localStorage was demonstrated. Endpoint changes create an additional user-error disclosure risk when the old token is retained for a different chosen server."
+      ],
+      "remediation_contract": [
+        "Keep the FRM credential in session memory in both browser and desktop. Persist only schema-validated nonsecret preferences. Protected persistent secret storage is deferred (ADR-003).",
+        "Delete legacy password fields during idempotent settings migration. Clear the live token on reload, restart, Forget, or any change of canonical origin.",
+        "Cancel old requests and invalidate their generation before replacing the connection. Do not export tokens or restore them from backups."
+      ],
+      "work_package": "WP-08",
+      "phase": "P3",
+      "requirement_ids": [
+        "REQ-016",
+        "REQ-017"
+      ],
+      "release_gate": "G-03",
+      "delivery_state": "not_started",
+      "confirmation": "confirmed_source_requires_local_or_renderer_access",
+      "remediation_verified": false,
+      "revision": "1.0",
+      "source_refs": [
+        "SRC-024",
+        "SRC-015"
+      ]
+    },
+    {
+      "id": "SEC-009",
+      "title": "Remote responses and polling have no application-level schema, size, deadline, or concurrency bounds",
+      "severity": "Medium",
+      "status": "confirmed_source_and_stub_probe_availability_impact_unmeasured",
+      "cwe": [
+        "CWE-20",
+        "CWE-400"
+      ],
+      "priority": "P2",
+      "owner": "Frontend implementer",
+      "phase_candidate": "Bounded data handling and recovery",
+      "summary": "fetchEndpoint<T> returns response.json() without runtime validation or request/body bounds. Several components assume arrays and scalar field types. Polling uses setInterval without abort or single-flight control. The one-hour buffer prunes by time only and retains whole snapshots. API Explorer has a second unbounded JSON path.",
+      "preconditions": "A configured FRM server, mod incompatibility, corrupted network response, large factory, or malicious API response supplies malformed/large/slow data. Local configuration tampering can also make refresh values invalid; the normal UI restricts selectable rates.",
+      "impact": "Renderer crashes, excessive CPU/memory, stale data and accumulated requests are possible. No measured production DoS or RCE is claimed; browser networking imposes some independent implementation limits.",
+      "evidence": [
+        {
+          "path": "src/lib/api.ts",
+          "lines": "129-150",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/lib/api.ts#L129-L150",
+          "claim": "No schema/body/deadline/abort controls; connectivity accepts any OK JSON"
+        },
+        {
+          "path": "src/components/dashboard/PlayerMap.tsx",
+          "lines": "22-38",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/components/dashboard/PlayerMap.tsx#L22-L38",
+          "claim": "Unvalidated response and fixed-interval polling"
+        },
+        {
+          "path": "src/components/dashboard/PlayerMap.tsx",
+          "lines": "85-113",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/components/dashboard/PlayerMap.tsx#L85-L113",
+          "claim": "Array/string/number assumptions in render"
+        },
+        {
+          "path": "src/components/dashboard/ProductionMonitor.tsx",
+          "lines": "550-579",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/components/dashboard/ProductionMonitor.tsx#L550-L579",
+          "claim": "Polling can overlap and cleanup only clears the timer"
+        },
+        {
+          "path": "src/components/dashboard/ProductionMonitor.tsx",
+          "lines": "603-634",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/components/dashboard/ProductionMonitor.tsx#L603-L634",
+          "claim": "Remote scalar/array assumptions"
+        },
+        {
+          "path": "src/lib/useTimeBuffer.ts",
+          "lines": "10-32",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/lib/useTimeBuffer.ts#L10-L32",
+          "claim": "Whole snapshots retained with a time bound but no count/byte bound"
+        },
+        {
+          "path": "src/components/EndpointList.tsx",
+          "lines": "56-72",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/components/EndpointList.tsx#L56-L72",
+          "claim": "Separate unbounded response parser"
+        }
+      ],
+      "remediation": "Create a small shared bounded request/polling layer with per-endpoint validators, response-byte caps, a deadline covering body reads, caller cancellation, one in-flight request per endpoint and stale-generation rejection. Validate persisted settings. Keep only bounded/aggregated history. Keep prior valid data visibly stale after rejection; provide recovery without crashing the entire app. Preserve escaped React text rendering.",
+      "acceptance_tests": [
+        "Wrong top-level shape, wrong scalar type, oversized strings and over-limit streamed/chunked bodies produce an explicit recoverable error, not an unhandled render exception.",
+        "A never-resolving response is aborted by a controlled deadline; unmount/origin change aborts it earlier.",
+        "Barrier-based overlapping tick test never sees more than one in-flight request per origin/endpoint.",
+        "Fake clock plus max-sized fixtures prove history count/byte bounds across an hour and after clock jumps.",
+        "A stale response from a previous connection is discarded and cannot replace newer data.",
+        "Large representative legitimate factory fixtures pass chosen limits; limits and tuning decisions are recorded instead of claiming measured capacity now."
+      ],
+      "sources": [
+        "https://fetch.spec.whatwg.org/"
+      ],
+      "diagnostic": "audit_work/renderer_diagnostics.json (wrong-shape object returned unchanged; no signal/redirect option)",
+      "original_id": "R-04",
+      "category": "source",
+      "description": "fetchEndpoint<T> returns response.json() without runtime validation or request/body bounds. Several components assume arrays and scalar field types. Polling uses setInterval without abort or single-flight control. The one-hour buffer prunes by time only and retains whole snapshots. API Explorer has a second unbounded JSON path.",
+      "conditions": [
+        "A configured FRM server, mod incompatibility, corrupted network response, large factory, or malicious API response supplies malformed/large/slow data. Local configuration tampering can also make refresh values invalid; the normal UI restricts selectable rates."
+      ],
+      "remediation_contract": [
+        "Create a small shared bounded request/polling layer with per-endpoint validators, response-byte caps, a deadline covering body reads, caller cancellation, one in-flight request per endpoint and stale-generation rejection. Validate persisted settings. Keep only bounded/aggregated history. Keep prior valid data visibly stale after rejection; provide recovery without crashing the entire app. Preserve escaped React text rendering."
+      ],
+      "work_package": "WP-09",
+      "phase": "P3",
+      "requirement_ids": [
+        "REQ-018",
+        "REQ-019"
+      ],
+      "release_gate": "G-03",
+      "delivery_state": "not_started",
+      "confirmation": "confirmed_source_and_stub_probe_availability_impact_unmeasured",
+      "remediation_verified": false,
+      "revision": "1.0",
+      "source_refs": [
+        "SRC-014"
+      ]
+    },
+    {
+      "id": "DEP-001",
+      "title": "Unsupported Electron33 engine ships with 46 matching advisories",
+      "severity": "high",
+      "confidence": "version-confirmed; exploitability varies",
+      "phase": "P2",
+      "owner": "Dependency implementer",
+      "versions": {
+        "electron": "33.4.11"
+      },
+      "advisories": [
+        "GHSA-2p8c-gr87-2676",
+        "GHSA-3c8v-cfp5-9885",
+        "GHSA-3qxv-5xgr-q7w9",
+        "GHSA-4f78-qhmw-8j8m",
+        "GHSA-4p4r-m79c-wq3v",
+        "GHSA-532v-xpq5-8h95",
+        "GHSA-5c9j-mhmv-5xgx",
+        "GHSA-5rqw-r77c-jp79",
+        "GHSA-8337-3p73-46f4",
+        "GHSA-8x5q-pvf5-64mp",
+        "GHSA-9899-m83m-qhpj",
+        "GHSA-98mx-cjp9-gchm",
+        "GHSA-997q-gvvc-jwmx",
+        "GHSA-9f4c-93c8-jc8g",
+        "GHSA-9pf5-hg6p-4pwp",
+        "GHSA-9qh4-3jw8-366w",
+        "GHSA-9w97-2464-8783",
+        "GHSA-9wfr-w7mm-pc7f",
+        "GHSA-f2r8-jv7c-xqmp",
+        "GHSA-f37v-82c4-4x64",
+        "GHSA-f3pv-wv63-48x8",
+        "GHSA-ff2p-hmqr-hxm4",
+        "GHSA-fw47-9c62-h3vw",
+        "GHSA-gr2m-v5gq-v685",
+        "GHSA-h3v5-h239-pg29",
+        "GHSA-h7rp-cf8h-j98x",
+        "GHSA-hq2x-r82h-9wj4",
+        "GHSA-j84w-jfhq-vhvj",
+        "GHSA-jfqx-fxh3-c62j",
+        "GHSA-jjp3-mq3x-295m",
+        "GHSA-jm7p-cc5g-qwxx",
+        "GHSA-jr5w-w6x2-84p9",
+        "GHSA-m55f-7gqj-fr98",
+        "GHSA-mwmh-mq4g-g6gr",
+        "GHSA-p2rr-rvmm-c5fp",
+        "GHSA-pfmc-3mgc-p6fp",
+        "GHSA-r5p7-gp4j-qhrx",
+        "GHSA-v3j7-r9gq-3gjw",
+        "GHSA-v64r-4m7r-3mvq",
+        "GHSA-v93f-fgjr-hjrj",
+        "GHSA-vmqv-hx8q-j7mg",
+        "GHSA-vv43-5jgx-7qv8",
+        "GHSA-x562-297c-g43g",
+        "GHSA-x8rc-wpg4-grpf",
+        "GHSA-xj5x-m3f3-5x3h",
+        "GHSA-xwr5-m59h-vwqr"
+      ],
+      "evidence": [
+        "package.json:58-79",
+        "package-lock.json node_modules/electron",
+        "electron/preload.js"
+      ],
+      "impact": "Desktop runtime remains affected even though Electron is declared as a devDependency. Native browser/Node engine age also lies beyond npm-only coverage. Network-reachable TLS and conditional contextBridge issues justify prompt upgrade; API-specific advisories are not all proven reachable.",
+      "remediation": "Proposed target Electron45.2.1, using build Node24.22.1 or newer supported24.x security patch. Rebuild both Windows and Linux; verify embedded versions from artifacts and update Electron hardening. Target is metadata-checked, not build-tested.",
+      "acceptance": [
+        "No Electron33 artifacts distributed after migration",
+        "Supported engine and exact Chromium/Node versions recorded in release SBOM",
+        "Full lockfile rescan and artifact startup/network/IPC tests pass",
+        "Each retained advisory has reviewer, rationale, expiry and revisit trigger"
+      ],
+      "original_id": "D-01",
+      "category": "dependency",
+      "priority": "P1",
+      "work_package": "WP-04",
+      "release_gate": "G-02",
+      "requirement_ids": [
+        "REQ-002",
+        "REQ-003",
+        "REQ-013"
+      ],
+      "revision": "1.0",
+      "delivery_state": "not_started",
+      "remediation_verified": false,
+      "source_refs": [
+        "SRC-002",
+        "SRC-ADVISORIES"
+      ]
+    },
+    {
+      "id": "DEP-002",
+      "title": "ngrok beta wrapper matches command-injection CVE; scanner downgrade also vulnerable",
+      "severity": "high-upstream; application exploit path not shown",
+      "confidence": "version-confirmed; vulnerable API not called by app",
+      "phase": "P2",
+      "owner": "Desktop implementer",
+      "versions": {
+        "ngrok": "5.0.0-beta.2"
+      },
+      "advisories": [
+        "GHSA-qr28-p3wr-mxq3"
+      ],
+      "evidence": [
+        "package.json dependencies.ngrok",
+        "audit_work/ngrok_package_source/src_version.js",
+        "electron/main.js"
+      ],
+      "impact": "CVE-2025-57282 concerns shell construction in getVersion/binPath. Statusfactory calls connect and does not call getVersion or expose binPath input. Do not report confirmed remote app RCE. The package also pulls vulnerable archive/UUID dependencies and mutable native agent bytes, separately reviewed.",
+      "remediation": "Remove old ngrok wrapper through the selected tunnel replacement design; retain equivalent user sharing capability behind explicit consent and bounded processes. Do not downgrade to4.3.3, which is explicitly affected. Official @ngrok/ngrok1.7.0 is a metadata-inspected alternative, not a compatible drop-in claim.",
+      "acceptance": [
+        "Old ngrok package and extract-zip path absent from final lock/SBOM unless specifically justified",
+        "No getVersion/binPath shell-interpolation path in replacement",
+        "Tunnel authentication, lifecycle and packaging verified locally with fake credentials/endpoints"
+      ],
+      "original_id": "D-02",
+      "category": "dependency",
+      "priority": "P1",
+      "work_package": "WP-06",
+      "release_gate": "G-02",
+      "requirement_ids": [
+        "REQ-002",
+        "REQ-003",
+        "REQ-013"
+      ],
+      "revision": "1.0",
+      "delivery_state": "not_started",
+      "remediation_verified": false,
+      "source_refs": [
+        "SRC-002",
+        "SRC-ADVISORIES"
+      ]
+    },
+    {
+      "id": "DEP-003",
+      "title": "Next15.5.19 matches14 advisories but shipped static export lacks affected server surfaces",
+      "severity": "medium in current architecture; upstream includes critical",
+      "confidence": "version-confirmed; production-static non-reachability supported by configuration",
+      "phase": "P2",
+      "owner": "Dependency implementer",
+      "versions": {
+        "next": "15.5.19",
+        "eslint-config-next": "15.5.19"
+      },
+      "advisories": [
+        "GHSA-2464-fhr4-w9xw",
+        "GHSA-2xp9-vwfh-vxw4",
+        "GHSA-4633-3j49-mh5q",
+        "GHSA-4c39-4ccg-62r3",
+        "GHSA-4jqv-mc3x-m676",
+        "GHSA-68g3-v927-f742",
+        "GHSA-89xv-2m56-2m9x",
+        "GHSA-955p-x3mx-jcvp",
+        "GHSA-m99w-x7hq-7vfj",
+        "GHSA-mcj8-r9mp-w47p",
+        "GHSA-p293-qw3h-jr36",
+        "GHSA-p3m5-59mp-jv5r",
+        "GHSA-p9j2-gv94-2wf4",
+        "GHSA-q8wf-6r8g-63ch"
+      ],
+      "evidence": [
+        "next.config.js",
+        "src/app/page.tsx",
+        "electron/main.js"
+      ],
+      "impact": "CVE-2026-75604 requires a Windows-hosted Next server. Image RCE advisories require server image optimization. Server Actions/cache/rewrite advisories require absent runtime features. Static output is not a Next server. Development or future deployment can change applicability.",
+      "remediation": "Proposed same-family next15.5.28 + eslint-config-next15.5.28, retain React/DOM19.2.7. Explicitly address nested PostCSS and sharp; a Next-only version bump does not establish a clean graph. Keep development binds loopback-only.",
+      "acceptance": [
+        "All listed Next matches removed from resolved lock",
+        "Output still static; no unintended request server, Server Actions or image optimizer",
+        "Windows desktop and browser static build smoke tests recorded",
+        "Development servers bound to127.0.0.1 by default"
+      ],
+      "original_id": "D-03",
+      "category": "dependency",
+      "priority": "P2",
+      "work_package": "WP-05",
+      "release_gate": "G-02",
+      "requirement_ids": [
+        "REQ-002",
+        "REQ-003",
+        "REQ-013"
+      ],
+      "revision": "1.0",
+      "delivery_state": "not_started",
+      "remediation_verified": false,
+      "source_refs": [
+        "SRC-002",
+        "SRC-ADVISORIES"
+      ]
+    },
+    {
+      "id": "DEP-004",
+      "title": "Vulnerable CSS/source-map and native image build dependencies remain nested",
+      "severity": "high-upstream; build/input-conditional",
+      "confidence": "version-confirmed; remote runtime exploit not demonstrated",
+      "phase": "P2",
+      "owner": "Dependency implementer",
+      "versions": {
+        "postcss": [
+          "8.4.31",
+          "8.5.15"
+        ],
+        "sharp": "0.34.5",
+        "source-map-js": "1.2.1"
+      },
+      "advisories": [
+        "GHSA-28wg-ghj8-5hjv",
+        "GHSA-2v37-7h3g-55p8",
+        "GHSA-68fv-2mgg-jv7q",
+        "GHSA-6g55-p6wh-862q",
+        "GHSA-f88m-g3jw-g9cj",
+        "GHSA-fxqj-rqcc-2cmp",
+        "GHSA-qx2v-qp2m-jg93",
+        "GHSA-r28c-9q8g-f849",
+        "GHSA-rgj7-g3m4-5g8c",
+        "GHSA-rj75-hqrm-r3gf",
+        "GHSA-w9m9-85wc-3x92",
+        "GHSA-wq5f-xc86-pv6w"
+      ],
+      "evidence": [
+        "package-lock.json next/node_modules/postcss",
+        "next.config.js images.unoptimized"
+      ],
+      "impact": "Build-time CSS/source maps can disclose files or exhaust resources when malicious content reaches parsers. Sharp aggregates native libvips/libheif/librsvg vulnerabilities. images.unoptimized prevents the normal Next image server surface but does not replace dependency repair.",
+      "remediation": "Propose direct postcss8.5.32 and scoped next->postcss8.5.32 override after compatibility checks; explicitly resolve sharp>=0.35.5 and remove older copies. Next15.5.28 still pins PostCSS8.4.31 and allows older sharp branch; re-resolve and inspect all paths.",
+      "acceptance": [
+        "Every PostCSS path resolves beyond all affected ranges",
+        "Every sharp/native resource path meets selected version and SBOM records native versions",
+        "Build output and style smoke tests pass",
+        "No production claim based only on top-level package.json versions"
+      ],
+      "original_id": "D-04",
+      "category": "dependency",
+      "priority": "P2",
+      "work_package": "WP-05",
+      "release_gate": "G-02",
+      "requirement_ids": [
+        "REQ-002",
+        "REQ-003",
+        "REQ-013"
+      ],
+      "revision": "1.0",
+      "delivery_state": "not_started",
+      "remediation_verified": false,
+      "source_refs": [
+        "SRC-002",
+        "SRC-ADVISORIES"
+      ]
+    },
+    {
+      "id": "DEP-005",
+      "title": "Packaging chain includes archive flaws and vulnerable generated AppImage search paths",
+      "severity": "high",
+      "confidence": "version-confirmed; release binaries not inspected",
+      "phase": "P2",
+      "owner": "Dependency implementer",
+      "versions": {
+        "electron-builder": "25.1.8",
+        "app-builder-lib": "25.1.8",
+        "builder-util-runtime": "9.2.10",
+        "tar": "6.2.1",
+        "extract-zip": "2.0.1",
+        "@xmldom/xmldom": "0.9.10"
+      },
+      "advisories": [
+        "GHSA-23hp-3jrh-7fpw",
+        "GHSA-27p8-2357-5qqv",
+        "GHSA-34x7-hfp2-rc4v",
+        "GHSA-3px3-54cx-rmw9",
+        "GHSA-4w3w-2rp5-g8jm",
+        "GHSA-6gmq-8vp8-gcm6",
+        "GHSA-6h8r-xr42-gp59",
+        "GHSA-6mj3-qw4j-hgrw",
+        "GHSA-7g7r-gx96-252g",
+        "GHSA-7pqw-9j4j-h8q3",
+        "GHSA-8344-3jmq-59r6",
+        "GHSA-83g3-92jg-28cx",
+        "GHSA-8qq5-rm4j-mr97",
+        "GHSA-8x88-c5mf-7j5w",
+        "GHSA-93r5-fhx6-vmg9",
+        "GHSA-965w-775f-mr7g",
+        "GHSA-9ppj-qmqm-q256",
+        "GHSA-c7q8-3ch8-vqpv",
+        "GHSA-g53g-w8rj-fmg7",
+        "GHSA-gvwx-54wh-qm9j",
+        "GHSA-jmr9-qjv8-65gv",
+        "GHSA-p2f4-r6v6-j797",
+        "GHSA-qffp-2rhf-9h96",
+        "GHSA-r292-9mhp-454m",
+        "GHSA-r6q2-hw4h-h46w",
+        "GHSA-vmf3-w455-68vh",
+        "GHSA-vr34-hp96-76pp",
+        "GHSA-w2rr-34g9-rvrj",
+        "GHSA-w8wr-v893-vjvp"
+      ],
+      "evidence": [
+        "package.json build.linux.target",
+        "package-lock.json app-builder-lib",
+        "https://github.com/electron-userland/electron-builder/security/advisories/GHSA-7g7r-gx96-252g"
+      ],
+      "impact": "CVE-2026-54672 affects AppImage runtime search paths created by old builder versions, demonstrating why build dependencies can affect shipped apps. Other archive/download/XML issues threaten release hosts if malicious inputs reach relevant APIs.",
+      "remediation": "Propose electron-builder26.18.0 (app-builder-lib26.18.0, builder-util-runtime9.7.0) and rebuild artifacts. Inspect generated AppRun search-path logic, binary provenance and extraction containment.",
+      "acceptance": [
+        "Generated AppImage contains no empty current-directory search components when relevant environment variables are unset",
+        "Both platform artifacts rebuilt from reviewed source and lock",
+        "Archive traversal tests and release reproducibility evidence recorded",
+        "No remaining vulnerable archive toolchain paths without reviewed exception"
+      ],
+      "original_id": "D-05",
+      "category": "dependency",
+      "priority": "P1",
+      "work_package": "WP-04",
+      "release_gate": "G-02",
+      "requirement_ids": [
+        "REQ-002",
+        "REQ-003",
+        "REQ-013"
+      ],
+      "revision": "1.0",
+      "delivery_state": "not_started",
+      "remediation_verified": false,
+      "source_refs": [
+        "SRC-002",
+        "SRC-ADVISORIES"
+      ]
+    },
+    {
+      "id": "DEP-006",
+      "title": "Test, lint and development helpers contain many additional advisories",
+      "severity": "medium aggregate with conditional high/critical upstream issues",
+      "confidence": "version-confirmed; tool exposure depends on developer workflow",
+      "phase": "P2",
+      "owner": "Dependency implementer",
+      "versions": {
+        "vitest": "3.2.6",
+        "@vitest/mocker": "3.2.6",
+        "vite": "6.4.3",
+        "tinypool": "1.1.1",
+        "axios": "1.17.0",
+        "shell-quote": "1.8.3"
+      },
+      "advisories": [
+        "GHSA-22jq-vg5j-6vgg",
+        "GHSA-2883-xcg3-v3hh",
+        "GHSA-2vr4-cq9g-pvrc",
+        "GHSA-395f-4hp3-45gv",
+        "GHSA-3g3m-2fjr-6pw4",
+        "GHSA-3jxr-9vmj-r5cp",
+        "GHSA-3pq3-5fj3-cg6v",
+        "GHSA-42h9-826w-cgv3",
+        "GHSA-44g4-m2mj-wpvx",
+        "GHSA-4528-x5fx-h6hg",
+        "GHSA-4hqw-qxg8-jxx2",
+        "GHSA-4xrf-jv44-h6hh",
+        "GHSA-52cp-r559-cp3m",
+        "GHSA-542g-h47m-68v8",
+        "GHSA-587h-7wmj-h5pm",
+        "GHSA-5gmw-xhrv-c9v3",
+        "GHSA-5p4m-2wfm-xmqj",
+        "GHSA-698v-4r3x-3vcv",
+        "GHSA-6h2x-m376-mqjq",
+        "GHSA-6j4f-fj2g-mc7p",
+        "GHSA-6w3j-5fw6-r9vr",
+        "GHSA-73wf-gq98-2v4g",
+        "GHSA-7q8q-rj6j-mhjq",
+        "GHSA-82fw-gwwq-j7x9",
+        "GHSA-85c8-ppgw-ccpr",
+        "GHSA-8r9p-f939-6h3c",
+        "GHSA-9fr6-4gfg-395g",
+        "GHSA-9jrq-w75r-8gcw",
+        "GHSA-c29m-xwm3-cm6r",
+        "GHSA-c83g-rgw3-j3cx",
+        "GHSA-f4gw-2p7v-4548",
+        "GHSA-g3hv-75wg-m249",
+        "GHSA-gcfj-64vw-6mp9",
+        "GHSA-gg4h-3hg2-grpc",
+        "GHSA-h3mg-xc3c-68pw",
+        "GHSA-hcpx-6fm6-wx23",
+        "GHSA-hmw2-7cc7-3qxx",
+        "GHSA-j6r3-76f7-8jcv",
+        "GHSA-j8rh-479h-cp32",
+        "GHSA-jqh4-m9w3-8hp9",
+        "GHSA-m8m8-qj5v-23w3",
+        "GHSA-mghh-pgcx-3jjj",
+        "GHSA-mh99-v99m-4gvg",
+        "GHSA-mmx7-hfxf-jppx",
+        "GHSA-mrwp-f3q8-3g9p",
+        "GHSA-mwf2-3pr3-8698",
+        "GHSA-mwp4-54f8-5fhr",
+        "GHSA-pmv8-rq9r-6j72",
+        "GHSA-q2hr-2g5m-vwhr",
+        "GHSA-q3jh-wrc6-jgq8",
+        "GHSA-qhr7-859c-m2p7",
+        "GHSA-qxg6-89mg-rqv8",
+        "GHSA-r4gj-5m52-g5wh",
+        "GHSA-r825-w8mm-5pxw",
+        "GHSA-rgw5-rvv9-x895",
+        "GHSA-rpw4-54j3-4h4q",
+        "GHSA-rq7h-c2jc-7f22",
+        "GHSA-rxp7-6hxx-x8q5",
+        "GHSA-vh66-26gq-q6x8",
+        "GHSA-w5hq-g745-h8pq",
+        "GHSA-w5vr-8v7q-w6rv",
+        "GHSA-w7jw-789q-3m8p",
+        "GHSA-wr44-6hxh-3jwq",
+        "GHSA-x97p-jq2g-jp4f",
+        "GHSA-xj6q-8x83-jv6g"
+      ],
+      "evidence": [
+        "package.json scripts",
+        "vitest.config.ts",
+        "package-lock.json"
+      ],
+      "impact": "Critical Tinypool advisories need prototype-pollution prerequisites; mocked/dev endpoints need exposure. Axios comes through wait-on; shell-quote through concurrently. These are not evidence of remote dashboard RCE, but developer and release-host risk remains.",
+      "remediation": "Propose compatible test cohort Vitest4.1.12 + Vite6.4.5 + existing plugin-react4.7.0, then refresh and scan all allowed transitive versions. Reassess Vite6 support horizon before retaining it; a supported newer cohort can be selected with its matching React plugin. Do not apply arbitrary major minimatch/brace-expansion overrides to incompatible parents.",
+      "acceptance": [
+        "Full dev+prod+optional scan runs, not --omit=dev only",
+        "All remaining matches assigned owner and explained context",
+        "Unit/API fixtures remain meaningful through toolchain migration",
+        "Watch/UI/dev endpoints are not exposed publicly or through sharing"
+      ],
+      "original_id": "D-06",
+      "category": "dependency",
+      "priority": "P2",
+      "work_package": "WP-05",
+      "release_gate": "G-02",
+      "requirement_ids": [
+        "REQ-002",
+        "REQ-003",
+        "REQ-013"
+      ],
+      "revision": "1.0",
+      "delivery_state": "not_started",
+      "remediation_verified": false,
+      "source_refs": [
+        "SRC-002",
+        "SRC-ADVISORIES"
+      ]
+    }
+  ],
+  "dependency_inventory": {
+    "path": "data/dependency_inventory.json",
+    "sha256_of_lock": "237ef37e1b6d3095475e61e10a570ffe043faef3f5aec8f7d5184c22f7ee565f",
+    "counts": {
+      "lockfile_package_paths": 962,
+      "unique_name_version_pairs": 863,
+      "npm_vulnerable_package_families_including_meta": 66,
+      "npm_family_severity_counts": {
+        "info": 0,
+        "low": 0,
+        "moderate": 32,
+        "high": 28,
+        "critical": 6,
+        "total": 66
+      },
+      "unique_ghsa": 167,
+      "unique_cve_aliases": 165,
+      "ghsa_without_cve_alias": 3,
+      "directly_matched_name_version_pairs": 36,
+      "directly_matched_package_names": 30,
+      "advisory_severity_counts": {
+        "moderate": 72,
+        "critical": 7,
+        "high": 75,
+        "low": 13
+      },
+      "withdrawn": 0
+    }
+  },
+  "advisories": {
+    "json": "data/all_advisories.json",
+    "csv": "data/all_advisories.csv",
+    "raw_records": "evidence/dependencies/osv/",
+    "counts": {
+      "lockfile_package_paths": 962,
+      "unique_name_version_pairs": 863,
+      "npm_vulnerable_package_families_including_meta": 66,
+      "npm_family_severity_counts": {
+        "info": 0,
+        "low": 0,
+        "moderate": 32,
+        "high": 28,
+        "critical": 6,
+        "total": 66
+      },
+      "unique_ghsa": 167,
+      "unique_cve_aliases": 165,
+      "ghsa_without_cve_alias": 3,
+      "directly_matched_name_version_pairs": 36,
+      "directly_matched_package_names": 30,
+      "advisory_severity_counts": {
+        "moderate": 72,
+        "critical": 7,
+        "high": 75,
+        "low": 13
+      },
+      "withdrawn": 0
+    }
+  },
+  "native_runtime_candidates": {
+    "path": "evidence/dependencies/embedded-node-version-matches.json",
+    "count": 17,
+    "status": "version_candidates_not_confirmed_Electron_CVEs"
+  },
+  "canonical_rule": "This file controls requirements, decisions, work and approval state. Evidence inventories have fixed provenance and are replaced only by a new dated scan. Workbook edits are proposals keyed by ID/revision until integrator reconciliation.",
+  "costs": {
+    "currency": "CAD",
+    "rate_per_hour": 100,
+    "rate_type": "editable planning allowance; not quoted price",
+    "nonlabor_allowance": null,
+    "estimate_date": "2026-10-31",
+    "hours": {
+      "low": 68,
+      "base": 129,
+      "high": 205
+    },
+    "notes": "Labor excludes incident forensics and major feature rewrites. Unknown nonlabor costs are not zero. Existing owned hardware may avoid new infrastructure, but capacity/availability was not measured."
+  },
+  "observations": [
+    {
+      "id": "OBS-001",
+      "severity": "Low / defense in depth",
+      "title": "No explicit CSP/permission policy; file protocol and development-mode production switch need hardening",
+      "evidence": [
+        "electron/main.js:23-67",
+        "src/app/layout.tsx:17-21",
+        "next.config.js:3-9"
+      ],
+      "detail": "No CSP or permission handler was found in the inspected source; the packaged document is file:// and development content can be selected by NODE_ENV or --dev without app.isPackaged gating. These increase the consequence of untrusted content but do not establish XSS on their own. Prefer a fixed app origin, deny unneeded permissions, and a production CSP compatible with Next static export: hash required inline bootstrap scripts, avoid script unsafe-inline/eval, constrain connect-src to selected FRM endpoints, and self-host fonts if feasible. Do not add a blanket policy that breaks required FRM connections or silently weaken it with wildcards.",
+      "sources": [
+        "S-ELECTRON-SECURITY"
+      ],
+      "original_id": "E-O1",
+      "revision": "1.0",
+      "delivery_state": "not_started",
+      "work_package": "WP-10"
+    },
+    {
+      "id": "OBS-002",
+      "severity": "Operational delivery risk",
+      "title": "Patch-only security versions deliberately do not produce releases",
+      "evidence": [
+        ".github/workflows/release.yml:1-3,38-58"
+      ],
+      "detail": "A patch bump inside the same major.minor is skipped. A source security fix shipped only as 1.5.1 after 1.5.0 will not automatically produce release artifacts through this workflow. Plan a reviewed release policy that can publish every security fix, or explicitly choose a minor version when using the existing policy. This is a deterministic release-policy limitation, not a privilege exploit.",
+      "original_id": "E-O2",
+      "revision": "1.0",
+      "delivery_state": "not_started",
+      "work_package": "WP-12"
+    },
+    {
+      "id": "OBS-003",
+      "severity": "Build provenance observation",
+      "title": "Repository does not enforce release signing/provenance evidence",
+      "evidence": [
+        "package.json:20-54",
+        ".github/workflows/release.yml:95-140"
+      ],
+      "detail": "No required signing, signature verification or external native-binary manifest gate is visible in these files. This is not proof that published binaries are unsigned; external build environment/secrets and actual release artifacts were not inspected. Add verifiable hashes/SBOM and platform signing/provenance as appropriate after selecting the delivery process.",
+      "original_id": "E-O3",
+      "revision": "1.0",
+      "delivery_state": "not_started",
+      "work_package": "WP-12"
+    },
+    {
+      "id": "OBS-004",
+      "severity": "Low",
+      "title": "Persisted settings and theme imports are merged without runtime schema validation",
+      "evidence": [
+        {
+          "path": "src/lib/useConfig.ts",
+          "lines": "23-38",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/lib/useConfig.ts#L23-L38",
+          "claim": "Stored types/range accepted"
+        },
+        {
+          "path": "src/lib/useAppSettings.ts",
+          "lines": "16-33",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/lib/useAppSettings.ts#L16-L33",
+          "claim": "Unvalidated persisted settings"
+        },
+        {
+          "path": "src/components/dashboard/SettingsPanel.tsx",
+          "lines": "370-377",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/components/dashboard/SettingsPanel.tsx#L370-L377",
+          "claim": "Theme import checks only object truthiness"
+        },
+        {
+          "path": "src/lib/useTheme.tsx",
+          "lines": "43-62",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/lib/useTheme.tsx#L43-L62",
+          "claim": "Theme restore merges arbitrary fields"
+        }
+      ],
+      "note": "Treat storage/imports as untrusted input. Allow only documented keys and bounded values; validate colors and refresh range. No prototype-pollution or script-execution exploit demonstrated. Fold into R-04.",
+      "original_id": "R-O1",
+      "revision": "1.0",
+      "delivery_state": "not_started",
+      "work_package": "WP-08"
+    },
+    {
+      "id": "OBS-005",
+      "severity": "Low",
+      "title": "Remote fonts create an unnecessary third-party privacy/offline dependency",
+      "evidence": [
+        {
+          "path": "src/app/layout.tsx",
+          "lines": "18-20",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/app/layout.tsx#L18-L20",
+          "claim": "Google Fonts stylesheet/preconnect"
+        }
+      ],
+      "note": "Self-host the existing font assets with license/provenance or use a system stack as part of CSP/offline hardening. Do not describe the stylesheet as a demonstrated script injection.",
+      "original_id": "R-O2",
+      "revision": "1.0",
+      "delivery_state": "not_started",
+      "work_package": "WP-10"
+    },
+    {
+      "id": "OBS-006",
+      "severity": "Low",
+      "title": "Remote ClassName strings are inserted into local icon paths",
+      "evidence": [
+        {
+          "path": "src/components/ui/ItemIcon.tsx",
+          "lines": "69-75",
+          "url": "https://github.com/shakiata/Statusfactory/blob/d0338043169b7af80cedacd2feb838bb705b16a5/src/components/ui/ItemIcon.tsx#L69-L75",
+          "claim": "Relative ./Icons/${className}.png URL"
+        }
+      ],
+      "note": "Validate identifier format or resolve against a generated icon manifest to prevent path traversal requests and invalid names. The fixed relative prefix does not establish arbitrary remote URL loading or local-file content exfiltration, so no standalone exploit is claimed.",
+      "original_id": "R-O3",
+      "revision": "1.0",
+      "delivery_state": "not_started",
+      "work_package": "WP-09"
+    },
+    {
+      "id": "OBS-007",
+      "original_id": "KIT-01",
+      "severity": "Maintenance/portability observation",
+      "title": "Existing agent kit mixes V1 syntax with stale security guidance",
+      "detail": "Existing OpenCode skill path object and permission map do not establish V2 compatibility. The satisfactory-stats skill repeats old token storage, URL and runtime advice. Replace those instructions only in the future authorized operating-kit work; this is not an application exploit.",
+      "work_package": "WP-00",
+      "evidence": [
+        "04_SKILL_AND_AGENT_DESIGNS.md",
+        "templates/agent_guides.md"
+      ],
+      "revision": "1.0",
+      "delivery_state": "not_started"
+    }
+  ],
+  "dependency_experiment": {
+    "retrieved_at": "2026-10-31T18:28:24.776683+00:00",
+    "unique_package_version_pairs": 782,
+    "queried": 782,
+    "unique_ghsa_ids": [
+      "GHSA-g3hv-75wg-m249"
+    ],
+    "lockfile_sha256": "f35a293ddb90fa3befcbacdefcbab2542b15d4b67cd3d54e32e5c4efe9a589f1",
+    "node_version": "v24.22.1",
+    "npm_version": "11.9.0",
+    "node_modules_exists": false,
+    "application_installed": false,
+    "build_executed": false,
+    "tests_executed": false,
+    "state": "planning-only resolution and advisory checks complete; application implementation and testing not performed",
+    "baseline_counts": {
+      "lockfile_package_paths": 962,
+      "unique_name_version_pairs": 863,
+      "npm_vulnerable_package_families_including_meta": 66,
+      "npm_family_severity_counts": {
+        "info": 0,
+        "low": 0,
+        "moderate": 32,
+        "high": 28,
+        "critical": 6,
+        "total": 66
+      },
+      "unique_ghsa": 167,
+      "unique_cve_aliases": 165,
+      "ghsa_without_cve_alias": 3,
+      "directly_matched_name_version_pairs": 36,
+      "directly_matched_package_names": 30,
+      "advisory_severity_counts": {
+        "moderate": 72,
+        "critical": 7,
+        "high": 75,
+        "low": 13
+      },
+      "withdrawn": 0
+    },
+    "candidate_package_paths": 834,
+    "candidate_npm_family_counts": {
+      "info": 0,
+      "low": 0,
+      "moderate": 28,
+      "high": 0,
+      "critical": 0,
+      "total": 28
+    },
+    "candidate_unique_ghsa": 1,
+    "candidate_cve_ids": [
+      "CVE-2026-118764"
+    ],
+    "commands": [
+      "npm install --package-lock-only --ignore-scripts --no-audit",
+      "npm update --package-lock-only --ignore-scripts --no-audit",
+      "npm audit --package-lock-only --ignore-scripts --json",
+      "OSV querybatch for every final exact package/version"
+    ],
+    "superseded_iteration": {
+      "path": "dependencies/proposal/iteration1",
+      "unique_ghsa": 49,
+      "npm_families": 40,
+      "reason": "Old permitted transitive versions retained; Vite6.4.4 introduced CVE-2026-118662, so target was corrected to6.4.5 and permitted ranges refreshed"
+    },
+    "residual": {
+      "advisory": "GHSA-g3hv-75wg-m249",
+      "cve": "CVE-2026-118764",
+      "severity": "moderate",
+      "versions": [
+        "10.2.6",
+        "3.1.5",
+        "5.1.9",
+        "9.0.9"
+      ],
+      "package_paths": [
+        {
+          "path": "node_modules/@electron/asar/node_modules/minimatch",
+          "version": "3.1.5",
+          "direct_origin_paths": {
+            "electron-builder": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/electron-builder",
+                "node_modules/app-builder-lib",
+                "node_modules/@electron/asar",
+                "node_modules/@electron/asar/node_modules/minimatch"
+              ]
+            }
+          }
+        },
+        {
+          "path": "node_modules/@electron/universal/node_modules/minimatch",
+          "version": "9.0.9",
+          "direct_origin_paths": {
+            "electron-builder": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/electron-builder",
+                "node_modules/app-builder-lib",
+                "node_modules/@electron/universal",
+                "node_modules/@electron/universal/node_modules/minimatch"
+              ]
+            }
+          }
+        },
+        {
+          "path": "node_modules/@eslint/config-array/node_modules/minimatch",
+          "version": "3.1.5",
+          "direct_origin_paths": {
+            "eslint": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/eslint",
+                "node_modules/@eslint/config-array",
+                "node_modules/@eslint/config-array/node_modules/minimatch"
+              ]
+            },
+            "eslint-config-next": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/eslint-config-next",
+                "node_modules/eslint",
+                "node_modules/@eslint/config-array",
+                "node_modules/@eslint/config-array/node_modules/minimatch"
+              ]
+            }
+          }
+        },
+        {
+          "path": "node_modules/@eslint/eslintrc/node_modules/minimatch",
+          "version": "3.1.5",
+          "direct_origin_paths": {
+            "eslint": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/eslint",
+                "node_modules/@eslint/eslintrc",
+                "node_modules/@eslint/eslintrc/node_modules/minimatch"
+              ]
+            },
+            "eslint-config-next": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/eslint-config-next",
+                "node_modules/eslint",
+                "node_modules/@eslint/eslintrc",
+                "node_modules/@eslint/eslintrc/node_modules/minimatch"
+              ]
+            }
+          }
+        },
+        {
+          "path": "node_modules/dir-compare/node_modules/minimatch",
+          "version": "3.1.5",
+          "direct_origin_paths": {
+            "electron-builder": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/electron-builder",
+                "node_modules/app-builder-lib",
+                "node_modules/@electron/universal",
+                "node_modules/dir-compare",
+                "node_modules/dir-compare/node_modules/minimatch"
+              ]
+            }
+          }
+        },
+        {
+          "path": "node_modules/eslint-plugin-import/node_modules/minimatch",
+          "version": "3.1.5",
+          "direct_origin_paths": {
+            "eslint-config-next": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/eslint-config-next",
+                "node_modules/eslint-plugin-import",
+                "node_modules/eslint-plugin-import/node_modules/minimatch"
+              ]
+            }
+          }
+        },
+        {
+          "path": "node_modules/eslint-plugin-jsx-a11y/node_modules/minimatch",
+          "version": "3.1.5",
+          "direct_origin_paths": {
+            "eslint-config-next": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/eslint-config-next",
+                "node_modules/eslint-plugin-jsx-a11y",
+                "node_modules/eslint-plugin-jsx-a11y/node_modules/minimatch"
+              ]
+            }
+          }
+        },
+        {
+          "path": "node_modules/eslint-plugin-react/node_modules/minimatch",
+          "version": "3.1.5",
+          "direct_origin_paths": {
+            "eslint-config-next": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/eslint-config-next",
+                "node_modules/eslint-plugin-react",
+                "node_modules/eslint-plugin-react/node_modules/minimatch"
+              ]
+            }
+          }
+        },
+        {
+          "path": "node_modules/eslint/node_modules/minimatch",
+          "version": "3.1.5",
+          "direct_origin_paths": {
+            "eslint": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/eslint",
+                "node_modules/eslint/node_modules/minimatch"
+              ]
+            },
+            "eslint-config-next": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/eslint-config-next",
+                "node_modules/eslint",
+                "node_modules/eslint/node_modules/minimatch"
+              ]
+            }
+          }
+        },
+        {
+          "path": "node_modules/filelist/node_modules/minimatch",
+          "version": "5.1.9",
+          "direct_origin_paths": {
+            "electron-builder": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/electron-builder",
+                "node_modules/app-builder-lib",
+                "node_modules/ejs",
+                "node_modules/jake",
+                "node_modules/filelist",
+                "node_modules/filelist/node_modules/minimatch"
+              ]
+            }
+          }
+        },
+        {
+          "path": "node_modules/glob/node_modules/minimatch",
+          "version": "3.1.5",
+          "direct_origin_paths": {
+            "electron-builder": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/electron-builder",
+                "node_modules/app-builder-lib",
+                "node_modules/@electron/asar",
+                "node_modules/glob",
+                "node_modules/glob/node_modules/minimatch"
+              ]
+            }
+          }
+        },
+        {
+          "path": "node_modules/minimatch",
+          "version": "10.2.6",
+          "direct_origin_paths": {
+            "electron-builder": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/electron-builder",
+                "node_modules/app-builder-lib",
+                "node_modules/minimatch"
+              ]
+            },
+            "eslint-config-next": {
+              "origin_section": "devDependencies",
+              "lock_paths": [
+                "node_modules/eslint-config-next",
+                "node_modules/@typescript-eslint/parser",
+                "node_modules/@typescript-eslint/typescript-estree",
+                "node_modules/minimatch"
+              ]
+            }
+          }
+        }
+      ],
+      "direct_owners": [
+        "electron-builder",
+        "eslint",
+        "eslint-config-next"
+      ],
+      "conditions": "Advisory describes attacker-controlled glob patterns with optimizationLevel>=2, causing amplified preprocessing and quadratic work. Published machine range is broadly<11.0.1, including older major lines; verify feature presence and callsites individually. No application network-controlled glob input was identified in this review.",
+      "remediation_gate": "Use parent-compatible upgrades/backports or demonstrate absent vulnerable feature/input per path. Do not globally force minimatch11 into parents requiring3/5/9/10.",
+      "proposed_exception": {
+        "status": "proposed_not_approved",
+        "duration_days": 30,
+        "expires_if_accepted_on_review_date": "2026-11-30",
+        "owner": "dependency-maintainer and release-reviewer",
+        "scope": "Only specifically reviewed developer lint/packaging callsites with no untrusted glob pattern ingress; no runtime/UI/API input may reach affected preprocessing",
+        "required_controls": [
+          "Bound local validation processes by timeout and memory limits",
+          "Never run release packaging against untrusted worktrees with secrets",
+          "Record exact paths, APIs/options and reason preconditions are absent",
+          "Recheck parent updates and advisory changes at least weekly",
+          "Reopen immediately if new runtime glob matching or untrusted pattern sources are added"
+        ]
+      }
+    }
+  },
+  "dependency_targets": [
+    {
+      "name": "electron",
+      "current": "33.4.11",
+      "proposed": "45.2.1",
+      "reason": "Current stable inspected; longest supported inspected branch",
+      "source": "https://registry.npmjs.org/electron/45.2.1",
+      "validation": "Copied lock-only resolution and npm/OSV checks completed; application installation, build, packaging and tests not performed"
+    },
+    {
+      "name": "electron-builder",
+      "current": "25.1.8",
+      "proposed": "26.18.0",
+      "reason": "Removes vulnerable AppImage toolchain and updates runtime helper",
+      "source": "https://registry.npmjs.org/electron-builder/26.18.0",
+      "validation": "Copied lock-only resolution and npm/OSV checks completed; application installation, build, packaging and tests not performed"
+    },
+    {
+      "name": "next + eslint-config-next",
+      "current": "15.5.19",
+      "proposed": "15.5.28",
+      "reason": "Same-family security patch floor for retrieved Next advisories",
+      "source": "https://registry.npmjs.org/next/15.5.28",
+      "validation": "Copied lock-only resolution and npm/OSV checks completed; application installation, build, packaging and tests not performed"
+    },
+    {
+      "name": "react + react-dom",
+      "current": "19.2.7",
+      "proposed": "retain19.2.7 initially",
+      "reason": "No exact-version match returned; avoid unrelated migration",
+      "source": "https://api.osv.dev/v1/querybatch",
+      "validation": "This is not a guarantee of no unknown vulnerabilities"
+    },
+    {
+      "name": "postcss",
+      "current": "8.5.15 direct;8.4.31 nested",
+      "proposed": "8.5.32 all required paths",
+      "reason": "Inspected current patch removes known affected ranges",
+      "source": "https://registry.npmjs.org/postcss/latest",
+      "validation": "Copied lock-only resolution and npm/OSV checks completed; application installation, build, packaging and tests not performed"
+    },
+    {
+      "name": "sharp",
+      "current": "0.34.5",
+      "proposed": ">=0.35.5, exact resolved version locked",
+      "reason": "Native library advisory floors; Next range allows older unsafe branch",
+      "source": "https://registry.npmjs.org/sharp/0.35.5",
+      "validation": "Copied lock-only resolution and npm/OSV checks completed; application installation, build, packaging and tests not performed"
+    },
+    {
+      "name": "vitest + vite + @vitejs/plugin-react",
+      "current": "3.2.6 +6.4.3 +4.7.0",
+      "proposed": "4.1.12 +6.4.5 +4.7.0",
+      "reason": "Minimal-change metadata-compatible cohort; not blindly latest5/8",
+      "source": "https://registry.npmjs.org/vitest/4.1.12",
+      "validation": "Copied lock-only resolution and npm/OSV checks completed; application installation, build, packaging and tests not performed"
+    },
+    {
+      "name": "ngrok",
+      "current": "5.0.0-beta.2",
+      "proposed": "remove legacy wrapper under selected tunnel replacement design",
+      "reason": "No source-listed patched version; npm downgrade4.3.3 also vulnerable",
+      "source": "https://api.osv.dev/v1/vulns/GHSA-qr28-p3wr-mxq3",
+      "validation": "Replacement security/API/packaging design must precede implementation"
+    }
+  ],
+  "evidence_policy": {
+    "source_findings": "Confirmed source behavior is separate from demonstrated live exploitation.",
+    "scanners": "npm and OSV share upstream sources; agreement is exact-match cross-checking, not independent discovery.",
+    "implementation": "No app installation, build, runtime suite, binary audit or harness runtime test occurred.",
+    "planning": "Package checks and workbook formula tests are artifact validation only."
+  },
+  "activation_inputs": [
+    {
+      "id": "ACT-001",
+      "owner": "Integrator",
+      "input": "Actual OpenCode v2 and Codex versions/executables",
+      "gate": "G-00",
+      "consequence": "No runtime portability claim or application implementation gate closure",
+      "resolution": "Run matrix in04 on both installed harnesses",
+      "can_continue": "Review, kit preparation and fixture design"
+    },
+    {
+      "id": "ACT-002",
+      "owner": "Repository owner",
+      "input": "FRM/mod/game version and documented auth/CORS behavior",
+      "gate": "G-01",
+      "consequence": "Public sharing remains unavailable if auth cannot be verified",
+      "resolution": "Record version; test unauthenticated denial and authenticated nonmutating success against owned fixture/server",
+      "can_continue": "Credential separation, URL parser, cancellation, dependency upgrades"
+    },
+    {
+      "id": "ACT-003",
+      "owner": "Release operator",
+      "input": "Pinned native ngrok CLI version, platform assets and trustworthy digest/signature",
+      "gate": "G-02",
+      "consequence": "No native artifact can be accepted without provenance",
+      "resolution": "Select supported vendor artifact, verify origin/digest and record it in manifest",
+      "can_continue": "Mock adapter and lifecycle tests"
+    },
+    {
+      "id": "ACT-004",
+      "owner": "Repository owner",
+      "input": "Windows/Linux test hosts, supported OS versions and signing policy",
+      "gate": "G-04",
+      "consequence": "Cannot claim real platform compatibility or signed distribution",
+      "resolution": "Provide owned hosts/fixtures and state signed/unsigned policy with evidence",
+      "can_continue": "Pure contract tests and source changes"
+    },
+    {
+      "id": "ACT-005",
+      "owner": "Repository owner",
+      "input": "Disposition of residual minimatch advisory and existing workflow",
+      "gate": "G-04",
+      "consequence": "Release remains blocked without compatible-parent fix or precise approved expiring exception",
+      "resolution": "Inspect12 paths and glob provenance; accept only justified max30-day tooling exception or upgrade compatible parents",
+      "can_continue": "All independent repairs and local tests"
+    },
+    {
+      "id": "ACT-006",
+      "owner": "Repository owner",
+      "input": "Exact revision/artifact publication authority and actual cash allowances",
+      "gate": "G-05",
+      "consequence": "No publication and no claim of fully funded total",
+      "resolution": "Approve exact hashes/channel and enter nonlabor costs",
+      "can_continue": "All local planning/implementation/build evidence"
+    }
+  ],
+  "residual_risks": [
+    {
+      "id": "RSK-001",
+      "title": "Candidate minimatch advisory",
+      "owner": "Dependency reviewer",
+      "status": "open_unapproved",
+      "gate": "G-04",
+      "mitigation": "Compatible-parent fix preferred; precise max30-day tooling exception requires callsite/input evidence, process bounds and weekly review."
+    },
+    {
+      "id": "RSK-002",
+      "title": "Deliberate LAN HTTP",
+      "owner": "Repository owner",
+      "status": "selected_compatibility_tradeoff",
+      "gate": "G-03",
+      "mitigation": "Explicit exact-origin/session acknowledgement; no HTTPS downgrade; use TLS/VPN where needed. Private addressing does not encrypt traffic."
+    },
+    {
+      "id": "RSK-003",
+      "title": "Abrupt main-process death may outlive graceful cleanup",
+      "owner": "Desktop implementer",
+      "status": "requires_platform_validation_and_owner_acceptance",
+      "gate": "G-04",
+      "mitigation": "Atomic nonsecret ownership marker, blocked new sharing and visible closure_unknown on restart, exact process identity verification and provider recovery. No immediate crash-closure guarantee unless validated supervision is added."
+    },
+    {
+      "id": "RSK-004",
+      "title": "Compromised same-user host or renderer",
+      "owner": "Security reviewer",
+      "status": "threat_model_limit",
+      "gate": "G-04",
+      "mitigation": "Session-only tokens, patched runtime, isolation and sender checks reduce exposure; they do not make memory secrets safe from a fully compromised host."
+    },
+    {
+      "id": "RSK-005",
+      "title": "Broad HTTP(S) connection CSP for configurable endpoints",
+      "owner": "Frontend implementer",
+      "status": "requires_documented_policy_review",
+      "gate": "G-03",
+      "mitigation": "Restrict executable sources, origin-bind credentials and reject redirects; do not claim CSP prevents exfiltration after renderer compromise."
+    }
+  ],
+  "deferred_scope": [
+    {
+      "id": "DEF-001",
+      "title": "Protected persistent FRM credentials",
+      "reason": "Session-only release selected; avoid new platform-store behavior during urgent repair",
+      "reconsider": "Explicit request plus both-platform unavailable-store/migration tests",
+      "decision": "ADR-003"
+    },
+    {
+      "id": "DEF-002",
+      "title": "macOS distribution",
+      "reason": "Current owned release/test targets are Windows and Linux",
+      "reconsider": "Maintainer supplies packaging/signing/test evidence",
+      "decision": "ADR-001"
+    },
+    {
+      "id": "DEF-003",
+      "title": "Historical compromise and binary exploit forensics",
+      "reason": "No incident evidence or native artifacts executed in current source-review scope",
+      "reconsider": "Exposure evidence or separately authorized forensic review",
+      "decision": "ADR-002"
+    },
+    {
+      "id": "DEF-004",
+      "title": "Broad visual redesign, SEO and hosted platform",
+      "reason": "Security maintenance of an existing private dashboard; no new public website selected",
+      "reconsider": "Separate product scope request",
+      "decision": "ADR-009"
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "EXC-001",
+      "advisory": "GHSA-g3hv-75wg-m249",
+      "scope": "development/build tooling only (minimatch <11.0.1)",
+      "owner": "Repository owner (finish instruction 2026-10-31)",
+      "expiry": "2027-01-31",
+      "compensating_control": "Artifacts exclude node_modules; production audit 0; no scanner suppression; reviewed build inputs",
+      "review_trigger": "electron-builder/eslint/minimatch update or release build",
+      "evidence": "docs/security/activation/MINIMATCH_EXCEPTION_APPROVED.md",
+      "decision": "accepted_local_candidate_only"
+    }
+  ]
+}

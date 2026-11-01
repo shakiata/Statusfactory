@@ -68,3 +68,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+
+# Pinned tunnel CLI artifacts are acquired locally and recorded by digest in
+# electron/tunnel/ngrok-artifact.json; do not commit platform binaries.
+electron/tunnel/bin/**
+!electron/tunnel/bin/README.md

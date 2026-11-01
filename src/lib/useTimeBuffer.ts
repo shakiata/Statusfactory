@@ -1,41 +1,93 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { estimateSnapshotBytes } from './request-bounds';
 
 export interface TimedEntry<T> {
   timestamp: number;
   data: T;
 }
 
-const MAX_BUFFER_MS = 60 * 60 * 1000; // 1 hour
+/** Maximum retained history window (contract section 4). */
+export const MAX_BUFFER_MS = 60 * 60 * 1000;
+/** Maximum retained samples per active panel. */
+export const MAX_BUFFER_SAMPLES = 720;
+/** Maximum accounted retained telemetry per active panel (64 MiB). */
+export const MAX_BUFFER_BYTES = 64 * 1024 * 1024;
+/** Minimum spacing between retained samples. */
+export const MIN_SAMPLE_MS = 5_000;
+
+export interface BoundedBuffer<T> {
+  entries: TimedEntry<T>[];
+  bytes: number;
+  truncated: boolean;
+}
+
+/** Creates an empty bounded buffer. */
+export function createBuffer<T>(): BoundedBuffer<T> {
+  return { entries: [], bytes: 0, truncated: false };
+}
+
+/**
+ * Appends one snapshot while enforcing time, sample-count and byte limits.
+ *
+ * Inputs: current buffer, new data and the current time (injectable for tests).
+ * Output: a new buffer; the oldest samples are evicted first. Samples closer
+ * than five seconds to the previous one are skipped, so live polling and
+ * retained history stay separate.
+ * Invariant: `entries.length <= MAX_BUFFER_SAMPLES` and `bytes <= MAX_BUFFER_BYTES`.
+ */
+export function appendBoundedSample<T>(
+  buffer: BoundedBuffer<T>,
+  data: T,
+  now: number,
+  maxBytes = MAX_BUFFER_BYTES,
+): BoundedBuffer<T> {
+  const last = buffer.entries[buffer.entries.length - 1];
+  if (last && now - last.timestamp < MIN_SAMPLE_MS) return buffer;
+
+  const cutoff = now - MAX_BUFFER_MS;
+  const entries = buffer.entries.filter((entry) => entry.timestamp > cutoff);
+  let bytes = entries.reduce((sum, entry) => sum + estimateSnapshotBytes(entry.data), 0);
+  entries.push({ timestamp: now, data });
+  bytes += estimateSnapshotBytes(data);
+
+  // Any time-, count- or byte-based eviction is surfaced to the UI.
+  let truncated = buffer.truncated || entries.length !== buffer.entries.length + 1 || entries.length > MAX_BUFFER_SAMPLES;
+  while (entries.length > MAX_BUFFER_SAMPLES) {
+    const removed = entries.shift()!;
+    bytes -= estimateSnapshotBytes(removed.data);
+    truncated = true;
+  }
+  while (bytes > maxBytes && entries.length > 0) {
+    const removed = entries.shift()!;
+    bytes -= estimateSnapshotBytes(removed.data);
+    truncated = true;
+  }
+  return { entries, bytes: Math.max(0, bytes), truncated };
+}
 
 /**
  * Stores timestamped snapshots of data and provides windowed queries.
- * Each time `data` changes (a new API response), it's pushed into a
- * rolling buffer. Old entries (>1hr) are automatically pruned.
  *
- * Usage:
- *   const { getWindowData, getWindowAverage } = useTimeBuffer(data, refreshRate);
- *   const windowed = getWindowData(5 * 60 * 1000); // all snapshots in last 5 min
+ * Each accepted data change is pushed into a buffer bounded to one hour, 720
+ * samples and 64 MiB. Panels show live data separately; the buffer is only for
+ * windowed views, so a selector never implies more coverage than was retained.
  */
 export function useTimeBuffer<T>(data: T | null) {
-  const [buffer, setBuffer] = useState<TimedEntry<T>[]>([]);
+  const [buffer, setBuffer] = useState<BoundedBuffer<T>>(() => createBuffer<T>());
 
   useEffect(() => {
     if (data !== null) {
-      const now = Date.now();
-      setBuffer((prev) => {
-        const cutoff = now - MAX_BUFFER_MS;
-        return [...prev.filter((e) => e.timestamp > cutoff), { timestamp: now, data }];
-      });
+      setBuffer((prev) => appendBoundedSample(prev, data, Date.now()));
     }
   }, [data]);
 
-  /** All snapshots whose timestamp falls within [now - windowMs, now] */
+  /** All snapshots whose timestamp falls within [now - windowMs, now]. */
   const getWindowData = useCallback(
     (windowMs: number): T[] => {
       const cutoff = Date.now() - windowMs;
-      return buffer.filter((e) => e.timestamp >= cutoff).map((e) => e.data);
+      return buffer.entries.filter((e) => e.timestamp >= cutoff).map((e) => e.data);
     },
     [buffer],
   );
@@ -44,14 +96,23 @@ export function useTimeBuffer<T>(data: T | null) {
   const getWindowAverage = useCallback(
     (windowMs: number, mapFn: (item: T) => number): number => {
       const cutoff = Date.now() - windowMs;
-      const entries = buffer.filter((e) => e.timestamp >= cutoff);
+      const entries = buffer.entries.filter((e) => e.timestamp >= cutoff);
       if (entries.length === 0) return 0;
       return entries.reduce((s, e) => s + mapFn(e.data), 0) / entries.length;
     },
     [buffer],
   );
 
-  return { getWindowData, getWindowAverage, bufferSize: buffer.length };
+  const first = buffer.entries[0]?.timestamp;
+  const last = buffer.entries[buffer.entries.length - 1]?.timestamp;
+
+  return {
+    getWindowData,
+    getWindowAverage,
+    bufferSize: buffer.entries.length,
+    retainedMs: first !== undefined && last !== undefined ? last - first : 0,
+    truncated: buffer.truncated,
+  };
 }
 
 /* ─── ProdStatItem helpers — average an array of snapshots into one ─── */

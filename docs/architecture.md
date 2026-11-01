@@ -61,54 +61,65 @@ npm run electron:dev      → concurrently:
                               2. wait-on :3000 → electron . --dev
 ```
 
-In dev mode, Electron loads `http://localhost:3000` with HMR and DevTools open. Retries up to 10 times if the server isn't ready.
+Electron loads `http://localhost:3000` with HMR and DevTools. Production
+navigation is restricted to the exact packaged document.
 
 ### Production Build
 
 ```
 npm run build             → next build (static export → out/)
-npm run electron:build    → next build → electron-builder → dist/
+                            + scripts/postbuild-csp.mjs (script hashes)
+npm run electron:build    → build → electron-builder → dist/
 ```
 
-The Next.js config sets `output: "export"` and `assetPrefix: "./"` so the static HTML works via `file://` protocol inside Electron. The builder packages `out/**/*` and `electron/**/*` into platform-specific executables:
+`next.config.js` sets `output: "export"` and `assetPrefix: "./"` so the static
+HTML works via `file://` inside Electron. The builder packages `out/**/*` and
+`electron/**/*` (no `node_modules`), plus the fixed `electron/tunnel/bin` tree as
+`resources/tunnel`.
 
 - **Windows:** portable `.exe`
 - **Linux:** AppImage
-- **macOS:** DMG
+- **macOS:** deferred
 
-### Automated Releases
+### Existing release automation
 
-A GitHub Actions workflow (`.github/workflows/release.yml`) triggers on pushes to `main` when `package.json` changes. It compares the new `major.minor` against the latest release tag:
-
-- **Minor/major bump** → Linux and Windows builds run on GitHub-hosted runners → new GitHub Release created with `.AppImage` and `.exe` attached
-- **Patch bump** → no release (workflow still runs but skips the build/release jobs)
-
-This means contributors only need to bump the version and push — GitHub handles the rest.
+`.github/workflows/release.yml` remains unchanged and is reviewed as source
+only; this remediation adds no Actions. It deliberately skips patch-only
+versions, so the local patch-release path is documented in
+`docs/security/release/RELEASE_RUNBOOK.md`. Publication requires G-05 owner
+approval of exact hashes.
 
 ---
 
 ## Data Flow
 
-1. **User enters FRM credentials** → `ConnectionBar` → `useConfig().saveConfig()` → `localStorage`
-2. **User clicks Connect** → `testConnection(config)` → `GET /getPower` on FRM API
-3. **On success** → `connected = true` → tab content renders
-4. **Each dashboard panel** polls relevant endpoints on a `setInterval` matching `config.refreshRate`
-5. **`useTimeBuffer`** accumulates timestamped snapshots (max 1 hour) for windowed averaging
-6. **`useTheme`** injects CSS custom properties into `document.documentElement` from localStorage or defaults
-7. **Fluid detection** — `lib/fluids.ts` uses synchronous ClassName pattern matching (`isFluidClassName()`) to identify liquids and gases directly from production stats; also traces raw materials through the recipe graph
+1. **User enters endpoint + token** → `ConnectionBar` → `parseEndpoint` validates
+   the canonical origin; `useConfig` persists only nonsecret fields.
+2. **Connect** → main selects the profile/generation (Electron) → `testConnection`
+   reads `getPower` through the bounded client.
+3. **On success** → `connected = true`; the token is bound to that exact origin in
+   `page.tsx` memory.
+4. **Panels** poll endpoints on their interval; the shared client enforces
+   one-flight, four-per-origin, deadline, size and redirect rules.
+5. **`useTimeBuffer`** retains at most one hour / 720 samples / 64 MiB and lags
+   live polling by at least five seconds per sample.
+6. **`useTheme`** injects CSS custom properties from localStorage.
+7. **`lib/fluids.ts`** classifies liquids/gases and traces recipe inputs.
 
 ### Connection URL Logic
 
-`buildUrl()` auto-detects the scheme:
+`src/lib/connection/contract.ts` is the single parser:
 
-- **localhost / 127.0.0.1 / private IPs** → `http://host:port/endpoint`
-- **Domain names (ngrok, Cloudflare Tunnel, etc.)** → `https://host/endpoint` (port stripped — tunnels handle port mapping)
+- explicit scheme and port are preserved (no silent HTTP downgrade);
+- bare loopback/private literals default to HTTP; bare DNS names default to HTTPS;
+- public/DNS plaintext is refused; non-loopback LAN HTTP needs an acknowledgement;
+- `origin` includes a non-default port and binds the session credential.
 
 ### Authentication
 
-If `config.password` is set, every request includes the header `X-FRM-Authorization: <password>`. ngrok-hosted connections also send `ngrok-skip-browser-warning: 1` to bypass the interstitial page on free-tier tunnels.
-
----
+`X-FRM-Authorization` is attached only for the selected canonical origin and only
+when a session token exists. Authenticated requests use `redirect: "error"`.
+ngrok's warning bypass header is added only for parsed ngrok host boundaries.
 
 ## Directory Structure
 

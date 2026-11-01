@@ -1,13 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "instructions": ["AGENTS.md", "docs/README.md"],
-  "skills": {
-    "paths": [".opencode/skills"]
-  },
   "references": {
     "docs": {
       "path": "docs",
-      "description": "Project docs: architecture, api-client, hooks, testing, theme-and-styling, electron-integration, per-component docs, and diagrams"
+      "description": "Project docs: architecture, api-client, hooks, testing, theme-and-styling, electron-integration, per-component docs, diagrams and the security remediation package"
     }
   }
 }

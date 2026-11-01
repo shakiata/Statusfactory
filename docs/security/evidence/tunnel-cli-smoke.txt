@@ -1,0 +1,8 @@
+verified 3.39.13 4399384bf4d6a5ad65136770a931536db9e97911f52686e3419dc434a74df75f
+{
+  "code": "exited-before-ready",
+  "spawned": true,
+  "confirmedClosure": true,
+  "message": "CLI exited before reporting readiness."
+}
+PASS: real CLI spawned and was confirmed closed; no tunnel opened.

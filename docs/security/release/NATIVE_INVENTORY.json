@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-01T04:48:54.149Z",
+  "source": {
+    "head": "d5c5e99542340d09f2d782ef8843da42cd4f120f",
+    "branch": "security/remediation-2026-10-31"
+  },
+  "build": {
+    "node": "v22.22.2",
+    "npm": "10.9.7",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "electron": {
+    "declared": "45.2.1",
+    "resolved": "45.2.1",
+    "runtime": {
+      "node": "24.22.1",
+      "acorn": "8.18.0",
+      "ada": "4.0.0",
+      "amaro": "1.1.11",
+      "ares": "1.34.9",
+      "brotli": "1.2.0",
+      "cldr": "48.0",
+      "icu": "78.2",
+      "llhttp": "9.4.3",
+      "merve": "1.2.2",
+      "modules": "150",
+      "napi": "10",
+      "nbytes": "0.1.4",
+      "ncrypto": "0.0.1",
+      "nghttp2": "1.70.0",
+      "nghttp3": "",
+      "ngtcp2": "",
+      "openssl": "0.0.0",
+      "simdjson": "4.6.11",
+      "simdutf": "7.7.0",
+      "sqlite": "3.53.4",
+      "tz": "2026e",
+      "undici": "7.30.1",
+      "unicode": "17.0",
+      "uv": "1.52.1",
+      "uvwasi": "0.0.23",
+      "v8": "15.6.75.25-electron.0",
+      "zlib": "1.3.2.1-motley",
+      "zstd": "1.6.0",
+      "electron": "45.2.1",
+      "chrome": "156.0.8078.75"
+    }
+  },
+  "tunnelCli": {
+    "schemaVersion": 1,
+    "name": "ngrok",
+    "version": "3.39.13",
+    "status": "pinned",
+    "acquisition": "Official ngrok binary distribution (bin.equinox.io), accessed 2026-11-01 UTC; exact digests recorded below. Provider account token not required to download or hash.",
+    "notes": [
+      "No artifact is bundled in this local release candidate. Verify fails closed until every target entry below is filled.",
+      "Never use a mutable 'latest/stable' URL or a checksum fetched alongside untrusted content.",
+      "Provider credentials are read from a separate user-only local source by the main process; they are never stored here."
+    ],
+    "artifacts": {
+      "linux-x64": {
+        "version": "3.39.13",
+        "sha256": "4399384bf4d6a5ad65136770a931536db9e97911f52686e3419dc434a74df75f",
+        "source": "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip",
+        "archiveSha256": "c3bb99ccd29f6ed4a901cf88100d646256d291d80fc94f53c241f8d544f2a8a5",
+        "accessedAt": "2026-11-01T03:36:00Z"
+      },
+      "win32-x64": {
+        "version": "3.39.13",
+        "sha256": "5089402d3a5cb601d75e98231c799c1b770b894a381190a5a1c2f4a57482c8a3",
+        "source": "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip",
+        "archiveSha256": "438bad3dbefd7e244be9dfae3889dcf99073b515845b66ab5617e4887bc24636",
+        "accessedAt": "2026-11-01T03:36:00Z"
+      }
+    }
+  },
+  "packagedResources": [
+    "README.md",
+    "linux-x64",
+    "win32-x64"
+  ],
+  "artifacts": {
+    "appImage": {
+      "path": "dist/Statusfactory-1.5.1.AppImage",
+      "bytes": 269289222,
+      "sha256": "f168e9b11a6fca815763c14fd04264a2d8db639b7804b47596cc3256555099bc"
+    },
+    "appAsar": {
+      "path": "dist/linux-unpacked/resources/app.asar",
+      "bytes": 125826588,
+      "sha256": "6f065af0e01001c5fa831e6c60d64bfba51aa7d6c49080471b16db0c4834cc8f"
+    },
+    "winExe": {
+      "path": "dist/Statusfactory 1.5.1.exe",
+      "bytes": 209407477,
+      "sha256": "7a5c3dada1e38e0354e2f1a38091a2c38a6c1dc2de8b0d9dd0e3d310e7f54cc8"
+    },
+    "winAsar": {
+      "path": "dist/win-unpacked/resources/app.asar",
+      "bytes": 125826588,
+      "sha256": "6f065af0e01001c5fa831e6c60d64bfba51aa7d6c49080471b16db0c4834cc8f"
+    },
+    "tunnelCliLinux": {
+      "path": "electron/tunnel/bin/linux-x64/ngrok",
+      "bytes": 32809120,
+      "sha256": "4399384bf4d6a5ad65136770a931536db9e97911f52686e3419dc434a74df75f"
+    },
+    "tunnelCliWindows": {
+      "path": "electron/tunnel/bin/win32-x64/ngrok.exe",
+      "bytes": 33125704,
+      "sha256": "5089402d3a5cb601d75e98231c799c1b770b894a381190a5a1c2f4a57482c8a3"
+    },
+    "sbom": {
+      "path": "dist/sbom.cdx.json",
+      "bytes": 1072027,
+      "sha256": "9084b9d01967caac95c472fb53fecb78440ed8e26a4861f35da2258a062fe3e1"
+    },
+    "lockfile": {
+      "path": "package-lock.json",
+      "bytes": 386412,
+      "sha256": "f4a9271ce6792b906a21e58977c4452403aadae3aca14ca44d428dea8d3cff76"
+    },
+    "packageJson": {
+      "path": "package.json",
+      "bytes": 2582,
+      "sha256": "b0645a836b39beb8ff42335df353f14e278aa10f7d9a66cbdbdcfc1ba3d02f82"
+    }
+  }
+}

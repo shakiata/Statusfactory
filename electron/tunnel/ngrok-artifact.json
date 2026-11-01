@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "name": "ngrok",
+  "version": "3.39.13",
+  "status": "pinned",
+  "acquisition": "Official ngrok binary distribution (bin.equinox.io), accessed 2026-11-01 UTC; exact digests recorded below. Provider account token not required to download or hash.",
+  "notes": [
+    "No artifact is bundled in this local release candidate. Verify fails closed until every target entry below is filled.",
+    "Never use a mutable 'latest/stable' URL or a checksum fetched alongside untrusted content.",
+    "Provider credentials are read from a separate user-only local source by the main process; they are never stored here."
+  ],
+  "artifacts": {
+    "linux-x64": {
+      "version": "3.39.13",
+      "sha256": "4399384bf4d6a5ad65136770a931536db9e97911f52686e3419dc434a74df75f",
+      "source": "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip",
+      "archiveSha256": "c3bb99ccd29f6ed4a901cf88100d646256d291d80fc94f53c241f8d544f2a8a5",
+      "accessedAt": "2026-11-01T03:36:00Z"
+    },
+    "win32-x64": {
+      "version": "3.39.13",
+      "sha256": "5089402d3a5cb601d75e98231c799c1b770b894a381190a5a1c2f4a57482c8a3",
+      "source": "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip",
+      "archiveSha256": "438bad3dbefd7e244be9dfae3889dcf99073b515845b66ab5617e4887bc24636",
+      "accessedAt": "2026-11-01T03:36:00Z"
+    }
+  }
+}

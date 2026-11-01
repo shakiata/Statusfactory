@@ -8,36 +8,38 @@ Custom React hooks in `src/lib/` provide reusable stateful logic for config pers
 
 `src/lib/useConfig.ts`
 
-**Purpose:** Persist and manage the FRM connection configuration (`FRMConfig`) in localStorage.
+**Purpose:** Persist and manage the **nonsecret** connection profile (host, port,
+refresh rate) in localStorage and perform the one-time legacy token migration.
 
 ### Return Value
 
 ```typescript
 {
-  config: FRMConfig;
+  config: FRMConfig;              // never contains a token
   saveConfig: (newConfig: FRMConfig) => void;
   loaded: boolean;
+  notice: string | null;          // migration/storage message
+  dismissNotice: () => void;
 }
 ```
 
 ### Behavior
 
-- **On mount:** Reads `frm-config` from localStorage, merges with `defaultConfig`.
-- **`saveConfig(newConfig)`:** Updates React state + writes JSON to localStorage.
-- **`loaded`:** `false` until the initial localStorage read completes (prevents SSR hydration mismatch).
-- **Default config:** `{ host: 'localhost', port: '8080', password: '', refreshRate: 5000 }`.
+- **On mount:** reads `frm-config`, validates host/port/refresh rate, removes any
+  legacy `password` field and writes the sanitized schema back.
+- **`saveConfig`:** writes only `{schemaVersion, host, port, refreshRate}`; a token
+  passed by callers is ignored.
+- **`loaded`:** `false` until the storage read completes.
+- **Default profile:** `{ host: 'localhost', port: '8080', refreshRate: 5000 }`.
 
-### Usage
-
-```typescript
-const { config, saveConfig, loaded } = useConfig();
-if (!loaded) return null; // wait for hydration
-```
+The session token lives in `src/app/page.tsx` React state, not in this hook.
+See `docs/security/02_DOMAIN_AND_PRODUCT_CONTRACTS.md` section 5.
 
 ### Edge Cases
 
-- Corrupt localStorage data → caught, falls back to defaults.
-- `loaded` is critical for Next.js static export — prevents flash of default values.
+- Corrupt/legacy JSON → sanitized defaults plus a recoverable notice.
+- Storage write failure → in-memory state still updates and a notice is shown.
+- Unsupported refresh values revert to the documented default.
 
 ---
 
@@ -131,7 +133,9 @@ Components reference these via `var(--bg-primary)` in inline styles or `style={{
 
 `src/lib/useTimeBuffer.ts`
 
-**Purpose:** Rolling time-series buffer that stores timestamped snapshots of API data and provides windowed queries for averaging metrics over configurable time windows.
+**Purpose:** Bounded time-series buffer for windowed averaging. Live polling and
+retained history are separate; a selector never implies more coverage than was
+actually retained.
 
 ### Return Value
 
@@ -140,51 +144,29 @@ Components reference these via `var(--bg-primary)` in inline styles or `style={{
   getWindowData: (windowMs: number) => T[];
   getWindowAverage: (windowMs: number, mapFn: (item: T) => number) => number;
   bufferSize: number;
+  retainedMs: number;   // actual coverage
+  truncated: boolean;   // a time/count/byte limit evicted data
 }
 ```
 
 ### Behavior
 
-- **Buffer:** Array of `TimedEntry<T>[]` (`{ timestamp, data }`).
-- **Max size:** 1 hour (3,600,000 ms). Entries older than this are pruned on each push.
-- **On `data` change:** A new `TimedEntry` is appended with `timestamp = Date.now()`.
-- **`getWindowData(ms)`:** Returns all entries where `timestamp >= now - ms`.
-- **`getWindowAverage(ms, mapFn)`:** Returns the mean of `mapFn(item)` across the window. Returns `0` if no data.
+- **On `data` change:** appends a snapshot unless the previous one is younger than
+  5 seconds.
+- **Limits:** one hour, 720 samples and 64 MiB of accounted retained telemetry,
+  whichever is reached first; oldest entries are evicted.
+- **`getWindowData(ms)`:** entries where `timestamp >= now - ms`.
+- **`getWindowAverage(ms, mapFn)`:** mean over the window, `0` when empty.
 
-### Usage Pattern
-
-```typescript
-const { getWindowData, getWindowAverage } = useTimeBuffer(powerData);
-
-// All snapshots from last 5 minutes
-const windowed = getWindowData(300_000);
-
-// Average power production over last 5 minutes
-const avgProd = getWindowAverage(300_000, (circuit) => circuit.PowerProduction);
-```
+`appendBoundedSample` and `createBuffer` are exported pure helpers for tests.
 
 ### Exported Helpers
 
-**`averageProdStats(snapshots: ProdStatSnapshot[][]): ProdStatSnapshot[]`**
-
-- Merges multiple `ProdStatsResponse` snapshots into one.
-- Groups by `ClassName`, averages `CurrentProd` and `CurrentConsumed`.
-- Takes `max` of `MaxProd` and `MaxConsumed` across the window.
-
-**`averagePowerStats(snapshots: PowerSnapshot[]): PowerSnapshot`**
-
-- Averages `totalProd`, `totalConsumed`, `totalCapacity`, and `totalMaxConsumed` across snapshots.
-
-**`extractItemTimeSeries(snapshots: ProdStatSnapshot[][], className: string): ProdTimePoint[]`**
-
-- Extracts a time-series of production and consumption values for a single item across buffered snapshots.
-- Each snapshot is searched for the matching `ClassName`; if found, a `ProdTimePoint` (`{ timestamp, prod, cons }`) is emitted.
-- Timestamps are index-based (snapshot position in the array) rather than wall-clock time.
-- Skips snapshots where the item is not present (e.g., newly added or removed items).
-- Used by `ProdConsChart` in `ProductionMonitor`'s detail panel to render the production vs consumption line chart.
+The averaging helpers (`averageProdStats`, `averagePowerStats`,
+`extractItemTimeSeries`) are unchanged.
 
 ### Edge Cases
 
-- **Empty buffer:** `getWindowData` returns `[]`, `getWindowAverage` returns `0`.
-- **Single snapshot:** Average equals the single value.
-- **Buffer overflow:** Older entries are silently pruned — max 1 hour of data.
+- **Empty buffer:** `[]` / `0`.
+- **Single snapshot:** average equals the single value.
+- **Truncation:** `truncated` becomes `true`; panels should show actual coverage.

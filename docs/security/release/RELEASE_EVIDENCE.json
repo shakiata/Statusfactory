@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-01T04:48:54.408Z",
+  "registerRevision": "1.6",
+  "source": {
+    "head": "d5c5e99542340d09f2d782ef8843da42cd4f120f",
+    "branch": "security/remediation-2026-10-31",
+    "dirty": ""
+  },
+  "build": {
+    "node": "v22.22.2",
+    "npm": "10.9.7",
+    "os": "Linux 7.0.0-42-generic x86_64 GNU/Linux"
+  },
+  "artifacts": {
+    "appImage": {
+      "path": "dist/Statusfactory-1.5.1.AppImage",
+      "bytes": 269289222,
+      "sha256": "f168e9b11a6fca815763c14fd04264a2d8db639b7804b47596cc3256555099bc"
+    },
+    "appAsar": {
+      "path": "dist/linux-unpacked/resources/app.asar",
+      "bytes": 125826588,
+      "sha256": "6f065af0e01001c5fa831e6c60d64bfba51aa7d6c49080471b16db0c4834cc8f"
+    },
+    "winExe": {
+      "path": "dist/Statusfactory 1.5.1.exe",
+      "bytes": 209407477,
+      "sha256": "7a5c3dada1e38e0354e2f1a38091a2c38a6c1dc2de8b0d9dd0e3d310e7f54cc8"
+    },
+    "winAsar": {
+      "path": "dist/win-unpacked/resources/app.asar",
+      "bytes": 125826588,
+      "sha256": "6f065af0e01001c5fa831e6c60d64bfba51aa7d6c49080471b16db0c4834cc8f"
+    },
+    "tunnelCliLinux": {
+      "path": "electron/tunnel/bin/linux-x64/ngrok",
+      "bytes": 32809120,
+      "sha256": "4399384bf4d6a5ad65136770a931536db9e97911f52686e3419dc434a74df75f"
+    },
+    "tunnelCliWindows": {
+      "path": "electron/tunnel/bin/win32-x64/ngrok.exe",
+      "bytes": 33125704,
+      "sha256": "5089402d3a5cb601d75e98231c799c1b770b894a381190a5a1c2f4a57482c8a3"
+    },
+    "sbom": {
+      "path": "dist/sbom.cdx.json",
+      "bytes": 1072027,
+      "sha256": "9084b9d01967caac95c472fb53fecb78440ed8e26a4861f35da2258a062fe3e1"
+    },
+    "lockfile": {
+      "path": "package-lock.json",
+      "bytes": 386412,
+      "sha256": "f4a9271ce6792b906a21e58977c4452403aadae3aca14ca44d428dea8d3cff76"
+    },
+    "packageJson": {
+      "path": "package.json",
+      "bytes": 2582,
+      "sha256": "b0645a836b39beb8ff42335df353f14e278aa10f7d9a66cbdbdcfc1ba3d02f82"
+    }
+  },
+  "notes": [
+    "Linux AppImage and Windows portable were cross-built and hashed locally; Windows was not executed on this host.",
+    "The Electron runtime version was read with ELECTRON_RUN_AS_NODE; a sandboxed GUI launch is blocked on this host because chrome-sandbox is not root-owned mode 4755.",
+    "The tunnel CLI artifact is not bundled; the manifest records owner-input-required and sharing fails closed.",
+    "Artifacts are unsigned; a checksum identifies bytes but not publisher identity.",
+    "A dev-only tunnel simulation and loopback FRM fixture exist; they do not verify ACT-002, a real provider tunnel, Windows execution or sandboxed runtime."
+  ]
+}

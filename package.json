@@ -1,21 +1,24 @@
 {
   "name": "satisfactory-stats",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "private": true,
-  "description": "Desktop dashboard for Ficsit Remote Monitoring — monitor your Satisfactory factory in real time.",
+  "description": "Desktop dashboard for Ficsit Remote Monitoring \u2014 monitor your Satisfactory factory in real time.",
   "author": "Statusfactory",
   "main": "electron/main.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "next build && node scripts/postbuild-csp.mjs",
+    "start": "node scripts/serve-static.mjs",
     "electron:dev": "concurrently -k \"next dev\" \"wait-on http://localhost:3000 && electron . --dev\"",
-    "electron:build": "next build && electron-builder",
-    "electron:build:win": "next build && electron-builder --win",
-    "electron:build:linux": "next build && electron-builder --linux",
-    "electron:start": "next build && electron .",
+    "electron:build": "npm run build && electron-builder",
+    "electron:build:win": "npm run build && electron-builder --win",
+    "electron:build:linux": "npm run build && electron-builder --linux",
+    "electron:start": "npm run build && electron .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "sbom": "node scripts/generate-sbom.mjs",
+    "release:evidence": "node scripts/release-evidence.mjs",
+    "sim:frm": "node scripts/fixtures/frm-fixture.mjs"
   },
   "build": {
     "appId": "com.satisfactory.stats",
@@ -25,12 +28,16 @@
     },
     "files": [
       "out/**/*",
-      "electron/**/*"
+      "electron/**/*",
+      "!electron/__tests__/**/*",
+      "!electron/**/*.test.ts",
+      "!electron/**/*.md",
+      "!node_modules/**/*"
     ],
     "extraResources": [
       {
-        "from": "node_modules/ngrok/bin",
-        "to": "ngrok",
+        "from": "electron/tunnel/bin",
+        "to": "tunnel",
         "filter": [
           "**/*"
         ]
@@ -54,33 +61,39 @@
     }
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.12.0"
   },
   "volta": {
     "node": "24"
   },
   "dependencies": {
-    "next": "^15.0.0",
-    "ngrok": "^5.0.0-beta.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "next": "15.5.28",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "autoprefixer": "^10.0.0",
-    "concurrently": "^9.0.0",
-    "electron": "^33.0.0",
-    "electron-builder": "^25.0.0",
-    "eslint": "^9.0.0",
-    "eslint-config-next": "^15.0.0",
-    "postcss": "^8.0.0",
-    "tailwindcss": "^3.4.0",
-    "typescript": "^5.0.0",
-    "vitest": "^3.0.0",
-    "@vitejs/plugin-react": "^4.0.0",
-    "jsdom": "^26.0.0",
-    "wait-on": "^8.0.0"
+    "@types/node": "^22.19.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.5",
+    "@vitejs/plugin-react": "6.1.2",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
+    "electron": "45.2.1",
+    "electron-builder": "26.18.0",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "15.5.28",
+    "jsdom": "27.4.0",
+    "postcss": "8.5.32",
+    "sharp": "0.35.5",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.9.3",
+    "vite": "8.3.5",
+    "vitest": "5.0.5",
+    "wait-on": "^9.0.1"
+  },
+  "overrides": {
+    "next": {
+      "postcss": "8.5.32"
+    }
   }
 }

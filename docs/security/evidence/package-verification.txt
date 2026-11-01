@@ -1,0 +1,22 @@
+Statusfactory security package verification
+Run: 2026-11-01T00:09:26Z
+Archive: /home/james/repos/Statusfactory_Security_Review_2026-10-31/Statusfactory_Security_Review_2026-10-31.zip
+cee5882eaccda6f5f128f5ea91b35b5ffca658f72039253d7d2c2fdd0ae9fbe1  /home/james/repos/Statusfactory_Security_Review_2026-10-31/Statusfactory_Security_Review_2026-10-31.zip
+cee5882eaccda6f5f128f5ea91b35b5ffca658f72039253d7d2c2fdd0ae9fbe1  /home/james/Downloads/Statusfactory_Security_Review_2026-10-31.zip
+Extraction: /home/james/repos/Statusfactory_Security_Package_2026-10-31 (outside working repo)
+Archive safety: 1 top-level dir, 0 absolute paths, 0 traversal entries, 0 symlinks
+SHA256SUMS verification:
+templates/agent_guides.md: OK
+tools/validate_planning_package.py: OK
+Manifest lines: 287
+Planning validator (read-only, no --write-reports):
+{
+  "overall_status": "passed",
+  "counts": {
+    "total": 34,
+    "passed": 34
+  },
+  "unresolved": [],
+  "reports_written": false
+}
+Note: planning validation passes package artifacts only; it does not pass application, harness or release gates.

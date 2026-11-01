@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-01T02:53:32.305Z",
+  "generatedAt": "2026-11-01T02:53:49.719Z",
   "registerRevision": "1.3",
   "source": {
-    "head": "70a935168de2e44fa69cdc8aca08ac7f7f742e1c",
+    "head": "708aa50cc9d3424457f2f08879915b02140fead1",
     "branch": "security/remediation-2026-10-31",
-    "dirty": "M docs/security/IMPLEMENTATION_LOG.md\n M docs/security/data/security_plan.json\n M electron/main.js\n M electron/sharing-policy.js\n M electron/tunnel/service.js\n M package.json\n M src/components/ConnectionBar.tsx\n M src/lib/api.ts\n M src/lib/electron.d.ts\n M src/lib/tunnel-types.ts\n?? docs/security/evidence/electron-simulation.png\n?? docs/security/evidence/simulated-integration.md\n?? electron/__tests__/integration-simulation.test.ts\n?? electron/tunnel/simulator-adapter.js\n?? scripts/fixtures/\n?? src/lib/__tests__/integration-frm.test.ts"
+    "dirty": ""
   },
   "build": {
     "node": "v22.22.2",
@@ -43,6 +43,7 @@
     "Linux AppImage built and hashed locally. Windows was not built or executed on this host.",
     "The Electron runtime version was read with ELECTRON_RUN_AS_NODE; a sandboxed GUI launch is blocked on this host because chrome-sandbox is not root-owned mode 4755.",
     "The tunnel CLI artifact is not bundled; the manifest records owner-input-required and sharing fails closed.",
-    "Artifacts are unsigned; a checksum identifies bytes but not publisher identity."
+    "Artifacts are unsigned; a checksum identifies bytes but not publisher identity.",
+    "A dev-only tunnel simulation and loopback FRM fixture exist; they do not verify ACT-002, a real provider tunnel, Windows execution or sandboxed runtime."
   ]
 }

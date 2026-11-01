@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-01T04:05:54.856Z",
-  "registerRevision": "1.5",
+  "generatedAt": "2026-11-01T04:07:06.423Z",
+  "registerRevision": "1.6",
   "source": {
-    "head": "7b016d22ec28d64eb893fa8ec929fb2b815da6d4",
+    "head": "38fd5c9f3ea1a7188f5332e1ed9c6624cec8a90b",
     "branch": "security/remediation-2026-10-31",
-    "dirty": "M .gitignore\n M docs/security/data/security_plan.json\n M electron/__tests__/sharing-policy.test.ts\n M electron/sharing-policy.js\n M electron/tunnel/ngrok-artifact.json\n M scripts/release-evidence.mjs\n M src/components/ConnectionBar.tsx\n?? docs/security/activation/ACT-002_DERIVED.md\n?? docs/security/activation/MINIMATCH_EXCEPTION_APPROVED.md\n?? scripts/tunnel-cli-smoke.mjs"
+    "dirty": ""
   },
   "build": {
     "node": "v22.22.2",

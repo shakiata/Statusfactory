@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-01T04:05:54.601Z",
+  "generatedAt": "2026-11-01T04:07:06.090Z",
   "source": {
-    "head": "7b016d22ec28d64eb893fa8ec929fb2b815da6d4",
+    "head": "38fd5c9f3ea1a7188f5332e1ed9c6624cec8a90b",
     "branch": "security/remediation-2026-10-31"
   },
   "build": {

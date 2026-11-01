@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "id": "P1-task-01",
+  "revision": "1.0",
+  "register_revision": "1.2",
+  "work_package": "WP-01..WP-03",
+  "requirement_ids": ["REQ-007", "REQ-008", "REQ-009", "REQ-010"],
+  "source_sha": "d0338043169b7af80cedacd2feb838bb705b16a5",
+  "owner": "Desktop implementer (sequential; no delegation available for this unit)",
+  "owned_paths": ["electron/**", "src/components/ConnectionBar.tsx", "src/app/page.tsx", "src/lib/electron.d.ts", "src/lib/tunnel-types.ts"],
+  "status": "completed",
+  "authority_reference": "docs/security/IMPLEMENTATION_AUTHORIZATION.md as amended by CHG-006",
+  "evidence": ["docs/security/IMPLEMENTATION_LOG.md", "electron/__tests__/", "docs/security/release/RELEASE_EVIDENCE.json"],
+  "reviewer": "Independent security review, rounds 1-2",
+  "updated_at": "2026-10-31T00:00:00Z",
+  "supersedes": null,
+  "blockers": ["Automatic sharing disabled pending ACT-002 and a trusted CLI artifact."],
+  "next_action": "Owner records ACT-002 and supplies a verified CLI artifact before enabling sharing."
+}

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { EndpointInfo, FRMConfig, DashboardTheme } from '@/lib/types';
-import { buildUrl } from '@/lib/api';
+import { buildUrl, fetchEndpoint } from '@/lib/api';
 import { useTheme } from '@/lib/useTheme';
 
 interface EndpointCardProps {
@@ -61,14 +61,10 @@ function EndpointCard({ endpoint, config, theme }: EndpointCardProps) {
     setLoading(true);
     setError(null);
     try {
-      const url = buildUrl(config, endpoint.path);
-      const headers: Record<string, string> = { Accept: 'application/json' };
-      if (config.password) {
-        headers['X-FRM-Authorization'] = config.password;
-      }
-      const res = await fetch(url, { headers });
-      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-      const json = await res.json();
+      // API Explorer uses the same bounded reader as panels: redirects are
+      // rejected, the deadline/size limits apply and the token stays bound to
+      // the selected origin.
+      const json = await fetchEndpoint<unknown>(config, endpoint.path);
       setData(json);
       setExpanded(true);
     } catch (e) {

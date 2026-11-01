@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "id": "P3-task-01",
+  "revision": "1.0",
+  "register_revision": "1.2",
+  "work_package": "WP-07..WP-10",
+  "requirement_ids": ["REQ-014", "REQ-015", "REQ-016", "REQ-017", "REQ-018", "REQ-019", "REQ-020", "REQ-022"],
+  "source_sha": "d0338043169b7af80cedacd2feb838bb705b16a5",
+  "owner": "Frontend implementer (sequential; no delegation available for this unit)",
+  "owned_paths": ["src/lib/**", "src/app/**", "src/components/**", "scripts/postbuild-csp.mjs", "scripts/serve-static.mjs"],
+  "status": "completed",
+  "authority_reference": "docs/security/IMPLEMENTATION_AUTHORIZATION.md",
+  "evidence": ["docs/security/IMPLEMENTATION_LOG.md", "src/lib/__tests__/", "docs/security/evidence/opencode-harness-checks.md"],
+  "reviewer": "Independent security review, rounds 1-2",
+  "updated_at": "2026-10-31T00:00:00Z",
+  "supersedes": null,
+  "blockers": ["Runtime browser/Electron and screen-reader evidence remains part of G-04."],
+  "next_action": "Record runtime browser/Electron evidence and any accessibility checks at G-04."
+}

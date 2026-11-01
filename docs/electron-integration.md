@@ -1,244 +1,147 @@
 # Electron Integration
 
-Statusfactory runs as an Electron desktop app. The Electron shell loads the Next.js static export and provides native OS integration plus ngrok tunnel sharing.
+Statusfactory's Electron shell loads the static Next export and owns the native
+tunnel capability. The renderer never receives filesystem, process or provider
+credentials.
+
+Contract: `docs/security/02_DOMAIN_AND_PRODUCT_CONTRACTS.md` sections 7, 10, 11
+(REQ-007–REQ-010, REQ-012, REQ-020, REQ-022).
 
 ---
 
-## Architecture
+## Process boundaries
 
+```text
+Main (electron/main.js)
+├── one BrowserWindow (nodeIntegration:false, contextIsolation:true, sandbox:true)
+├── one connection profile {id, origin, generation, target}
+├── permit registry (128-bit, single-use, <=60 s)
+├── FRM auth probe (credential-free denial + authenticated success)
+├── one tunnel service + one owned CLI process tree
+└── nonsecret ownership marker under userData
+
+Preload (electron/preload.js)
+└── connectionSelect, shareAuthorize, tunnelStart, tunnelStop, tunnelStatus,
+    onTunnelState
+
+Renderer (src/)
+├── session token in page.tsx memory only
+├── ConnectionBar (connection + sharing UI)
+└── panels using the shared bounded API client
 ```
-┌──────────────────────────────────────────┐
-│              Electron Main Process        │
-│  main.js                                  │
-│  ├── BrowserWindow (1400×900)            │
-│  ├── IPC handlers (tunnel:*)             │
-│  └── nativeTheme (dark mode)             │
-├──────────────────────────────────────────┤
-│              Preload Bridge               │
-│  preload.js                               │
-│  └── contextBridge.exposeInMainWorld()   │
-│      └── window.electronAPI              │
-├──────────────────────────────────────────┤
-│              Renderer Process             │
-│  Next.js static export (out/index.html)  │
-│  └── ConnectionBar.tsx (tunnel UI)       │
-└──────────────────────────────────────────┘
-```
+
+`electron/tunnel/` contains the adapter, state machine, permit registry,
+ownership marker, endpoint policy and CLI artifact verification. The adapter,
+state machine, permits, marker, policy, provider loader, authorization sequencing
+and service are unit-tested under `electron/__tests__/`; the `main.js` wiring is
+not GUI-integration-tested on this host.
 
 ---
 
-## Main Process (`electron/main.js`)
+## IPC channels
 
-### Window Creation
+| Channel | Input | Notes |
+| --- | --- | --- |
+| `connection:select` | `{origin, expectedGeneration}` | compare-and-set; stops any owned tunnel and awaits closure; null disconnects |
+| `share:authorize` | `{profileId, generation, frmToken}` | main probes FRM auth, then issues one permit; token discarded |
+| `tunnel:start` | `{permitId}` | permit consumed before spawn; no host/path/credential accepted |
+| `tunnel:stop` | empty | idempotent, bounded, reports confirmed/unknown |
+| `tunnel:status` | empty | authoritative state; URL only while active |
+| `tunnel:state` event | state object | pushed on every transition |
 
-```javascript
-function createWindow() {
-  mainWindow = new BrowserWindow({
-    width: 1400,
-    height: 900,
-    minWidth: 900,
-    minHeight: 600,
-    title: "Statusfactory",
-    webPreferences: {
-      nodeIntegration: false, // Security: no Node in renderer
-      contextIsolation: true, // Security: isolate preload scope
-      preload: path.join(__dirname, "preload.js"),
-    },
-    autoHideMenuBar: true,
-    backgroundColor: "#0a0a0a",
-  });
-}
-```
-
-### Dev vs Production Loading
-
-- **Dev mode** (`--dev` flag or `NODE_ENV=development`): Loads `http://localhost:3000` with retries (10 attempts, 1s apart). Opens DevTools.
-- **Production mode:** Loads `../out/index.html` (Next.js static export).
-
-### Dark Mode
-
-- `nativeTheme.themeSource = "system"` — follows OS preference.
-- On window load, injects `:root { color-scheme: dark; }` for CSS media query support.
-
-### Icon Resolution
-
-```javascript
-function getIconPath() {
-  // Dev: ../public/icon.png
-  // Prod: ../out/icon.png (Next.js copies public/ into out/)
-  const devIcon = path.join(__dirname, "../public/icon.png");
-  const prodIcon = path.join(__dirname, "../out/icon.png");
-  return fs.existsSync(devIcon) ? devIcon : prodIcon;
-}
-```
+Every handler first validates the sender WebContents, main frame and exact
+application document (`electron/ipc-guards.js`), then the typed payload.
 
 ---
 
-## ngrok Tunnel IPC
+## Tunnel lifecycle
 
-The Electron main process manages an ngrok tunnel process for sharing the FRM connection publicly.
-
-### IPC Handlers
-
-| Channel         | Direction       | Purpose            |
-| --------------- | --------------- | ------------------ |
-| `tunnel:start`  | Renderer → Main | Start ngrok tunnel |
-| `tunnel:stop`   | Renderer → Main | Stop ngrok tunnel  |
-| `tunnel:status` | Renderer → Main | Check tunnel state |
-
-### tunnel:start
-
-```
-Input:  (host: string, port: string, authtoken?: string)
-Output: { ok: boolean, url?: string, error?: string }
+```text
+idle -> starting -> active -> stopping -> idle
+             \-> failed_closed (closure confirmed)
+             \-> closure_unknown (closure not proven)
 ```
 
-1. Spawns ngrok as a child process or uses the npm package.
-2. Captures stdout, regex-matches `Forwarding https://...` to extract the public URL.
-3. 15-second timeout — if no URL found, returns `{ ok: false }`.
-4. Stores `ngrokProcess` and `ngrokUrl` in module scope.
-
-### tunnel:stop
-
-```
-Output: { ok: boolean, error?: string }
-```
-
-Kills the ngrok child process and cleans up module state.
-
-### tunnel:status
-
-```
-Output: { active: boolean, url: string | null }
-```
-
-Returns current tunnel state without side effects.
+- One child maximum; concurrent starts return `already-starting`/`busy`.
+- Stop during start cancels the pending operation and tears down the owned child.
+- A late readiness URL cannot reactivate a stopped operation (generation check).
+- Child output is parsed as JSON and retained only as a 64 KiB tail.
+- Stop waits 5 s for graceful exit, then forces the same owned process group and
+  waits 5 s for confirmation. Anything else is `closure_unknown`.
+- Origin/token change, Forget, disconnect, renderer crash and window close all
+  invalidate permits and run the same stop path.
 
 ---
 
-## Troubleshooting ngrok
+## Ownership marker and recovery
 
-If the Share button produces an "ngrok binary not found" or "ENOENT" error:
+Before spawning, main atomically writes `userData/tunnel-ownership.json` with the
+operation/app-session IDs and executable identity; the PID and Linux creation
+identity are added after spawn. The marker contains no token. It is removed only
+after confirmed closure.
 
-### The npm package binary is missing or not executable
+On startup an existing marker forces `closure_unknown`. Recovery terminates a
+surviving process only when the recorded executable path, creation identity and
+current PID all match. Unverified processes are never killed; the UI shows manual
+provider/OS recovery guidance instead.
 
-The ngrok npm package bundles a platform-specific binary at
-`node_modules/ngrok/bin/ngrok` (or `.exe` on Windows). The app tries
-the npm package directly and falls back to the system CLI on failure.
+---
 
-### The binary is packed inside the asar (production builds)
+## Sharing authorization
 
-Electron-builder packs the entire app (including `node_modules`) into
-a read-only `app.asar` archive. Node's `child_process.spawn()` cannot
-execute binaries from inside an asar — it sees them as ENOENT.
+`share:authorize` performs two probes against representative protected endpoints
+(`getPower`, `getFactory`, `getWorldInv`, `getPlayer`):
 
-The build config solves this with `asarUnpack`:
+1. every credential-free request must return 401/403;
+2. every authenticated request must return 2xx.
 
-```json
-"asarUnpack": ["node_modules/ngrok/bin/**"]
-```
+If authentication is not enforced on any probed endpoint, the token is rejected,
+or a probe fails, sharing is blocked. This is evidence about the probed set, not
+a proof for every endpoint reachable through the tunnel. Because ACT-002 (the
+supported FRM version and exact auth contract) is still an owner input,
+`electron/sharing-policy.js` **disables automatic sharing entirely** in this
+release candidate (`auth-contract-unverified`). A nonempty password field
+is never accepted as proof. The FRM token is used only for these probes and the
+renderer's direct reads; provider credentials are read from
+`userData/ngrok-provider.json` (mode 0600) and passed to the CLI through its
+environment only.
 
-This tells electron-builder to extract ngrok's binary out of the asar
-so the npm package's internal `spawn()` can find and execute it.
+---
 
-**If the binary is missing or corrupt:**
+## Native CLI
+
+`electron/tunnel/ngrok-artifact.json` is the pinned-artifact manifest. The adapter
+launches a fixed absolute path, verifies SHA-256 and executable magic before every
+start, uses a fixed argument array without a shell, empties `PATH`, and fails
+closed when the artifact is missing or mismatched. The current repository ships
+no binary; the owner must supply a trusted artifact and digest. The legacy
+`ngrok` npm wrapper is removed.
+
+---
+
+## Content policy
+
+`nodeIntegration:false`, `contextIsolation:true`, `sandbox:true`,
+`webSecurity:true`. Navigation and window creation are denied unless the target
+is the exact application document. Permission requests are denied by default.
+No remote fonts or executable remote scripts are loaded. A production CSP is
+injected after `next build` by `scripts/postbuild-csp.mjs` using hashes of the
+static export's inline bootstrap scripts.
+
+`frame-ancestors` is ignored in a `<meta>` CSP; browser deployments that need
+anti-framing must send it as an HTTP header from their static host. Electron does
+not embed the app in a frame.
+
+---
+
+## Local commands
 
 ```bash
-npm rebuild ngrok
-# or reinstall:
-npm install ngrok@5.0.0-beta.2
+npm run electron:dev      # next dev + Electron
+npm run build             # static export + CSP injection
+npm run electron:build:linux
+npm run electron:build:win
 ```
 
-### The system ngrok CLI is not installed (CLI fallback)
-
-When the npm package fails, the app falls back to spawning `ngrok` from
-your system PATH. Install it via your platform's package manager:
-
-| Platform                  | Command                                         |
-| ------------------------- | ----------------------------------------------- |
-| **Linux** (including WSL) | `sudo snap install ngrok`                       |
-| **macOS**                 | `brew install ngrok`                            |
-| **Windows**               | `choco install ngrok` or `winget install ngrok` |
-| **Manual**                | Download from https://ngrok.com/download        |
-
-After installing, verify with `ngrok version`.
-
-### Debugging tunnel issues
-
-The main process now logs tunnel lifecycle events to the Electron console (visible via DevTools → Console or the terminal that launched Electron):
-
-- `[tunnel] tunnel:start invoked { host, port }` — IPC handler received the request
-- `[tunnel] tunnel:start success, url: ...` — tunnel established
-- `[tunnel] tunnel:start failed: ...` — tunnel error
-- `[tunnel] ngrok npm package threw uncaught exception: ...` — ngrok npm package internal spawn error (binary missing or inside asar)
-- `[tunnel] ngrok npm disconnect/cleanup failed (non-fatal): ...` — cleanup warning
-
-The renderer also logs `[tunnel] startTunnel called` and `[tunnel] result` to the browser console.
-
-### Common error messages
-
-| Error                                        | Meaning                                                | Resolution                              |
-| -------------------------------------------- | ------------------------------------------------------ | --------------------------------------- |
-| `ngrok binary not found. Install ngrok: ...` | Neither the npm binary nor the system CLI is available | Install ngrok CLI (see table above)     |
-| `ngrok timed out after 15s`                  | ngrok started but didn't report a URL in time          | Check your network/firewall; try again  |
-| `ngrok exited with code N`                   | ngrok process crashed                                  | Check `~/.ngrok2/ngrok.log` for details |
-| `spawn ... ENOENT` (packaged builds)         | Binary is packed inside app.asar and can't be spawned  | Ensure `asarUnpack` is in build config  |
-
-## Preload Script (`electron/preload.js`)
-
-Exposes a safe API surface to the renderer via `contextBridge`:
-
-```javascript
-contextBridge.exposeInMainWorld("electronAPI", {
-  tunnelStart: (host, port, authtoken) =>
-    ipcRenderer.invoke("tunnel:start", host, port, authtoken),
-  tunnelStop: () => ipcRenderer.invoke("tunnel:stop"),
-  tunnelStatus: () => ipcRenderer.invoke("tunnel:status"),
-});
-```
-
-**Security:** `nodeIntegration: false` + `contextIsolation: true` means the renderer has zero direct access to Node.js APIs. All system access goes through this narrow IPC bridge.
-
----
-
-## Type Declarations (`src/lib/electron.d.ts`)
-
-TypeScript declarations for the `window.electronAPI` surface:
-
-```typescript
-declare global {
-  interface Window {
-    electronAPI?: {
-      tunnelStart: (
-        host: string,
-        port: string,
-        authtoken?: string,
-      ) => Promise<{ ok: boolean; url?: string; error?: string }>;
-      tunnelStop: () => Promise<{ ok: boolean; error?: string }>;
-      tunnelStatus: () => Promise<{ active: boolean; url: string | null }>;
-    };
-  }
-}
-```
-
-The `?` on `electronAPI` indicates it's only available in Electron — in browser mode, this property is `undefined`. `ConnectionBar` checks for its presence: the Share button appears disabled with a "Run in Electron desktop app to share" tooltip.
-
----
-
-## Build Output
-
-`electron-builder` packages the app:
-
-```json
-{
-  "appId": "com.satisfactory.stats",
-  "productName": "Statusfactory",
-  "directories": { "output": "dist" },
-  "files": ["out/**/*", "electron/**/*"],
-  "win": { "target": "portable" },
-  "linux": { "target": "AppImage", "category": "Utility" },
-  "mac": { "target": "dmg" }
-}
-```
-
-The `next build` static export goes to `out/`, then electron-builder bundles `out/**/*` + `electron/**/*` into platform executables.
+Electron's embedded Node (24.22.1 in 45.2.1) is separate from the build Node
+(22.22.2 in this environment). Release evidence records both.

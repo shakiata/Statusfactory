@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "id": "P4-task-01",
+  "revision": "1.0",
+  "register_revision": "1.2",
+  "work_package": "WP-11..WP-12",
+  "requirement_ids": ["REQ-004", "REQ-006", "REQ-021", "REQ-024", "REQ-029", "REQ-030"],
+  "source_sha": "d0338043169b7af80cedacd2feb838bb705b16a5",
+  "owner": "Release operator (sequential)",
+  "owned_paths": ["docs/security/release/**", "docs/security/evidence/**", "scripts/release-evidence.mjs", "scripts/osv-scan.mjs", "scripts/generate-sbom.mjs"],
+  "status": "in_progress",
+  "authority_reference": "docs/security/IMPLEMENTATION_AUTHORIZATION.md",
+  "evidence": ["docs/security/release/RELEASE_EVIDENCE.json", "docs/security/release/NATIVE_INVENTORY.json", "docs/security/release/sbom.cdx.json", "docs/security/evidence/npm-audit.json", "docs/security/evidence/npm-audit-prod.json", "docs/security/evidence/osv-scan.json"],
+  "reviewer": "Independent reviewer (source) + owner platform inputs",
+  "updated_at": "2026-10-31T00:00:00Z",
+  "supersedes": null,
+  "blockers": ["Windows execution, sandboxed Electron GUI launch, real FRM/provider integration, signing policy."],
+  "next_action": "Owner supplies platform access, ACT-002 and CLI artifact; rerun G-04 checks."
+}

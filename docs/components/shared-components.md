@@ -8,45 +8,47 @@ Three components are always accessible (not tab-specific): `ConnectionBar`, `End
 
 `src/components/ConnectionBar.tsx`
 
-**Purpose:** Manages the FRM connection lifecycle — input fields, connect/disconnect, error display, and optional ngrok tunnel sharing (Electron only).
+**Purpose:** presents the connection and sharing security states. It never owns
+the token or persists it.
 
 ### Props
 
 ```typescript
-interface ConnectionBarProps {
-  config: FRMConfig;
-  onConfigChange: (config: FRMConfig) => void;
-  onConnect: () => void;
-  connected: boolean;
-  connecting: boolean;
-  error: string | null;
+{
+  config: FRMConfig;            // nonsecret host/port/refresh
+  token: string;                // session memory, owned by page.tsx
+  onTokenChange, onConfigChange,
+  onConnect, onCancel, onForget, onDisconnect,
+  connected, connecting, error,
+  endpoint, endpointError,
+  plaintextAck, onPlaintextAckChange,
+  profile: { id, generation, origin } | null;
 }
 ```
 
-### States
+### Security states
 
-| State      | UI                                             |
-| ---------- | ---------------------------------------------- |
-| Default    | Host, Port, Auth Token inputs + Connect button |
-| Connecting | Spinning indicator on Connect button           |
-| Connected  | Green checkmark + "Live" badge in title bar    |
-| Error      | Inline error message with icon below inputs    |
+| State | UI contract |
+| --- | --- |
+| Invalid endpoint | Field-level message from the parser; Connect disabled |
+| Plaintext LAN pending | Exact origin + unencrypted warning + per-origin acknowledgement |
+| Connecting | Cancel remains reachable; Connect disabled |
+| Connected | Canonical origin shown in the title bar; Disconnect/Forget available |
+| Share idle | Scope warning; Start disabled until connected + profile + token |
+| Share starting | "Authorizing…" then "Starting — waiting for a verified HTTPS URL" |
+| Share active | Verified HTTPS URL + Copy URL + Stop |
+| Share stopping | "Stopping — confirming closure" |
+| Share failed | Error category; closure confirmed |
+| Closure unknown | Assertive warning, Retry Stop, manual recovery text, no false inactive claim |
 
-### ngrok Tunnel (Electron-only)
+### Sharing flow
 
-- Detects `window.electronAPI` presence to determine Electron vs browser mode.
-- **Browser mode:** Share button appears disabled with tooltip "Run in Electron desktop app to share".
-- **Share:** Calls `electronAPI.tunnelStart(config.host, config.port)` — spawns ngrok, returns public URL.
-- **Active tunnel:** Shows URL with copy button, stop button, and pulsing green status dot.
-- **Stop:** Calls `electronAPI.tunnelStop()` — kills the ngrok process.
+1. `shareAuthorize({profileId, generation, frmToken})` — main probes FRM auth.
+2. `tunnelStart({permitId})` — only the single-use permit is sent.
+3. `onTunnelState` supplies authoritative state; a URL appears only when active.
 
-### Edge Cases
-
-- Config changes reset connection state (`connected = false`, `error = null`).
-- Tunnel errors don't affect the main FRM connection.
-- In browser mode the Share button is visible but disabled — no silent hiding.
-
----
+Copy failure is reported instead of a false "Copied". Provider credentials are
+configured outside the renderer.
 
 ## ItemIcon
 

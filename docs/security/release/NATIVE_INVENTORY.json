@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-01T01:57:53.415Z",
+  "source": {
+    "head": "d0338043169b7af80cedacd2feb838bb705b16a5",
+    "branch": "security/remediation-2026-10-31"
+  },
+  "build": {
+    "node": "v22.22.2",
+    "npm": "10.9.7",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "electron": {
+    "declared": "45.2.1",
+    "resolved": "45.2.1",
+    "runtime": {
+      "node": "24.22.1",
+      "acorn": "8.18.0",
+      "ada": "4.0.0",
+      "amaro": "1.1.11",
+      "ares": "1.34.9",
+      "brotli": "1.2.0",
+      "cldr": "48.0",
+      "icu": "78.2",
+      "llhttp": "9.4.3",
+      "merve": "1.2.2",
+      "modules": "150",
+      "napi": "10",
+      "nbytes": "0.1.4",
+      "ncrypto": "0.0.1",
+      "nghttp2": "1.70.0",
+      "nghttp3": "",
+      "ngtcp2": "",
+      "openssl": "0.0.0",
+      "simdjson": "4.6.11",
+      "simdutf": "7.7.0",
+      "sqlite": "3.53.4",
+      "tz": "2026e",
+      "undici": "7.30.1",
+      "unicode": "17.0",
+      "uv": "1.52.1",
+      "uvwasi": "0.0.23",
+      "v8": "15.6.75.25-electron.0",
+      "zlib": "1.3.2.1-motley",
+      "zstd": "1.6.0",
+      "electron": "45.2.1",
+      "chrome": "156.0.8078.75"
+    }
+  },
+  "tunnelCli": {
+    "schemaVersion": 1,
+    "name": "ngrok",
+    "version": null,
+    "status": "owner-input-required",
+    "acquisition": "Owner must supply an exact vendor CLI artifact and reviewed SHA-256 for each supported platform through a trusted acquisition path.",
+    "notes": [
+      "No artifact is bundled in this local release candidate. Verify fails closed until every target entry below is filled.",
+      "Never use a mutable 'latest/stable' URL or a checksum fetched alongside untrusted content.",
+      "Provider credentials are read from a separate user-only local source by the main process; they are never stored here."
+    ],
+    "artifacts": {}
+  },
+  "packagedResources": [
+    "README.md"
+  ],
+  "artifacts": {
+    "appImage": {
+      "path": "dist/Statusfactory-1.5.1.AppImage",
+      "bytes": 245155793,
+      "sha256": "34f27d09b101a593cfd5ec1a24f0d9c89c636c4134b7f9e2aeb59cd9fe7c44c5"
+    },
+    "appAsar": {
+      "path": "dist/linux-unpacked/resources/app.asar",
+      "bytes": 125820714,
+      "sha256": "2a7fe44328f21660caadd145ee364d3acdde22f8aa28e8311a76410e4099fc1d"
+    },
+    "sbom": {
+      "path": "dist/sbom.cdx.json",
+      "bytes": 1072027,
+      "sha256": "68f131d439895b58dead8dfeae3740a9da0ab1fb356cfa71fe933f1a34623f6d"
+    },
+    "lockfile": {
+      "path": "package-lock.json",
+      "bytes": 386412,
+      "sha256": "f4a9271ce6792b906a21e58977c4452403aadae3aca14ca44d428dea8d3cff76"
+    },
+    "packageJson": {
+      "path": "package.json",
+      "bytes": 2525,
+      "sha256": "647845edd28d28f600bc3225b3ace702a4a63c57d2fc1407f22fd3de02eada05"
+    }
+  }
+}

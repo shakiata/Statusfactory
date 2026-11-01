@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "name": "ngrok",
+  "version": null,
+  "status": "owner-input-required",
+  "acquisition": "Owner must supply an exact vendor CLI artifact and reviewed SHA-256 for each supported platform through a trusted acquisition path.",
+  "notes": [
+    "No artifact is bundled in this local release candidate. Verify fails closed until every target entry below is filled.",
+    "Never use a mutable 'latest/stable' URL or a checksum fetched alongside untrusted content.",
+    "Provider credentials are read from a separate user-only local source by the main process; they are never stored here."
+  ],
+  "artifacts": {}
+}

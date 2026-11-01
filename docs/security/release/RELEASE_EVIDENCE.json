@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-01T01:57:53.663Z",
+  "registerRevision": "1.1",
+  "source": {
+    "head": "d0338043169b7af80cedacd2feb838bb705b16a5",
+    "branch": "security/remediation-2026-10-31",
+    "dirty": "M .opencode/agents/panel-builder.md\n M .opencode/opencode.json\n M .opencode/skills/satisfactory-stats/SKILL.md\n M AGENTS.md\n M README.md\n M docs/README.md\n M docs/api-client.md\n M docs/architecture.md\n M docs/components/shared-components.md\n M docs/electron-integration.md\n M docs/getting-started.md\n M docs/hooks.md\n M docs/testing.md\n M electron/main.js\n M electron/preload.js\n M package-lock.json\n M package.json\n M src/app/globals.css\n M src/app/layout.tsx\n M src/app/page.tsx\n M src/components/ConnectionBar.tsx\n M src/components/EndpointList.tsx\n M src/lib/__tests__/api.test.ts\n M src/lib/api.ts\n M src/lib/electron.d.ts\n M src/lib/useConfig.ts\n M src/lib/useTimeBuffer.ts\n M vitest.config.ts\n?? .agents/\n?? .opencode/agents/security-reviewer.md\n?? docs/security/\n?? electron/AGENTS.md\n?? electron/__tests__/\n?? electron/frm-probe.js\n?? electron/ipc-guards.js\n?? electron/provider-credentials.js\n?? electron/share-authorization.js\n?? electron/sharing-policy.js\n?? electron/tunnel/\n?? index.html\n?? scripts/\n?? src/components/AGENTS.md\n?? src/lib/AGENTS.md\n?? src/lib/__tests__/connection-contract.test.ts\n?? src/lib/__tests__/profile.test.ts\n?? src/lib/__tests__/request-bounds.test.ts\n?? src/lib/connection/\n?? src/lib/request-bounds.ts\n?? src/lib/tunnel-types.ts"
+  },
+  "build": {
+    "node": "v22.22.2",
+    "npm": "10.9.7",
+    "os": "Linux 7.0.0-42-generic x86_64 GNU/Linux"
+  },
+  "artifacts": {
+    "appImage": {
+      "path": "dist/Statusfactory-1.5.1.AppImage",
+      "bytes": 245155793,
+      "sha256": "34f27d09b101a593cfd5ec1a24f0d9c89c636c4134b7f9e2aeb59cd9fe7c44c5"
+    },
+    "appAsar": {
+      "path": "dist/linux-unpacked/resources/app.asar",
+      "bytes": 125820714,
+      "sha256": "2a7fe44328f21660caadd145ee364d3acdde22f8aa28e8311a76410e4099fc1d"
+    },
+    "sbom": {
+      "path": "dist/sbom.cdx.json",
+      "bytes": 1072027,
+      "sha256": "68f131d439895b58dead8dfeae3740a9da0ab1fb356cfa71fe933f1a34623f6d"
+    },
+    "lockfile": {
+      "path": "package-lock.json",
+      "bytes": 386412,
+      "sha256": "f4a9271ce6792b906a21e58977c4452403aadae3aca14ca44d428dea8d3cff76"
+    },
+    "packageJson": {
+      "path": "package.json",
+      "bytes": 2525,
+      "sha256": "647845edd28d28f600bc3225b3ace702a4a63c57d2fc1407f22fd3de02eada05"
+    }
+  },
+  "notes": [
+    "Linux AppImage built and hashed locally. Windows was not built or executed on this host.",
+    "The Electron runtime version was read with ELECTRON_RUN_AS_NODE; a sandboxed GUI launch is blocked on this host because chrome-sandbox is not root-owned mode 4755.",
+    "The tunnel CLI artifact is not bundled; the manifest records owner-input-required and sharing fails closed.",
+    "Artifacts are unsigned; a checksum identifies bytes but not publisher identity."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "scanner": "osv.dev querybatch",
+  "endpoint": "https://api.osv.dev/v1/querybatch",
+  "retrievedAt": "2026-11-01T00:45:55.159Z",
+  "lockfileSha256": "f4a9271ce6792b906a21e58977c4452403aadae3aca14ca44d428dea8d3cff76",
+  "queried": 715,
+  "advisoryRecords": 4,
+  "uniqueAdvisories": [
+    "GHSA-g3hv-75wg-m249"
+  ],
+  "findings": [
+    {
+      "package": "minimatch",
+      "version": "3.1.5",
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [],
+      "modified": "2026-10-30T23:15:07.420159Z",
+      "summary": null
+    },
+    {
+      "package": "minimatch",
+      "version": "9.0.9",
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [],
+      "modified": "2026-10-30T23:15:07.420159Z",
+      "summary": null
+    },
+    {
+      "package": "minimatch",
+      "version": "5.1.9",
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [],
+      "modified": "2026-10-30T23:15:07.420159Z",
+      "summary": null
+    },
+    {
+      "package": "minimatch",
+      "version": "10.2.6",
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [],
+      "modified": "2026-10-30T23:15:07.420159Z",
+      "summary": null
+    }
+  ]
+}

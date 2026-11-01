@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "id": "WP-00-task-01",
+  "revision": "1.1",
+  "register_revision": "1.1",
+  "work_package": "WP-00",
+  "requirement_ids": ["REQ-001", "REQ-005", "REQ-023", "REQ-025", "REQ-026", "REQ-027", "REQ-028", "REQ-032", "REQ-033", "REQ-034", "REQ-035", "REQ-036"],
+  "source_sha": "d0338043169b7af80cedacd2feb838bb705b16a5",
+  "owner": "Integrator",
+  "owned_paths": ["AGENTS.md", "docs/security/**", ".agents/skills/**", ".opencode/**", "electron/AGENTS.md", "src/lib/AGENTS.md", "src/components/AGENTS.md"],
+  "status": "completed",
+  "authority_reference": "docs/security/IMPLEMENTATION_AUTHORIZATION.md (owner implementation instruction, 2026-10-31) as amended by CHG-006",
+  "evidence": [
+    "docs/security/evidence/package-verification.txt",
+    "docs/security/evidence/tooling-versions.txt",
+    "docs/security/evidence/opencode-harness-checks.md",
+    "docs/security/IMPLEMENTATION_LOG.md"
+  ],
+  "reviewer": "Integrator; independent release review pending",
+  "updated_at": "2026-10-31T00:00:00Z",
+  "supersedes": null,
+  "blockers": [],
+  "next_action": "P1/WP-01: implement main-owned profile, share permits and credential separation."
+}

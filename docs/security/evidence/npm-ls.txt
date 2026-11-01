@@ -1,0 +1,25 @@
+satisfactory-stats@1.5.1 /home/james/repos/Statusfactory
+├── @emnapi/runtime@1.11.3 extraneous
+├── @img/sharp-wasm32@0.35.5 extraneous
+├── @types/node@22.20.5
+├── @types/react-dom@19.2.5
+├── @types/react@19.2.14
+├── @vitejs/plugin-react@6.1.2
+├── autoprefixer@10.6.2
+├── concurrently@9.2.5
+├── electron-builder@26.18.0
+├── electron@45.2.1
+├── eslint-config-next@15.5.28
+├── eslint@9.39.5
+├── jsdom@27.4.0
+├── next@15.5.28 overridden
+├── postcss@8.5.32
+├── react-dom@19.2.7
+├── react@19.2.7
+├── sharp@0.35.5
+├── tailwindcss@3.4.19
+├── typescript@5.9.3
+├── vite@8.3.5
+├── vitest@5.0.5
+└── wait-on@9.5.1
+

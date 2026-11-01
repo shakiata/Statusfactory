@@ -38,3 +38,19 @@ Hub and index for all project documentation. Organized by conceptual layer so bo
 - **Adding a dashboard panel?** Read [components/overview.md](./components/overview.md) for patterns, then reference an existing panel doc.
 - **Changing the API client?** See [api-client.md](./api-client.md) and check which dashboard panels are affected.
 - **Writing tests?** See [testing.md](./testing.md).
+
+### Security remediation records
+
+| Document | What it covers |
+| --- | --- |
+| [security/00_START_HERE.md](./security/00_START_HERE.md) | Reviewed package orientation |
+| [security/development-policy.md](./security/development-policy.md) | Shared operating contract for people and agents |
+| [security/IMPLEMENTATION_AUTHORIZATION.md](./security/IMPLEMENTATION_AUTHORIZATION.md) | Owner authorization and operating baseline |
+| [security/IMPLEMENTATION_LOG.md](./security/IMPLEMENTATION_LOG.md) | Phase-by-phase implementation evidence |
+| [security/AMENDMENTS.md](./security/AMENDMENTS.md) | Owner scope changes (OpenCode-only harness) |
+| [security/data/security_plan.json](./security/data/security_plan.json) | Canonical requirements, work packages and gates |
+| [security/06_SECURITY_AND_OPERATIONS.md](./security/06_SECURITY_AND_OPERATIONS.md) | Security runbooks and release policy |
+| [security/release/](./security/release/) | Release candidate evidence, SBOM and rollback runbook |
+
+Canonical agent workflows live in `.agents/skills/` (`scope-and-continuity`,
+`dependency-triage`, `boundary-hardening`, `local-release-verification`).

@@ -17,7 +17,7 @@ commit and artifact hashes in `RELEASE_EVIDENCE.json`.
 | AppImage SHA-256 | `34f27d09b101a593cfd5ec1a24f0d9c89c636c4134b7f9e2aeb59cd9fe7c44c5` |
 | AppImage size | 245,155,793 bytes |
 | app.asar SHA-256 | `2a7fe44328f21660caadd145ee364d3acdde22f8aa28e8311a76410e4099fc1d` |
-| SBOM SHA-256 | `68f131d439895b58dead8dfeae3740a9da0ab1fb356cfa71fe933f1a34623f6d` |
+| SBOM SHA-256 | `95358176ed33652c09f934610ec216e66115c88670e0ff7b8b160bdce8c05fc7` |
 
 Artifacts are **unsigned**. A checksum identifies bytes, not publisher identity.
 

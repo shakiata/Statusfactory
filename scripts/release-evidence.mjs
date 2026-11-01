@@ -96,6 +96,7 @@ const evidence = {
     'The Electron runtime version was read with ELECTRON_RUN_AS_NODE; a sandboxed GUI launch is blocked on this host because chrome-sandbox is not root-owned mode 4755.',
     'The tunnel CLI artifact is not bundled; the manifest records owner-input-required and sharing fails closed.',
     'Artifacts are unsigned; a checksum identifies bytes but not publisher identity.',
+    'A dev-only tunnel simulation and loopback FRM fixture exist; they do not verify ACT-002, a real provider tunnel, Windows execution or sandboxed runtime.',
   ],
 };
 

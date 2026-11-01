@@ -38,6 +38,7 @@ const IDLE_STATE: TunnelState = {
   publicUrl: null,
   error: null,
   closureUnknown: false,
+  simulated: false,
 };
 
 /** Maps a main-process rejection code to a safe, actionable message. */
@@ -74,7 +75,9 @@ function tunnelLabel(state: TunnelState, theme: { danger: string; success: strin
     case 'starting':
       return { text: 'Starting — waiting for a verified HTTPS URL', color: theme.accent };
     case 'active':
-      return { text: 'Sharing — the entire reachable FRM API is exposed', color: theme.success };
+      return state.simulated
+        ? { text: 'SIMULATED sharing — no public endpoint exists', color: theme.accent }
+        : { text: 'Sharing — the entire reachable FRM API is exposed', color: theme.success };
     case 'stopping':
       return { text: 'Stopping — confirming closure', color: theme.accent };
     case 'failed_closed':
@@ -117,7 +120,7 @@ export function ConnectionBar({
   const [shareBusy, setShareBusy] = useState(false);
   const [shareError, setShareError] = useState<string | null>(null);
   const [copyStatus, setCopyStatus] = useState<string | null>(null);
-  const [sharingPolicy, setSharingPolicy] = useState<{ verified: boolean; note: string | null }>({
+  const [sharingPolicy, setSharingPolicy] = useState<{ verified: boolean; simulated?: boolean; note: string | null }>({
     verified: false,
     note: null,
   });
@@ -359,9 +362,15 @@ export function ConnectionBar({
 
             {tunnel.state === 'active' && tunnel.publicUrl && (
               <div className="mt-2 flex flex-wrap items-center gap-2">
-                <a href={tunnel.publicUrl} target="_blank" rel="noreferrer" className="text-xs font-mono underline" style={{ color: theme.success }}>
-                  {tunnel.publicUrl}
-                </a>
+                {tunnel.simulated ? (
+                  <span className="text-xs font-mono" style={{ color: theme.accent }}>
+                    {tunnel.publicUrl} (simulated, not reachable)
+                  </span>
+                ) : (
+                  <a href={tunnel.publicUrl} target="_blank" rel="noreferrer" className="text-xs font-mono underline" style={{ color: theme.success }}>
+                    {tunnel.publicUrl}
+                  </a>
+                )}
                 <button onClick={copyUrl} className="px-2 py-1 rounded text-xs" style={{ color: theme.accent, border: `1px solid ${theme.borderColor}` }}>
                   Copy URL
                 </button>
@@ -385,6 +394,12 @@ export function ConnectionBar({
             {shareError && (
               <p role="alert" className="mt-2 text-xs" style={{ color: theme.danger }}>
                 {shareError}
+              </p>
+            )}
+            {sharingPolicy.simulated && (
+              <p role="status" className="mt-2 text-xs" style={{ color: theme.accent }}>
+                SIMULATION MODE — the lifecycle is exercised locally with a reserved .invalid URL. No provider connection
+                or public endpoint exists.
               </p>
             )}
             {!sharingPolicy.verified && (

@@ -8,6 +8,9 @@
  * the repository does not have. Until it is recorded, automatic sharing must
  * fail closed even if the representative probes pass: a probe cannot prove
  * authentication coverage for every endpoint reachable through the tunnel.
+ *
+ * A clearly labelled simulation mode is available in development only. It does
+ * not assert that ACT-002 is verified and it never creates a public endpoint.
  */
 
 const { PROBE_ENDPOINTS } = require('./frm-probe');
@@ -26,4 +29,26 @@ function isSharingAuthContractVerified() {
   return FRM_AUTH_CONTRACT.verified === true;
 }
 
-module.exports = { FRM_AUTH_CONTRACT, isSharingAuthContractVerified };
+/**
+ * Returns the effective sharing policy for this process.
+ *
+ * @param {object} [options]
+ * @param {boolean} [options.simulate] dev-only simulation flag from main
+ * @returns {{verified: boolean, simulated: boolean, note: string | null}}
+ */
+function getSharingPolicy({ simulate = false } = {}) {
+  if (simulate) {
+    return {
+      verified: true,
+      simulated: true,
+      note:
+        'SIMULATION ONLY: no public tunnel or provider connection exists. The reported URL uses the reserved .invalid TLD and is not reachable.',
+    };
+  }
+  if (FRM_AUTH_CONTRACT.verified) {
+    return { verified: true, simulated: false, note: null };
+  }
+  return { verified: false, simulated: false, note: FRM_AUTH_CONTRACT.note };
+}
+
+module.exports = { FRM_AUTH_CONTRACT, isSharingAuthContractVerified, getSharingPolicy };

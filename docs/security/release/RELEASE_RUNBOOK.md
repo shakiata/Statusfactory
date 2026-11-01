@@ -14,10 +14,10 @@ commit and artifact hashes in `RELEASE_EVIDENCE.json`.
 | Build Node / npm | v22.22.2 / 10.9.7 |
 | Electron | 45.2.1 (Chromium 156.0.8078.75, Node 24.22.1) |
 | Lockfile SHA-256 | `f4a9271ce6792b906a21e58977c4452403aadae3aca14ca44d428dea8d3cff76` |
-| AppImage SHA-256 | `34f27d09b101a593cfd5ec1a24f0d9c89c636c4134b7f9e2aeb59cd9fe7c44c5` |
-| AppImage size | 245,155,793 bytes |
-| app.asar SHA-256 | `2a7fe44328f21660caadd145ee364d3acdde22f8aa28e8311a76410e4099fc1d` |
-| SBOM SHA-256 | `95358176ed33652c09f934610ec216e66115c88670e0ff7b8b160bdce8c05fc7` |
+| AppImage SHA-256 | `a878a8f08c5a29993dd4a7b0488328b5ed3b2fc7e9554020c25661300d512862` |
+| AppImage size | 245,161,240 bytes |
+| app.asar SHA-256 | `38dc925c050792ef851ca319497a93d65eac652028cd9e214556f58b0f186c61` |
+| SBOM SHA-256 | `3e4db169660c63b3ec3597fb6eb9427e01f0c2591d7e23d941b3b2f7386a7258` |
 
 Artifacts are **unsigned**. A checksum identifies bytes, not publisher identity.
 
@@ -56,7 +56,7 @@ GitHub Actions were added or changed.
 | Public sharing | Disabled (`auth-contract-unverified`). Owner must record ACT-002 (supported FRM version and endpoint/auth contract), supply a trusted CLI artifact + digest, and approve enabling after G-01/G-02/G-03/G-04. |
 | Windows build/execution | Not run on this Linux host. Build on an owned Windows machine and record the result. |
 | Sandboxed Electron GUI launch | Blocked locally: `node_modules/electron/dist/chrome-sandbox` is not root-owned mode 4755. Owner/sudo fix: `sudo chown root:root …/chrome-sandbox && sudo chmod 4755 …/chrome-sandbox`. Do not validate with `--no-sandbox`. |
-| Real FRM/provider integration | Not run; no live token or public tunnel authorized. |
+| Real FRM/provider integration | Not run; no live token or public tunnel authorized. Dev-only simulation evidence exists (`evidence/simulated-integration.md`) and does not satisfy this row. |
 | Signing/provenance | Not configured; artifacts are unsigned. Owner supplies policy. |
 | macOS | Deferred (no owned test/signing path). |
 

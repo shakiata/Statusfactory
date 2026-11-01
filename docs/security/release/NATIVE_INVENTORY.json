@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-01T02:00:33.039Z",
+  "generatedAt": "2026-11-01T02:53:32.115Z",
   "source": {
-    "head": "cf5e3a55fe5d834c55ba3ba9de3b51ea22e20b10",
+    "head": "70a935168de2e44fa69cdc8aca08ac7f7f742e1c",
     "branch": "security/remediation-2026-10-31"
   },
   "build": {
@@ -67,18 +67,18 @@
   "artifacts": {
     "appImage": {
       "path": "dist/Statusfactory-1.5.1.AppImage",
-      "bytes": 245155793,
-      "sha256": "34f27d09b101a593cfd5ec1a24f0d9c89c636c4134b7f9e2aeb59cd9fe7c44c5"
+      "bytes": 245161240,
+      "sha256": "a878a8f08c5a29993dd4a7b0488328b5ed3b2fc7e9554020c25661300d512862"
     },
     "appAsar": {
       "path": "dist/linux-unpacked/resources/app.asar",
-      "bytes": 125820714,
-      "sha256": "2a7fe44328f21660caadd145ee364d3acdde22f8aa28e8311a76410e4099fc1d"
+      "bytes": 125825778,
+      "sha256": "38dc925c050792ef851ca319497a93d65eac652028cd9e214556f58b0f186c61"
     },
     "sbom": {
       "path": "dist/sbom.cdx.json",
       "bytes": 1072027,
-      "sha256": "95358176ed33652c09f934610ec216e66115c88670e0ff7b8b160bdce8c05fc7"
+      "sha256": "3e4db169660c63b3ec3597fb6eb9427e01f0c2591d7e23d941b3b2f7386a7258"
     },
     "lockfile": {
       "path": "package-lock.json",
@@ -87,8 +87,8 @@
     },
     "packageJson": {
       "path": "package.json",
-      "bytes": 2525,
-      "sha256": "647845edd28d28f600bc3225b3ace702a4a63c57d2fc1407f22fd3de02eada05"
+      "bytes": 2582,
+      "sha256": "b0645a836b39beb8ff42335df353f14e278aa10f7d9a66cbdbdcfc1ba3d02f82"
     }
   }
 }

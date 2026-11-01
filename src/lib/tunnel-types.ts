@@ -9,4 +9,6 @@ export interface TunnelState {
   publicUrl: string | null;
   error: string | null;
   closureUnknown: boolean;
+  /** True only for the dev-only simulator; never for a real provider tunnel. */
+  simulated?: boolean;
 }

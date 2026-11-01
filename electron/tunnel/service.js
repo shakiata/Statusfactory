@@ -31,11 +31,13 @@ const {
 function safeError(error) {
   const code = error && error.code ? String(error.code) : 'tunnel-error';
   const category =
-    code === 'readiness-timeout'
-      ? 'startup-timeout'
-      : code === 'artifact-missing' || code === 'artifact-digest-mismatch'
-        ? 'artifact-unverified'
-        : 'startup-failed';
+    code === 'cancelled'
+      ? 'cancelled'
+      : code === 'readiness-timeout'
+        ? 'startup-timeout'
+        : code === 'artifact-missing' || code === 'artifact-digest-mismatch'
+          ? 'artifact-unverified'
+          : 'startup-failed';
   return { code: category, message: error && error.message ? String(error.message).slice(0, 300) : 'Tunnel start failed.' };
 }
 

@@ -18,12 +18,13 @@ const { parseOrigin, upstreamAddress } = require("./tunnel/endpoint-policy");
 const { createPermitRegistry } = require("./tunnel/permit-registry");
 const { createOwnershipMarker } = require("./tunnel/ownership-marker");
 const { createCliAdapter } = require("./tunnel/cli-adapter");
+const { createSimulatorAdapter } = require("./tunnel/simulator-adapter");
 const { createTunnelService } = require("./tunnel/service");
 const { verifyArtifact } = require("./tunnel/cli-artifact");
 const { loadProviderToken } = require("./provider-credentials");
 const { probeSharing } = require("./frm-probe");
 const { authorizeShare } = require("./share-authorization");
-const { isSharingAuthContractVerified } = require("./sharing-policy");
+const { getSharingPolicy } = require("./sharing-policy");
 
 // Follow the OS dark/light mode preference.
 nativeTheme.themeSource = "system";
@@ -46,6 +47,10 @@ let connectionQueue = Promise.resolve();
 // Development trust is never enabled in a packaged build: a stray NODE_ENV or
 // --dev argument must not make main trust http://localhost:3000.
 const isDev = !app.isPackaged && (process.env.NODE_ENV === "development" || process.argv.includes("--dev"));
+// Dev-only simulation of tunnel lifecycle. Packaged builds ignore the flag and
+// no network tunnel or process is created by the simulator adapter.
+const simulationEnabled =
+  !app.isPackaged && process.env.STATUSFACTORY_TUNNEL_SIMULATOR === "1";
 const indexPath = path.join(__dirname, "../out/index.html");
 const expectedDocument = pathToFileURL(indexPath).href;
 
@@ -66,7 +71,7 @@ function withConnectionLock(task) {
 /** Sends the authoritative tunnel state to the renderer, if it still exists. */
 function sendTunnelState(state) {
   if (mainWindow && !mainWindow.isDestroyed()) {
-    mainWindow.webContents.send("tunnel:state", state);
+    mainWindow.webContents.send("tunnel:state", { ...state, simulated: simulationEnabled });
   }
 }
 
@@ -147,6 +152,22 @@ function createWindow() {
 
   webContents.on("did-finish-load", () => {
     webContents.insertCSS(`:root { color-scheme: dark; }`);
+    // Dev-only visual smoke hook: capture the loaded window and exit. It is
+    // ignored in packaged builds and never runs unless the env var is set.
+    const capturePath = process.env.STATUSFACTORY_SMOKE_SCREENSHOT;
+    if (capturePath && !app.isPackaged) {
+      setTimeout(async () => {
+        try {
+          const image = await webContents.capturePage();
+          fs.writeFileSync(capturePath, image.toPNG());
+          console.log(`[smoke] screenshot written to ${capturePath}`);
+        } catch (error) {
+          console.error("[smoke] capture failed", error.message);
+        } finally {
+          app.quit();
+        }
+      }, 1200);
+    }
   });
 
   mainWindow.on("closed", () => {
@@ -165,7 +186,7 @@ app.whenReady().then(() => {
   const marker = createOwnershipMarker({
     filePath: path.join(app.getPath("userData"), "tunnel-ownership.json"),
   });
-  const adapter = createCliAdapter();
+  const adapter = simulationEnabled ? createSimulatorAdapter() : createCliAdapter();
   tunnelService = createTunnelService({ adapter, marker, onState: sendTunnelState });
   tunnelService.init();
   permits = createPermitRegistry();
@@ -218,7 +239,9 @@ ipcMain.handle("share:authorize", async (event, input) => {
     senderGuard.assertTrusted(event);
     const { profileId, generation, frmToken } = validateShareAuthorize(input);
     // Unknown FRM authentication coverage (ACT-002) blocks sharing entirely.
-    if (!isSharingAuthContractVerified()) {
+    // The dev-only simulator reports a labelled simulated policy instead.
+    const policy = getSharingPolicy({ simulate: simulationEnabled });
+    if (!policy.verified) {
       return { ok: false, code: "auth-contract-unverified" };
     }
     // Snapshot the profile: `connection:select` may change the global while the
@@ -270,23 +293,27 @@ ipcMain.handle("tunnel:start", async (event, input) => {
     if (!consumed.ok) return { ok: false, code: consumed.reason };
     if (!profile) return { ok: false, code: "no-profile" };
 
-    const artifact = verifyArtifact({
-      isPackaged: app.isPackaged,
-      resourcesPath: process.resourcesPath,
-      appPath: app.getAppPath(),
-    });
-    if (!artifact.ok) {
-      return { ok: false, code: "artifact-unverified", reason: artifact.reason, detail: artifact.detail };
+    let artifact = { ok: true, path: "simulated", sha256: null };
+    let provider = { ok: true, token: null };
+    if (!simulationEnabled) {
+      artifact = verifyArtifact({
+        isPackaged: app.isPackaged,
+        resourcesPath: process.resourcesPath,
+        appPath: app.getAppPath(),
+      });
+      if (!artifact.ok) {
+        return { ok: false, code: "artifact-unverified", reason: artifact.reason, detail: artifact.detail };
+      }
+      provider = loadProviderToken({ userDataPath: app.getPath("userData") });
+      if (!provider.ok) return { ok: false, code: provider.reason };
     }
-    const provider = loadProviderToken({ userDataPath: app.getPath("userData") });
-    if (!provider.ok) return { ok: false, code: provider.reason };
 
     return await tunnelService.start({
       profile: { id: profile.id, target: profile.target, executableDigest: artifact.sha256 },
       generation: profile.generation,
       executablePath: artifact.path,
       providerToken: provider.token,
-      env: buildCliEnvironment(),
+      env: simulationEnabled ? {} : buildCliEnvironment(),
     });
   } catch (error) {
     return { ok: false, code: error.code || "invalid-input", error: error.message };
@@ -319,12 +346,7 @@ ipcMain.handle("tunnel:status", async (event, input) => {
     return {
       ok: true,
       state: tunnelService.getStatus(),
-      sharing: {
-        verified: isSharingAuthContractVerified(),
-        note: isSharingAuthContractVerified()
-          ? null
-          : "Sharing is disabled until the owner records the supported FRM version and authentication coverage (ACT-002).",
-      },
+      sharing: getSharingPolicy({ simulate: simulationEnabled }),
     };
   } catch (error) {
     return { ok: false, code: error.code || "invalid-input", error: error.message };

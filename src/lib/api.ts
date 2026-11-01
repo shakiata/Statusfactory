@@ -276,7 +276,10 @@ async function request<T>(
     } catch (error) {
       if (timedOut) throw new FrmRequestError('timeout', 'The server did not respond within 15 seconds.');
       if (controller.signal.aborted) throw new FrmRequestError('aborted', 'The request was cancelled.');
-      const message = error instanceof Error ? error.message : '';
+      // Node/undici hides the redirect reason in `cause`; browsers expose a
+      // TypeError. Check both before falling back to a generic transport error.
+      const cause = error instanceof Error ? (error.cause as { message?: string } | undefined)?.message ?? '' : '';
+      const message = `${error instanceof Error ? error.message : ''} ${cause}`;
       if (/redirect/i.test(message)) {
         throw new FrmRequestError('redirect', 'The server redirected the request; configure the canonical endpoint instead.');
       }

@@ -17,7 +17,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "sbom": "node scripts/generate-sbom.mjs",
-    "release:evidence": "node scripts/release-evidence.mjs"
+    "release:evidence": "node scripts/release-evidence.mjs",
+    "sim:frm": "node scripts/fixtures/frm-fixture.mjs"
   },
   "build": {
     "appId": "com.satisfactory.stats",

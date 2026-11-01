@@ -45,7 +45,7 @@ declare global {
         ok: boolean;
         state?: TunnelState;
         code?: string;
-        sharing?: { verified: boolean; note: string | null };
+        sharing?: { verified: boolean; simulated?: boolean; note: string | null };
       }>;
       onTunnelState: (callback: (state: TunnelState) => void) => () => void;
     };

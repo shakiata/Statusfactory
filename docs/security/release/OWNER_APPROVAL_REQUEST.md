@@ -22,7 +22,8 @@ A local remediation candidate on `security/remediation-2026-10-31` that:
 - bounds requests, responses, polling and history and rejects stale work;
 - upgrades Electron 33.4.11 → 45.2.1, Next 15.5.19 → 15.5.28, React 19.2.7,
   Vitest 5/Vite 8, PostCSS 8.5.32 and electron-builder 26.18.0;
-- builds a Linux AppImage plus SBOM/native inventory and hashes.
+- builds a Linux AppImage plus SBOM/native inventory and hashes;
+- includes a clearly labelled dev-only simulation (loopback FRM fixture, `.invalid` tunnel URL, no process/network) so lifecycle and redirect behavior can be exercised without owner inputs. Simulation does not close G-01/G-02/G-04.
 
 ## 2. Evidence to review
 

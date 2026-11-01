@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "revision": "1.2",
+  "revision": "1.3",
   "review_date": "2026-10-31",
   "timezone": "America/Toronto",
   "repository": "https://github.com/shakiata/Statusfactory",
@@ -1475,10 +1475,12 @@
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
-        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/evidence/simulated-integration.md",
+        "docs/security/evidence/electron-simulation.png"
       ],
       "reviewer": null,
-      "revision": "1.2",
+      "revision": "1.3",
       "stop_conditions": [
         "Unrelated dirty worktree conflicts",
         "Insufficient authority for live mutation/publication",
@@ -1511,10 +1513,12 @@
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
-        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/evidence/simulated-integration.md",
+        "docs/security/evidence/electron-simulation.png"
       ],
       "reviewer": null,
-      "revision": "1.2",
+      "revision": "1.3",
       "stop_conditions": [
         "Unrelated dirty worktree conflicts",
         "Insufficient authority for live mutation/publication",
@@ -1642,13 +1646,15 @@
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
-        "docs/security/release/OWNER_APPROVAL_REQUEST.md"
+        "docs/security/release/OWNER_APPROVAL_REQUEST.md",
+        "docs/security/evidence/simulated-integration.md",
+        "docs/security/evidence/electron-simulation.png"
       ],
       "approval_required": false,
       "criteria": "All required browser/Windows/Linux local tests and artifact evidence pass; remaining exceptions accepted with expiry.",
-      "revision": "1.2",
+      "revision": "1.3",
       "reviewer": "Release reviewer",
-      "note": "Linux build/browser smoke/tests pass; Windows, sandboxed Electron and real provider/FRM not run."
+      "note": "Linux build/browser smoke/tests and labelled simulation pass; Windows, sandboxed Electron, real provider/FRM and ACT-002 remain unrun."
     },
     {
       "id": "G-05",
@@ -2182,6 +2188,16 @@
       "change": "Record gate evidence and owner-input blockers after two independent review rounds; disable automatic sharing while ACT-002 is unresolved.",
       "impact": "WP-01..12; G-01/G-02/G-04 blocked; G-03 passed-with-findings (source). No security contract waived.",
       "authority": "Integrator reconciliation of verified evidence; owner approval remains required for exceptions/publication",
+      "owner": "Integrator",
+      "supersedes": null
+    },
+    {
+      "id": "CHG-008",
+      "date": "2026-10-31",
+      "origin": "Owner instruction: no activation inputs available; simulate from endpoints on Linux.",
+      "change": "Add a dev-only labelled tunnel simulator, loopback FRM fixture and real local integration tests; keep production sharing fail-closed.",
+      "impact": "WP-11; G-04 evidence only. ACT-002/real CLI/Windows/minimatch decisions remain owner inputs; no gate passed.",
+      "authority": "Repository owner instruction; simulation is not approval or compatibility evidence",
       "owner": "Integrator",
       "supersedes": null
     }

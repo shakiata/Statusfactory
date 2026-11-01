@@ -304,3 +304,44 @@ The helper was exercised against a synthetic ELF file (correct digest/magic) and
 a text file (reported `unknown/text` with a do-not-record warning). Gates are
 unchanged; sharing remains disabled until ACT-002 and a trusted artifact are
 recorded.
+
+---
+
+## Simulation fallback for missing activation inputs (owner request)
+
+The owner does not have ACT-002, a real ngrok CLI artifact, Windows access or a
+provider account. A clearly labelled local simulation was added; it does **not**
+change any gate status.
+
+### Added
+
+- `scripts/fixtures/frm-fixture.mjs` (`npm run sim:frm`) — loopback synthetic FRM
+  server requiring a dummy token, representative arrays, no game/network.
+- `electron/tunnel/simulator-adapter.js` — dev-only, never packaged-selectable;
+  no process, no socket, URL uses reserved `.invalid`.
+- `electron/sharing-policy.js` — `getSharingPolicy({simulate})` returns a labelled
+  simulated policy only when main sets the dev flag; normal builds still return
+  `verified: false`.
+- `src/lib/__tests__/integration-frm.test.ts` — real loopback HTTP: probe
+  accept/reject, malformed/oversized, and a real cross-origin redirect with zero
+  target hits.
+- `electron/__tests__/integration-simulation.test.ts` — real service lifecycle
+  with the simulator: active `.invalid` URL, confirmed Stop, Stop-during-Start.
+- `docs/security/evidence/simulated-integration.md` and Electron GUI capture.
+
+### Results
+
+- Full suite: **24 files / 230 tests passed**; `tsc --noEmit` and
+  `npm run build` pass.
+- Electron 45.2.1 GUI loaded the static export under Xvfb and displayed the
+  SIMULATION MODE banner (`--no-sandbox` used only because this host's
+  sandbox helper is not root-owned; not security evidence).
+- Simulator mode is enabled only with `!app.isPackaged` and
+  `STATUSFACTORY_TUNNEL_SIMULATOR=1`.
+
+### Gate impact
+
+**None.** ACT-002 remains unrecorded, the real CLI artifact is still absent,
+Windows execution is still unavailable, and the minimatch exception still needs
+an explicit owner decision. G-01/G-02/G-04 remain blocked; G-03 remains a source
+pass-with-findings.

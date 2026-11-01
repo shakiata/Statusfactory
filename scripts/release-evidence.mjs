@@ -50,6 +50,10 @@ const appImage = path.join(cwd, 'dist', `Statusfactory-${pkg.version}.AppImage`)
 const artifacts = {
   appImage: await fileRecord(appImage),
   appAsar: await fileRecord(path.join(cwd, 'dist', 'linux-unpacked', 'resources', 'app.asar')),
+  winExe: await fileRecord(path.join(cwd, 'dist', `Statusfactory ${pkg.version}.exe`)),
+  winAsar: await fileRecord(path.join(cwd, 'dist', 'win-unpacked', 'resources', 'app.asar')),
+  tunnelCliLinux: await fileRecord(path.join(cwd, 'electron', 'tunnel', 'bin', 'linux-x64', 'ngrok')),
+  tunnelCliWindows: await fileRecord(path.join(cwd, 'electron', 'tunnel', 'bin', 'win32-x64', 'ngrok.exe')),
   sbom: await fileRecord(path.join(cwd, 'dist', 'sbom.cdx.json')),
   lockfile: await fileRecord(path.join(cwd, 'package-lock.json')),
   packageJson: await fileRecord(path.join(cwd, 'package.json')),
@@ -92,7 +96,7 @@ const evidence = {
   build: { node: process.version, npm: capture('npm', ['--version']), os: capture('uname', ['-srmo']) },
   artifacts,
   notes: [
-    'Linux AppImage built and hashed locally. Windows was not built or executed on this host.',
+    'Linux AppImage and Windows portable were cross-built and hashed locally; Windows was not executed on this host.',
     'The Electron runtime version was read with ELECTRON_RUN_AS_NODE; a sandboxed GUI launch is blocked on this host because chrome-sandbox is not root-owned mode 4755.',
     'The tunnel CLI artifact is not bundled; the manifest records owner-input-required and sharing fails closed.',
     'Artifacts are unsigned; a checksum identifies bytes but not publisher identity.',

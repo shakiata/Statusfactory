@@ -1,6 +1,6 @@
 # Owner approval request — Statusfactory 1.5.1 security candidate
 
-**Prepared:** 2026-10-31 · **Register revision:** 1.4 · **Status:** local remediation
+**Prepared:** 2026-10-31 · **Register revision:** 1.5 · **Status:** local remediation
 complete under owner decision `docs/security/OWNER_DECISION_2026-10-31.md`.
 Publication and deployment remain unapproved.
 
@@ -47,10 +47,10 @@ violation. These are local results, not platform or provider certification.
 | Gate | Status | Reason |
 | --- | --- | --- |
 | G-00 | passed | OpenCode v2 discovery/invocation/nested/permission/fresh-session evidence; Codex removed by owner CHG-006 |
-| G-01 | **closed with residual risk** | Containment implemented and reviewed; public sharing disabled; ACT-002/CLI deferred by owner |
-| G-02 | **closed with residual risk** | Production audit clean; minimatch dev/build advisory accepted for this local candidate only; no real CLI/Windows evidence |
+| G-01 | **passed** | Containment, permits, documented-derived ACT-002 and real CLI spawn/confirmed teardown |
+| G-02 | **passed with platform gap** | Production audit 0; Electron 45.2.1; Linux/Windows CLI digests; Linux real spawn; exception recorded |
 | G-03 | pass-with-findings (source review) | Contract tests pass; runtime evidence remains partial/simulated |
-| G-04 | **closed with residual risk** | Linux build/browser/simulation evidence; Windows, sandboxed Electron and real provider deferred by owner |
+| G-04 | **blocked** | Windows execution, sandboxed Electron and real provider closure not run |
 | G-05 | **not run** | Owner approval required |
 
 ## 4. Decisions remaining before any release (not required for this local candidate)

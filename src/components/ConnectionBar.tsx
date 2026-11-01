@@ -402,6 +402,11 @@ export function ConnectionBar({
                 or public endpoint exists.
               </p>
             )}
+            {!sharingPolicy.simulated && sharingPolicy.note && (
+              <p role="status" className="mt-2 text-xs" style={{ color: theme.textSecondary }}>
+                {sharingPolicy.note}
+              </p>
+            )}
             {!sharingPolicy.verified && (
               <p role="status" className="mt-2 text-xs" style={{ color: theme.textSecondary }}>
                 {sharingPolicy.note ??

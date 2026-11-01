@@ -345,3 +345,36 @@ change any gate status.
 Windows execution is still unavailable, and the minimatch exception still needs
 an explicit owner decision. G-01/G-02/G-04 remain blocked; G-03 remains a source
 pass-with-findings.
+
+---
+
+## Final real-artifact and evidence pass
+
+After the owner asked to finish, the previously deferred inputs were reduced to
+real, source-backed evidence:
+
+- **Pinned CLI:** official ngrok **3.39.13** Linux and Windows artifacts acquired
+  from the vendor distribution. Linux binary SHA-256 `4399384b…df75f`, Windows
+  `5089402d…c8a3`; zip and source URLs recorded in
+  `electron/tunnel/ngrok-artifact.json`. Binaries are acquired locally and
+  gitignored; packaging includes them.
+- **Real process smoke:** `scripts/tunnel-cli-smoke.mjs` verified the digest,
+  spawned the real Linux CLI with an invalid dummy provider token, observed
+  `exited-before-ready`, and proved `spawned: true` / `confirmedClosure: true`.
+  No tunnel opened and no process remained (`evidence/tunnel-cli-smoke.txt`,
+  `evidence/tunnel-cli-verification.md`).
+- **ACT-002:** documented-derived from the official FRM authentication and web
+  server documentation (token in `WebServer.cfg` `Authentication_Token`,
+  `X-FRM-Authorization` header, default port 8080, `/frm http start`). Recorded as
+  `docs/security/activation/ACT-002_DERIVED.md`; live-server test remains a
+  residual.
+- **Minimatch:** owner-directed expiring exception recorded to 2027-01-31
+  (`activation/MINIMATCH_EXCEPTION_APPROVED.md`).
+- **Windows:** portable artifact cross-built (unsigned) and hashed; execution
+  still not run.
+- **Sandbox:** `--disable-setuid-sandbox` also fails because unprivileged user
+  namespaces are denied by AppArmor (`unshare -Ur` fails). Only the `--no-sandbox`
+  visual smoke is possible; not security evidence.
+
+Gate outcome: G-01 **passed**; G-02 **passed_with_platform_gap**; G-04 remains
+**blocked** on Windows execution, sandboxed Electron and live provider closure.

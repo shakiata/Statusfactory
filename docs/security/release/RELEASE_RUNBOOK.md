@@ -14,10 +14,10 @@ commit and artifact hashes in `RELEASE_EVIDENCE.json`.
 | Build Node / npm | v22.22.2 / 10.9.7 |
 | Electron | 45.2.1 (Chromium 156.0.8078.75, Node 24.22.1) |
 | Lockfile SHA-256 | `f4a9271ce6792b906a21e58977c4452403aadae3aca14ca44d428dea8d3cff76` |
-| AppImage SHA-256 | `a878a8f08c5a29993dd4a7b0488328b5ed3b2fc7e9554020c25661300d512862` |
-| AppImage size | 245,161,240 bytes |
-| app.asar SHA-256 | `38dc925c050792ef851ca319497a93d65eac652028cd9e214556f58b0f186c61` |
-| SBOM SHA-256 | `3e4db169660c63b3ec3597fb6eb9427e01f0c2591d7e23d941b3b2f7386a7258` |
+| AppImage SHA-256 | `f168e9b11a6fca815763c14fd04264a2d8db639b7804b47596cc3256555099bc` |
+| AppImage size | 269,289,222 bytes |
+| app.asar SHA-256 | `6f065af0e01001c5fa831e6c60d64bfba51aa7d6c49080471b16db0c4834cc8f` |
+| SBOM SHA-256 | `9084b9d01967caac95c472fb53fecb78440ed8e26a4861f35da2258a062fe3e1` |
 
 Artifacts are **unsigned**. A checksum identifies bytes, not publisher identity.
 
@@ -52,11 +52,11 @@ GitHub Actions were added or changed.
 
 | Item | Status / owner action |
 | --- | --- |
-| `GHSA-g3hv-75wg-m249` minimatch <11.0.1 (dev/build tooling only) | **Owner approval required** for an expiring exception; no compatible parent fix in electron-builder 26.18.0 / eslint 9 chain. Not shipped in the app. |
-| Public sharing | Disabled (`auth-contract-unverified`). Owner must record ACT-002 (supported FRM version and endpoint/auth contract), supply a trusted CLI artifact + digest, and approve enabling after G-01/G-02/G-03/G-04. |
-| Windows build/execution | Not run on this Linux host. Build on an owned Windows machine and record the result. |
-| Sandboxed Electron GUI launch | Blocked locally: `node_modules/electron/dist/chrome-sandbox` is not root-owned mode 4755. Owner/sudo fix: `sudo chown root:root …/chrome-sandbox && sudo chmod 4755 …/chrome-sandbox`. Do not validate with `--no-sandbox`. |
-| Real FRM/provider integration | Not run; no live token or public tunnel authorized. Dev-only simulation evidence exists (`evidence/simulated-integration.md`) and does not satisfy this row. |
+| `GHSA-g3hv-75wg-m249` minimatch <11.0.1 (dev/build tooling only) | Owner-directed exception recorded to 2027-01-31 (`activation/MINIMATCH_EXCEPTION_APPROVED.md`); not shipped. |
+| Public sharing | Enabled only with a configured provider credential and successful runtime FRM probe. ACT-002 is documented-derived; no real provider closure test was run (G-04). |
+| Windows build/execution | Portable artifact cross-built and hashed; **execution not run**. Verify on an owned Windows machine before distribution. |
+| Sandboxed Electron GUI launch | Still blocked locally: `chrome-sandbox` is not root-owned 4755 and user namespaces are denied by AppArmor (`unshare -Ur` fails). Owner/sudo fix required. |
+| Real FRM/provider integration | FRM contract documented-derived; real CLI spawn/teardown verified. Live provider authentication/closure not run (`evidence/tunnel-cli-verification.md`). |
 | Signing/provenance | Not configured; artifacts are unsigned. Owner supplies policy. |
 | macOS | Deferred (no owned test/signing path). |
 

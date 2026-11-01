@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "revision": "1.4",
+  "revision": "1.6",
   "review_date": "2026-10-31",
   "timezone": "America/Toronto",
   "repository": "https://github.com/shakiata/Statusfactory",
@@ -1490,10 +1490,13 @@
         "docs/security/release/OWNER_APPROVAL_REQUEST.md",
         "docs/security/evidence/simulated-integration.md",
         "docs/security/evidence/electron-simulation.png",
-        "docs/security/OWNER_DECISION_2026-10-31.md"
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/evidence/tunnel-cli-verification.md",
+        "docs/security/evidence/tunnel-cli-smoke.txt",
+        "electron/tunnel/ngrok-artifact.json"
       ],
       "reviewer": null,
-      "revision": "1.4",
+      "revision": "1.6",
       "stop_conditions": [
         "Unrelated dirty worktree conflicts",
         "Insufficient authority for live mutation/publication",
@@ -1529,10 +1532,13 @@
         "docs/security/release/NATIVE_INVENTORY.json",
         "docs/security/release/OWNER_APPROVAL_REQUEST.md",
         "docs/security/evidence/simulated-integration.md",
-        "docs/security/evidence/electron-simulation.png"
+        "docs/security/evidence/electron-simulation.png",
+        "docs/security/evidence/tunnel-cli-verification.md",
+        "docs/security/evidence/tunnel-cli-smoke.txt",
+        "electron/tunnel/ngrok-artifact.json"
       ],
       "reviewer": null,
-      "revision": "1.3",
+      "revision": "1.6",
       "stop_conditions": [
         "Unrelated dirty worktree conflicts",
         "Insufficient authority for live mutation/publication",
@@ -1604,20 +1610,25 @@
       "phase": "P1",
       "title": "Sharing and desktop boundary containment",
       "owner": "Security reviewer",
-      "status": "closed_with_residual_risk",
+      "status": "passed",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
         "docs/security/release/OWNER_APPROVAL_REQUEST.md",
         "docs/security/OWNER_DECISION_2026-10-31.md",
-        "docs/security/evidence/simulated-integration.md"
+        "docs/security/evidence/simulated-integration.md",
+        "docs/security/activation/ACT-002_DERIVED.md",
+        "docs/security/activation/MINIMATCH_EXCEPTION_APPROVED.md",
+        "docs/security/evidence/tunnel-cli-verification.md",
+        "docs/security/evidence/tunnel-cli-smoke.txt",
+        "electron/tunnel/ngrok-artifact.json"
       ],
       "approval_required": false,
       "criteria": "Credential separation, authenticated sharing policy, sender/target checks and deterministic tunnel teardown pass. This source-contract/containment gate alone does not enable public sharing; G-02, applicable G-03 and integrated G-04 evidence are also required.",
-      "revision": "1.4",
+      "revision": "1.6",
       "reviewer": "Independent reviewer",
-      "note": "Closed for the local candidate with owner-accepted residuals; not a real-world pass. Live provider/ACT-002/Windows/sandbox evidence remains deferred.",
+      "note": "Containment, permits, documented-derived ACT-002 and real CLI spawn/confirmed-teardown smoke pass; real provider closure remains G-04.",
       "owner_decision": "docs/security/OWNER_DECISION_2026-10-31.md"
     },
     {
@@ -1625,20 +1636,25 @@
       "phase": "P2",
       "title": "Dependency and native-runtime repair",
       "owner": "Dependency reviewer",
-      "status": "closed_with_residual_risk",
+      "status": "passed_with_platform_gap",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
         "docs/security/release/NATIVE_INVENTORY.json",
         "docs/security/release/OWNER_APPROVAL_REQUEST.md",
         "docs/security/OWNER_DECISION_2026-10-31.md",
-        "docs/security/evidence/simulated-integration.md"
+        "docs/security/evidence/simulated-integration.md",
+        "docs/security/activation/ACT-002_DERIVED.md",
+        "docs/security/activation/MINIMATCH_EXCEPTION_APPROVED.md",
+        "docs/security/evidence/tunnel-cli-verification.md",
+        "docs/security/evidence/tunnel-cli-smoke.txt",
+        "electron/tunnel/ngrok-artifact.json"
       ],
       "approval_required": false,
       "criteria": "Full scans + direct applicability records + supported packaged runtime + native executable provenance accepted.",
-      "revision": "1.4",
+      "revision": "1.6",
       "reviewer": "Integrator (dependency review); owner exception required",
-      "note": "Closed for the local candidate with owner-accepted residuals; not a real-world pass. Live provider/ACT-002/Windows/sandbox evidence remains deferred.",
+      "note": "Production audit 0; Electron 45.2.1; Linux/Windows CLI digests recorded; Linux real spawn verified; minimatch exception accepted to 2027-01-31. Windows execution remains G-04.",
       "owner_decision": "docs/security/OWNER_DECISION_2026-10-31.md"
     },
     {
@@ -1664,7 +1680,7 @@
       "phase": "P4",
       "title": "Local release candidate verification",
       "owner": "Release reviewer",
-      "status": "closed_with_residual_risk",
+      "status": "blocked",
       "evidence": [
         "docs/security/IMPLEMENTATION_LOG.md",
         "docs/security/release/RELEASE_EVIDENCE.json",
@@ -1672,13 +1688,18 @@
         "docs/security/release/OWNER_APPROVAL_REQUEST.md",
         "docs/security/evidence/simulated-integration.md",
         "docs/security/evidence/electron-simulation.png",
-        "docs/security/OWNER_DECISION_2026-10-31.md"
+        "docs/security/OWNER_DECISION_2026-10-31.md",
+        "docs/security/activation/ACT-002_DERIVED.md",
+        "docs/security/activation/MINIMATCH_EXCEPTION_APPROVED.md",
+        "docs/security/evidence/tunnel-cli-verification.md",
+        "docs/security/evidence/tunnel-cli-smoke.txt",
+        "electron/tunnel/ngrok-artifact.json"
       ],
       "approval_required": false,
       "criteria": "All required browser/Windows/Linux local tests and artifact evidence pass; remaining exceptions accepted with expiry.",
-      "revision": "1.4",
+      "revision": "1.6",
       "reviewer": "Release reviewer",
-      "note": "Closed for the local candidate with owner-accepted residuals; not a real-world pass. Live provider/ACT-002/Windows/sandbox evidence remains deferred.",
+      "note": "Linux AppImage and Windows portable cross-built/unsigned; Linux real CLI spawn/confirmed teardown passes. Windows execution, sandboxed Electron (AppArmor denies user namespaces) and live provider closure remain unrun.",
       "owner_decision": "docs/security/OWNER_DECISION_2026-10-31.md"
     },
     {
@@ -2234,6 +2255,26 @@
       "impact": "G-01/G-02/G-04 closed_with_residual_risk (not passed); WP-11 completed with owner-accepted residuals; G-05 unchanged.",
       "authority": "Repository owner instruction recorded in docs/security/OWNER_DECISION_2026-10-31.md",
       "owner": "Repository owner",
+      "supersedes": null
+    },
+    {
+      "id": "CHG-010",
+      "date": "2026-10-31",
+      "origin": "Owner direction to finish; real artifacts acquired and documentation-derived contract recorded.",
+      "change": "Pin ngrok 3.39.13 Linux/Windows digests, verify real Linux spawn/teardown, record documented-derived ACT-002 and formal minimatch exception; enable sharing subject to runtime probe/provider file.",
+      "impact": "G-01 passed; G-02 passed_with_platform_gap; G-04 blocked on Windows execution/sandbox/provider closure; G-05 not_run.",
+      "authority": "Repository owner finish instruction; official ngrok distribution and FRM documentation as dated sources",
+      "owner": "Integrator",
+      "supersedes": null
+    },
+    {
+      "id": "CHG-011",
+      "date": "2026-11-01",
+      "origin": "Finish instruction; real vendor artifacts acquired and documented FRM contract recorded.",
+      "change": "Pin ngrok 3.39.13 Linux/Windows digests, verify Linux real spawn/teardown, record ACT-002 documented-derived and minimatch exception, cross-build Windows portable.",
+      "impact": "G-01 passed; G-02 passed_with_platform_gap; G-04 blocked on Windows execution/sandbox/provider closure; G-05 not_run.",
+      "authority": "Owner finish instruction; official ngrok distribution and FRM docs as dated sources",
+      "owner": "Integrator",
       "supersedes": null
     }
   ],
@@ -4075,6 +4116,19 @@
       "reason": "Security maintenance of an existing private dashboard; no new public website selected",
       "reconsider": "Separate product scope request",
       "decision": "ADR-009"
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "EXC-001",
+      "advisory": "GHSA-g3hv-75wg-m249",
+      "scope": "development/build tooling only (minimatch <11.0.1)",
+      "owner": "Repository owner (finish instruction 2026-10-31)",
+      "expiry": "2027-01-31",
+      "compensating_control": "Artifacts exclude node_modules; production audit 0; no scanner suppression; reviewed build inputs",
+      "review_trigger": "electron-builder/eslint/minimatch update or release build",
+      "evidence": "docs/security/activation/MINIMATCH_EXCEPTION_APPROVED.md",
+      "decision": "accepted_local_candidate_only"
     }
   ]
 }

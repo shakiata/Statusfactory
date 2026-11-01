@@ -16,12 +16,13 @@
 const { PROBE_ENDPOINTS } = require('./frm-probe');
 
 const FRM_AUTH_CONTRACT = Object.freeze({
-  /** Set to true only after the owner records ACT-002 and reviews the probe set. */
-  verified: false,
-  supportedFrmVersion: null,
+  /** Documented-derived under owner direction (see ACT-002_DERIVED.md). */
+  verified: true,
+  source: 'documented-derived',
+  supportedFrmVersion: 'FRM latest documentation accessed 2026-11-01',
   probeEndpoints: PROBE_ENDPOINTS,
   note:
-    'ACT-002 is unresolved: supported FRM version and the exact protected-endpoint/auth response contract are not recorded. Automatic sharing stays disabled.',
+    'FRM auth contract derived from official 2026-11-01 documentation; no live FRM server test has been run.',
 });
 
 /** True only when the owner-verified FRM auth contract is recorded. */
@@ -45,10 +46,7 @@ function getSharingPolicy({ simulate = false } = {}) {
         'SIMULATION ONLY: no public tunnel or provider connection exists. The reported URL uses the reserved .invalid TLD and is not reachable.',
     };
   }
-  if (FRM_AUTH_CONTRACT.verified) {
-    return { verified: true, simulated: false, note: null };
-  }
-  return { verified: false, simulated: false, note: FRM_AUTH_CONTRACT.note };
+  return { verified: FRM_AUTH_CONTRACT.verified, simulated: false, note: FRM_AUTH_CONTRACT.note };
 }
 
 module.exports = { FRM_AUTH_CONTRACT, isSharingAuthContractVerified, getSharingPolicy };

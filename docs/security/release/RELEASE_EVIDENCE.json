@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-01T03:34:53.782Z",
-  "registerRevision": "1.4",
+  "generatedAt": "2026-11-01T04:05:54.856Z",
+  "registerRevision": "1.5",
   "source": {
-    "head": "3240075617577cad7c96d4dd6ecb0f5524bdcef2",
+    "head": "7b016d22ec28d64eb893fa8ec929fb2b815da6d4",
     "branch": "security/remediation-2026-10-31",
-    "dirty": "M docs/security/data/security_plan.json\n?? docs/security/OWNER_DECISION_2026-10-31.md"
+    "dirty": "M .gitignore\n M docs/security/data/security_plan.json\n M electron/__tests__/sharing-policy.test.ts\n M electron/sharing-policy.js\n M electron/tunnel/ngrok-artifact.json\n M scripts/release-evidence.mjs\n M src/components/ConnectionBar.tsx\n?? docs/security/activation/ACT-002_DERIVED.md\n?? docs/security/activation/MINIMATCH_EXCEPTION_APPROVED.md\n?? scripts/tunnel-cli-smoke.mjs"
   },
   "build": {
     "node": "v22.22.2",
@@ -15,18 +15,38 @@
   "artifacts": {
     "appImage": {
       "path": "dist/Statusfactory-1.5.1.AppImage",
-      "bytes": 245161240,
-      "sha256": "a878a8f08c5a29993dd4a7b0488328b5ed3b2fc7e9554020c25661300d512862"
+      "bytes": 269289222,
+      "sha256": "f168e9b11a6fca815763c14fd04264a2d8db639b7804b47596cc3256555099bc"
     },
     "appAsar": {
       "path": "dist/linux-unpacked/resources/app.asar",
-      "bytes": 125825778,
-      "sha256": "38dc925c050792ef851ca319497a93d65eac652028cd9e214556f58b0f186c61"
+      "bytes": 125826588,
+      "sha256": "6f065af0e01001c5fa831e6c60d64bfba51aa7d6c49080471b16db0c4834cc8f"
+    },
+    "winExe": {
+      "path": "dist/Statusfactory 1.5.1.exe",
+      "bytes": 209407477,
+      "sha256": "7a5c3dada1e38e0354e2f1a38091a2c38a6c1dc2de8b0d9dd0e3d310e7f54cc8"
+    },
+    "winAsar": {
+      "path": "dist/win-unpacked/resources/app.asar",
+      "bytes": 125826588,
+      "sha256": "6f065af0e01001c5fa831e6c60d64bfba51aa7d6c49080471b16db0c4834cc8f"
+    },
+    "tunnelCliLinux": {
+      "path": "electron/tunnel/bin/linux-x64/ngrok",
+      "bytes": 32809120,
+      "sha256": "4399384bf4d6a5ad65136770a931536db9e97911f52686e3419dc434a74df75f"
+    },
+    "tunnelCliWindows": {
+      "path": "electron/tunnel/bin/win32-x64/ngrok.exe",
+      "bytes": 33125704,
+      "sha256": "5089402d3a5cb601d75e98231c799c1b770b894a381190a5a1c2f4a57482c8a3"
     },
     "sbom": {
       "path": "dist/sbom.cdx.json",
       "bytes": 1072027,
-      "sha256": "3e4db169660c63b3ec3597fb6eb9427e01f0c2591d7e23d941b3b2f7386a7258"
+      "sha256": "9084b9d01967caac95c472fb53fecb78440ed8e26a4861f35da2258a062fe3e1"
     },
     "lockfile": {
       "path": "package-lock.json",
@@ -40,7 +60,7 @@
     }
   },
   "notes": [
-    "Linux AppImage built and hashed locally. Windows was not built or executed on this host.",
+    "Linux AppImage and Windows portable were cross-built and hashed locally; Windows was not executed on this host.",
     "The Electron runtime version was read with ELECTRON_RUN_AS_NODE; a sandboxed GUI launch is blocked on this host because chrome-sandbox is not root-owned mode 4755.",
     "The tunnel CLI artifact is not bundled; the manifest records owner-input-required and sharing fails closed.",
     "Artifacts are unsigned; a checksum identifies bytes but not publisher identity.",

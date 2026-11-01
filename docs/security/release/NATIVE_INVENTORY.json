@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-01T03:34:53.537Z",
+  "generatedAt": "2026-11-01T04:05:54.601Z",
   "source": {
-    "head": "3240075617577cad7c96d4dd6ecb0f5524bdcef2",
+    "head": "7b016d22ec28d64eb893fa8ec929fb2b815da6d4",
     "branch": "security/remediation-2026-10-31"
   },
   "build": {
@@ -51,34 +51,71 @@
   "tunnelCli": {
     "schemaVersion": 1,
     "name": "ngrok",
-    "version": null,
-    "status": "owner-input-required",
-    "acquisition": "Owner must supply an exact vendor CLI artifact and reviewed SHA-256 for each supported platform through a trusted acquisition path.",
+    "version": "3.39.13",
+    "status": "pinned",
+    "acquisition": "Official ngrok binary distribution (bin.equinox.io), accessed 2026-11-01 UTC; exact digests recorded below. Provider account token not required to download or hash.",
     "notes": [
       "No artifact is bundled in this local release candidate. Verify fails closed until every target entry below is filled.",
       "Never use a mutable 'latest/stable' URL or a checksum fetched alongside untrusted content.",
       "Provider credentials are read from a separate user-only local source by the main process; they are never stored here."
     ],
-    "artifacts": {}
+    "artifacts": {
+      "linux-x64": {
+        "version": "3.39.13",
+        "sha256": "4399384bf4d6a5ad65136770a931536db9e97911f52686e3419dc434a74df75f",
+        "source": "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip",
+        "archiveSha256": "c3bb99ccd29f6ed4a901cf88100d646256d291d80fc94f53c241f8d544f2a8a5",
+        "accessedAt": "2026-11-01T03:36:00Z"
+      },
+      "win32-x64": {
+        "version": "3.39.13",
+        "sha256": "5089402d3a5cb601d75e98231c799c1b770b894a381190a5a1c2f4a57482c8a3",
+        "source": "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip",
+        "archiveSha256": "438bad3dbefd7e244be9dfae3889dcf99073b515845b66ab5617e4887bc24636",
+        "accessedAt": "2026-11-01T03:36:00Z"
+      }
+    }
   },
   "packagedResources": [
-    "README.md"
+    "README.md",
+    "linux-x64",
+    "win32-x64"
   ],
   "artifacts": {
     "appImage": {
       "path": "dist/Statusfactory-1.5.1.AppImage",
-      "bytes": 245161240,
-      "sha256": "a878a8f08c5a29993dd4a7b0488328b5ed3b2fc7e9554020c25661300d512862"
+      "bytes": 269289222,
+      "sha256": "f168e9b11a6fca815763c14fd04264a2d8db639b7804b47596cc3256555099bc"
     },
     "appAsar": {
       "path": "dist/linux-unpacked/resources/app.asar",
-      "bytes": 125825778,
-      "sha256": "38dc925c050792ef851ca319497a93d65eac652028cd9e214556f58b0f186c61"
+      "bytes": 125826588,
+      "sha256": "6f065af0e01001c5fa831e6c60d64bfba51aa7d6c49080471b16db0c4834cc8f"
+    },
+    "winExe": {
+      "path": "dist/Statusfactory 1.5.1.exe",
+      "bytes": 209407477,
+      "sha256": "7a5c3dada1e38e0354e2f1a38091a2c38a6c1dc2de8b0d9dd0e3d310e7f54cc8"
+    },
+    "winAsar": {
+      "path": "dist/win-unpacked/resources/app.asar",
+      "bytes": 125826588,
+      "sha256": "6f065af0e01001c5fa831e6c60d64bfba51aa7d6c49080471b16db0c4834cc8f"
+    },
+    "tunnelCliLinux": {
+      "path": "electron/tunnel/bin/linux-x64/ngrok",
+      "bytes": 32809120,
+      "sha256": "4399384bf4d6a5ad65136770a931536db9e97911f52686e3419dc434a74df75f"
+    },
+    "tunnelCliWindows": {
+      "path": "electron/tunnel/bin/win32-x64/ngrok.exe",
+      "bytes": 33125704,
+      "sha256": "5089402d3a5cb601d75e98231c799c1b770b894a381190a5a1c2f4a57482c8a3"
     },
     "sbom": {
       "path": "dist/sbom.cdx.json",
       "bytes": 1072027,
-      "sha256": "3e4db169660c63b3ec3597fb6eb9427e01f0c2591d7e23d941b3b2f7386a7258"
+      "sha256": "9084b9d01967caac95c472fb53fecb78440ed8e26a4861f35da2258a062fe3e1"
     },
     "lockfile": {
       "path": "package-lock.json",

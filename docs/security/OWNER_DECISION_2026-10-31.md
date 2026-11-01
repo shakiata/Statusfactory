@@ -11,9 +11,10 @@ simulate from the endpoints and finish the security remediation.
    `security/remediation-2026-10-31`.
 2. Real-world verification that requires resources the owner does not have is
    **deferred**, not claimed:
-   - ACT-002 (supported FRM version and exact endpoint/auth contract);
-   - a trusted ngrok CLI artifact and provider closure test;
-   - Windows packaged execution;
+   - a live FRM server/auth-response test (the contract is documented-derived);
+   - a real provider closure test (the CLI artifact is pinned and its Linux
+     spawn/teardown path is verified);
+   - Windows packaged execution (the portable artifact is cross-built only);
    - a sandboxed Electron GUI run on a correctly configured host;
    - release signing/provenance.
 3. **Automatic public sharing remains disabled in normal and packaged builds.**
@@ -29,9 +30,9 @@ simulate from the endpoints and finish the security remediation.
 
 | Residual | Disposition |
 | --- | --- |
-| `GHSA-g3hv-75wg-m249` minimatch `<11.0.1` in dev/build tooling | Accepted for this local candidate only; not shipped; must be revisited for a release. No scanner suppression. |
-| No ACT-002 / live FRM auth contract | Sharing disabled; simulated policy labelled. |
-| No real CLI artifact / provider closure proof | Sharing disabled; adapter fails closed. |
+| `GHSA-g3hv-75wg-m249` minimatch `<11.0.1` in dev/build tooling | Formal exception recorded to 2027-01-31; not shipped; no scanner suppression. |
+| ACT-002 documented-derived, no live server test | Runtime probe still required before a permit; live test deferred. |
+| No real provider closure proof | ngrok 3.39.13 Linux/Windows digests pinned; Linux spawn/teardown verified; provider test deferred. |
 | Windows not executed | Linux artifact only; Windows remains unverified. |
 | Sandboxed Electron not validated on this host | GUI smoke used `--no-sandbox` for visual inspection only; not security evidence. |
 | Unsigned artifacts | Checksums identify bytes only; distribution decision deferred. |
@@ -39,8 +40,9 @@ simulate from the endpoints and finish the security remediation.
 
 ## Effect on gates
 
-G-01, G-02 and G-04 are closed **with residual risk** for this local candidate,
-not marked as passed. G-03 remains a source pass-with-findings. G-05 remains not
+G-01 is **passed**. G-02 is **passed with a platform gap** (Windows execution
+not run). G-04 remains **blocked** (Windows execution, sandboxed Electron, live
+provider closure). G-03 remains a source pass-with-findings. G-05 remains not
 run. A future release must reopen the deferred items and obtain explicit
 approval before distribution.
 
